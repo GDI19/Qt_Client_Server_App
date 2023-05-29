@@ -18,7 +18,7 @@ DATA_IN = {'items': ['computer', 'printer', 'keyboard', 'mouse'],
            'items_price': {'computer': '200€-1000€',
                            'printer': '100€-300€',
                            'keyboard': '5€-50€',
-                           'mouse': '4€-7€'}
+                           'mouse': '4\u20ac-7\u20ac'}
            }
 file_name = 'file.yaml'
 
