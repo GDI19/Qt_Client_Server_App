@@ -5,10 +5,10 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "task1.py",
+            "name": "server.py",
             "type": "python",
             "request": "launch",
-            "program": "lesson2/task1.py",
+            "program": "lesson3/server.py",
             "console": "integratedTerminal",
             "justMyCode": true
         }
