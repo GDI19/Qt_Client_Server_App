@@ -3,49 +3,9 @@ from socket import *
 import sys
 import time
 
-from utils import get_message, send_message
+from common.utils import get_message, send_message
 
 DEFAULT_PORT = 7777
-
-# response = {
-#     200: {
-#         "response": 200,
-#         "alert":"Необязательное сообщение/уведомление"
-#         },
-#     402: {
-#         "response": 402,
-#         "error": "This could be wrong password or no account with that name"
-#         },
-#     409: {
-#         "response": 409,
-#         "error": "Someone is already connected with the given user name"
-#         }
-# }
-
-
-# s = socket(AF_INET, SOCK_STREAM)
-# s.bind(('localhost', 8007))
-
-# s.listen(5)
-
-# while True:
-#     client, addr = s.accept()
-#     data = client.recv(1024)
-#     decoded_json_data = json.loads(data.decode('utf-8'))
-
-#     if decoded_json_data['action'] == 'presence' and decoded_json_data['time']:
-#         msg_to_c = json.dumps(response[200])
-#         client.send(msg_to_c.encode('utf-8'))
-#     else:
-#         msg_to_c = json.dumps(response[402])
-#         client.send(msg_to_c.encode('utf-8'))
-    
-    
-#     msg_form_client = f'Message: {decoded_json_data} from client: {client}, addr:{addr}.'
-#     print(msg_form_client, f'size: {len(data)} bites')
-
-    
-#     client.close()
 
 
 def process_client_message(message):
