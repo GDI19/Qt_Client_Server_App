@@ -3,28 +3,8 @@ import sys
 import time
 import json
 
-from utils import get_message, send_message
+from common.utils import get_message, send_message
 
-
-# s = socket(AF_INET, SOCK_STREAM)
-# s.connect(('localhost', 8007))
-
-
-# msg = {
-#     "action": "presence",
-#     "time": str(time.time()),
-#     "user": {
-#         "account_name": "C0deMaver1ck",
-#         "password": "CorrectHorseBatterStaple"
-#     }
-# }
-# json_msg = json.dumps(msg)
-
-# s.send(json_msg.encode('utf-8'))
-# data = s.recv(1024)
-# data_decoded = json.loads(data.decode('utf-8'))
-# print(data_decoded, 'size:' ,len(data))
-# s.close()
 
 
 def create_presence( account_name = 'guest'):
