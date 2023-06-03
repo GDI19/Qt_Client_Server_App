@@ -1,0 +1,4 @@
+DEBUG      2023-06-03 18:46:33,685 main Server has been launched...
+DEBUG      2023-06-03 18:46:33,686 main Trying to parse parameters -p
+INFO       2023-06-03 18:46:33,686 main Номер порта может быть указан только в диапазоне от 1024 до 65535.
+DEBUG      2023-06-03 18:46:33,686 main Not correct -p

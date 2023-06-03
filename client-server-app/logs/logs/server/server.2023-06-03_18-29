@@ -1,0 +1,5 @@
+DEBUG      2023-06-03 18:29:44,183 main Server has been launched...
+DEBUG      2023-06-03 18:29:44,183 main Trying to parse parameters -p
+DEBUG      2023-06-03 18:29:44,183 main Trying to parse parameter -a
+DEBUG      2023-06-03 18:29:44,184 main socket localhost - 7777
+DEBUG      2023-06-03 18:29:48,801 process_client_message Processed msg with correct info

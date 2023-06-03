@@ -1,0 +1,53 @@
+INFO       2023-06-03 18:08:49,852 main launch client
+INFO       2023-06-03 18:08:49,853 main no parameters. Using defaults
+INFO       2023-06-03 18:08:49,854 main connecting to the server
+INFO       2023-06-03 18:08:49,854 create_presence created presence with user guest
+INFO       2023-06-03 18:08:49,857 main message received: 200: ok
+INFO       2023-06-03 18:10:23,128 main launch client
+INFO       2023-06-03 18:10:23,128 main no socket parameters. Using defaults
+INFO       2023-06-03 18:10:23,129 main connecting to the server
+INFO       2023-06-03 18:10:23,129 create_presence created presence with user user
+INFO       2023-06-03 18:10:23,130 main message received: 400: Bad Request
+INFO       2023-06-03 18:11:39,338 main launch client
+INFO       2023-06-03 18:11:39,339 main no socket parameters. Using defaults
+INFO       2023-06-03 18:11:39,339 main connecting to the server
+INFO       2023-06-03 18:11:39,340 create_presence created presence with user: `user`
+INFO       2023-06-03 18:11:39,344 main message received: 400: Bad Request
+INFO       2023-06-03 18:12:22,475 main launch client
+INFO       2023-06-03 18:12:22,476 main no socket parameters. Using defaults
+INFO       2023-06-03 18:12:22,476 main connecting to the server
+INFO       2023-06-03 18:12:22,476 create_presence created presence with user: `guest`
+INFO       2023-06-03 18:12:22,478 main message received: 200: ok
+INFO       2023-06-03 18:27:40,628 main launch client
+INFO       2023-06-03 18:27:40,629 main no socket parameters. Using defaults
+INFO       2023-06-03 18:27:40,630 main connecting to the server
+INFO       2023-06-03 18:27:40,630 create_presence created presence with user: `guest`
+INFO       2023-06-03 18:27:40,634 main message received: 200: ok
+INFO       2023-06-03 18:29:48,799 main launch client
+INFO       2023-06-03 18:29:48,800 main no socket parameters. Using defaults
+INFO       2023-06-03 18:29:48,800 main connecting to the server
+INFO       2023-06-03 18:29:48,800 create_presence created presence with user: `guest`
+INFO       2023-06-03 18:29:48,801 main message received: 200: ok
+INFO       2023-06-03 18:34:13,020 main launch client
+INFO       2023-06-03 18:34:13,020 main no socket parameters. Using defaults
+INFO       2023-06-03 18:34:49,080 main launch client
+INFO       2023-06-03 18:38:17,558 main launch client
+INFO       2023-06-03 18:40:47,624 main launch client
+INFO       2023-06-03 18:41:30,335 main launch client
+INFO       2023-06-03 18:41:30,336 main connecting to the server
+INFO       2023-06-03 18:41:30,336 create_presence created presence with user: `guest`
+INFO       2023-06-03 18:41:30,338 main message received: 200: ok
+INFO       2023-06-03 18:43:34,081 main launch client
+INFO       2023-06-03 18:43:34,082 main connecting to the server: localhost - 1234
+INFO       2023-06-03 18:43:34,083 create_presence created presence with user: `guest`
+INFO       2023-06-03 18:43:34,085 main message received: 200: ok
+INFO       2023-06-03 18:44:42,906 main launch client
+WARNING    2023-06-03 18:44:42,907 main В качестве порта может быть указано только число в диапазоне от 1024 до 65535.
+INFO       2023-06-03 18:51:32,648 main launch client
+ERROR      2023-06-03 18:51:32,648 main В качестве порта может быть указано только число в диапазоне от 1024 до 65535.
+INFO       2023-06-03 18:52:07,019 main launch client
+INFO       2023-06-03 18:52:17,701 main launch client
+INFO       2023-06-03 18:52:17,701 main no socket parameters. Using defaults
+INFO       2023-06-03 18:52:17,702 main connecting to the server: 127.0.0.1 - 7777
+INFO       2023-06-03 18:52:17,703 create_presence created presence with user: `guest`
+INFO       2023-06-03 18:52:17,705 main message received: 200: ok

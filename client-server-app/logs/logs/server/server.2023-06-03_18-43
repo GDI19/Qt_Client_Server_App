@@ -1,0 +1,2 @@
+INFO       2023-06-03 18:43:34,084 main {'action': 'presence', 'time': 1685807014.0833852, 'user': {'account_name': 'guest'}}
+DEBUG      2023-06-03 18:43:34,084 process_client_message Processed msg with correct info
