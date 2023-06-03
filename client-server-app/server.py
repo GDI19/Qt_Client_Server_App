@@ -2,6 +2,12 @@ import json
 from socket import *
 import sys
 import time
+import logging
+import logs.server_log_config
+
+
+server_log = logging.getLogger('server_log')
+
 
 from common.utils import get_message, send_message
 
@@ -16,14 +22,20 @@ def process_client_message(message):
     """
     if 'action' in message and message['action'] == 'presence' and 'time' in message \
         and 'user' in message and message['user']['account_name'] == 'guest':
+        server_log.debug('Processed msg with correct info')
         return {'response': 200}    
     else:
+        server_log.critical('Processed msg with noncorrect info')
         return {'response': 400, 'error': 'Bad Request'}
     
 
 
 def main():
+    server_log.debug('Server has been launched...')
+
     try:
+        server_log.debug('Trying to parse parameters -p')
+
         if '-p' in sys.argv:
             listen_port = int(sys.argv[sys.argv.index('-p') + 1])
         else:
@@ -33,35 +45,45 @@ def main():
             raise ValueError
         
     except IndexError:
-        print("После параметра -\'p\' необходимо указать номер порта.")
+        server_log.info("После параметра -\'p\' необходимо указать номер порта.")
+        
+        server_log.warning('There is no parameter -p')
+        
         sys.exit(1)
     except ValueError:
-        print('Номер порта может быть указан только в диапазоне от 1024 до 65535.')
+        server_log.info('Номер порта может быть указан только в диапазоне от 1024 до 65535.')
+        server_log.error('Not correct -p')
         sys.exit(1)
 
     try:
+        server_log.debug('Trying to parse parameter -a')
+
         if '-a' in sys.argv:
             listen_address = sys.argv[sys.argv.index('-a') + 1]
         else:
             listen_address = 'localhost'
     except IndexError:
-        print('После параметра \'- a\' необходимо указать адрес, который будет слушать сервер.')
+        server_log.info('После параметра \'- a\' необходимо указать адрес, который будет слушать сервер.')
+        server_log.debug('There is no parameter -a')
         sys.exit(1)
 
     transport = socket(AF_INET, SOCK_STREAM)
     # transport.setsockopt(SOL_SOCKET, SO_REUSEADDR, 1)
     transport.bind((listen_address, listen_port))
+    server_log.debug(f'using socket {listen_address} - {listen_port}')
+
     transport.listen(5)
 
     while True:
         client, addr = transport.accept()
         try:
             msg_form_client = get_message(client)
-            print(msg_form_client)
+            server_log.info(msg_form_client)
             response = process_client_message(msg_form_client)
             send_message(client, response)
         except (ValueError, json.JSONDecodeError):
-            print('Принято некорректное сообщение от клиента.')
+            server_log.error('Not correct message from client')
+            
             client.close()
 
 
