@@ -1,0 +1,4 @@
+INFO       2023-06-04 18:15:22,464 wrap Before function call: send_message with parameters {}.
+INFO       2023-06-04 18:15:22,467 wrap After function call: send_message.
+INFO       2023-06-04 18:15:22,468 wrap Before function call: get_message with parameters {}.
+INFO       2023-06-04 18:15:22,469 wrap After function call: get_message.

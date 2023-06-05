@@ -1,0 +1,4 @@
+INFO       2023-06-05 13:47:15,901 wrap Before function call: send_message with parameters {'action': 'presence', 'time': 1685962035.9015388, 'user': {'account_name': 'guest'}} & {}.
+INFO       2023-06-05 13:47:15,913 wrap After function call: send_message. Вызов из модуля common.utils. Вызов из функции main().Вызов из функции main
+INFO       2023-06-05 13:47:15,913 wrap Before function call: get_message with parameters <socket.socket fd=5, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 54242), raddr=('127.0.0.1', 7777)> & {}.
+INFO       2023-06-05 13:47:15,913 wrap After function call: get_message. Вызов из модуля common.utils. Вызов из функции main().Вызов из функции main

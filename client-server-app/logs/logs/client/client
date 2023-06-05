@@ -51,3 +51,122 @@ INFO       2023-06-03 18:52:17,701 main no socket parameters. Using defaults
 INFO       2023-06-03 18:52:17,702 main connecting to the server: 127.0.0.1 - 7777
 INFO       2023-06-03 18:52:17,703 create_presence created presence with user: `guest`
 INFO       2023-06-03 18:52:17,705 main message received: 200: ok
+INFO       2023-06-04 17:53:16,197 main launch client
+INFO       2023-06-04 17:53:16,198 main no socket parameters. Using defaults
+INFO       2023-06-04 17:53:16,198 main connecting to the server: 127.0.0.1 - 7777
+INFO       2023-06-04 17:53:16,198 create_presence created presence with user: `guest`
+INFO       2023-06-04 17:53:16,200 main message received: 200: ok
+INFO       2023-06-04 17:58:51,485 main launch client
+INFO       2023-06-04 17:58:51,485 main no socket parameters. Using defaults
+INFO       2023-06-04 17:58:51,486 main connecting to the server: 127.0.0.1 - 7777
+INFO       2023-06-04 17:58:51,486 create_presence created presence with user: `guest`
+INFO       2023-06-04 17:58:51,488 main message received: 200: ok
+INFO       2023-06-04 18:04:59,587 main launch client
+INFO       2023-06-04 18:04:59,587 main no socket parameters. Using defaults
+INFO       2023-06-04 18:04:59,588 main connecting to the server: 127.0.0.1 - 7777
+INFO       2023-06-04 18:04:59,588 create_presence created presence with user: `guest`
+INFO       2023-06-04 18:04:59,590 main message from server received: 200: ok
+INFO       2023-06-04 18:07:07,122 main launch client
+INFO       2023-06-04 18:07:07,122 main no socket parameters. Using defaults
+INFO       2023-06-04 18:07:07,123 main connecting to the server: 127.0.0.1 - 7777
+INFO       2023-06-04 18:07:07,123 create_presence created presence with user: `guest`
+INFO       2023-06-04 18:07:07,125 main message from server received: 200: ok
+INFO       2023-06-04 18:07:51,353 main launch client
+INFO       2023-06-04 18:07:51,353 main no socket parameters. Using defaults
+INFO       2023-06-04 18:07:51,354 main connecting to the server: 127.0.0.1 - 7777
+INFO       2023-06-04 18:07:51,354 wrap Before function call: create_presence with parameters {}.
+INFO       2023-06-04 18:07:51,354 create_presence created presence with user: `guest`
+INFO       2023-06-04 18:07:51,354 wrap After function call: create_presence.
+INFO       2023-06-04 18:07:51,356 wrap Before function call: process_answer with parameters {}.
+INFO       2023-06-04 18:07:51,356 wrap After function call: process_answer.
+INFO       2023-06-04 18:07:51,356 main message from server received: 200: ok
+INFO       2023-06-04 18:15:22,461 main launch client
+INFO       2023-06-04 18:15:22,462 main no socket parameters. Using defaults
+INFO       2023-06-04 18:15:22,462 main connecting to the server: 127.0.0.1 - 7777
+INFO       2023-06-04 18:15:22,463 wrap Before function call: create_presence with parameters {}.
+INFO       2023-06-04 18:15:22,463 create_presence created presence with user: `guest`
+INFO       2023-06-04 18:15:22,463 wrap After function call: create_presence.
+INFO       2023-06-04 18:15:22,469 wrap Before function call: process_answer with parameters {}.
+INFO       2023-06-04 18:15:22,470 wrap After function call: process_answer.
+INFO       2023-06-04 18:15:22,470 main message from server received: 200: ok
+INFO       2023-06-04 18:16:37,976 main launch client
+INFO       2023-06-04 18:16:37,976 main no socket parameters. Using defaults
+INFO       2023-06-04 18:16:37,977 main connecting to the server: 127.0.0.1 - 7777
+INFO       2023-06-04 18:16:37,977 wrap Before function call: create_presence with parameters {}.
+INFO       2023-06-04 18:16:37,977 create_presence created presence with user: `guest`
+INFO       2023-06-04 18:16:37,977 wrap After function call: create_presence.
+INFO       2023-06-04 18:16:37,980 wrap Before function call: process_answer with parameters {}.
+INFO       2023-06-04 18:16:37,980 wrap After function call: process_answer.
+INFO       2023-06-04 18:16:37,980 main message from server received: 200: ok
+INFO       2023-06-05 13:43:03,511 main launch client
+INFO       2023-06-05 13:43:03,511 main no socket parameters. Using defaults
+INFO       2023-06-05 13:43:03,513 main connecting to the server: 127.0.0.1 - 7777
+INFO       2023-06-05 13:43:03,513 wrap Before function call: create_presence with parameters {}.
+INFO       2023-06-05 13:43:03,513 create_presence created presence with user: `guest`
+INFO       2023-06-05 13:43:03,513 wrap After function call: create_presence.
+INFO       2023-06-05 13:43:03,543 wrap Before function call: process_answer with parameters {}.
+INFO       2023-06-05 13:43:03,544 wrap After function call: process_answer.
+INFO       2023-06-05 13:43:03,544 main message from server received: 200: ok
+INFO       2023-06-05 13:47:15,900 main launch client
+INFO       2023-06-05 13:47:15,900 main no socket parameters. Using defaults
+INFO       2023-06-05 13:47:15,901 main connecting to the server: 127.0.0.1 - 7777
+INFO       2023-06-05 13:47:15,901 wrap Before function call: create_presence with parameters {}.
+INFO       2023-06-05 13:47:15,901 create_presence created presence with user: `guest`
+INFO       2023-06-05 13:47:15,901 wrap After function call: create_presence.
+INFO       2023-06-05 13:47:15,914 wrap Before function call: process_answer with parameters {}.
+INFO       2023-06-05 13:47:15,914 wrap After function call: process_answer.
+INFO       2023-06-05 13:47:15,914 main message from server received: 200: ok
+INFO       2023-06-05 13:48:24,174 main launch client
+INFO       2023-06-05 13:48:24,174 main no socket parameters. Using defaults
+INFO       2023-06-05 13:48:24,175 main connecting to the server: 127.0.0.1 - 7777
+INFO       2023-06-05 13:48:24,176 wrap Before function call: create_presence with parameters {}.
+INFO       2023-06-05 13:48:24,176 create_presence created presence with user: `guest`
+INFO       2023-06-05 13:48:24,176 wrap After function call: create_presence.
+INFO       2023-06-05 13:48:24,188 wrap Before function call: process_answer with parameters {}.
+INFO       2023-06-05 13:48:24,188 wrap After function call: process_answer.
+INFO       2023-06-05 13:48:24,191 main message from server received: 200: ok
+INFO       2023-06-05 13:52:20,334 main launch client
+INFO       2023-06-05 13:52:20,334 main no socket parameters. Using defaults
+INFO       2023-06-05 13:52:20,335 main connecting to the server: 127.0.0.1 - 7777
+INFO       2023-06-05 13:52:20,335 wrap Before function call: create_presence with parameters {}.
+INFO       2023-06-05 13:52:20,335 create_presence created presence with user: `guest`
+INFO       2023-06-05 13:52:20,336 wrap After function call: create_presence.
+INFO       2023-06-05 13:52:20,362 wrap Before function call: process_answer with parameters {}.
+INFO       2023-06-05 13:52:20,362 wrap After function call: process_answer.
+INFO       2023-06-05 13:52:20,362 main message from server received: 200: ok
+INFO       2023-06-05 13:57:10,097 main launch client
+INFO       2023-06-05 13:57:10,097 main no socket parameters. Using defaults
+INFO       2023-06-05 13:57:10,098 main connecting to the server: 127.0.0.1 - 7777
+INFO       2023-06-05 13:57:10,098 wrap Before function call: create_presence with parameters {}.
+INFO       2023-06-05 13:57:10,099 create_presence created presence with user: `guest`
+INFO       2023-06-05 13:57:10,100 wrap After function call: create_presence.
+INFO       2023-06-05 13:57:10,114 wrap Before function call: process_answer with parameters {}.
+INFO       2023-06-05 13:57:10,114 wrap After function call: process_answer.
+INFO       2023-06-05 13:57:10,114 main message from server received: 200: ok
+INFO       2023-06-05 14:03:43,804 main launch client
+INFO       2023-06-05 14:03:43,804 main no socket parameters. Using defaults
+INFO       2023-06-05 14:03:43,805 main connecting to the server: 127.0.0.1 - 7777
+INFO       2023-06-05 14:03:43,805 wrap Before function call: create_presence with parameters {}.
+INFO       2023-06-05 14:03:43,805 create_presence created presence with user: `guest`
+INFO       2023-06-05 14:03:43,806 wrap After function call: create_presence. Вызов из модуля __main__. Вызов из функции main().
+INFO       2023-06-05 14:03:43,811 wrap Before function call: process_answer with parameters {}.
+INFO       2023-06-05 14:03:43,811 wrap After function call: process_answer. Вызов из модуля __main__. Вызов из функции main().
+INFO       2023-06-05 14:03:43,811 main message from server received: 200: ok
+INFO       2023-06-05 14:05:26,082 main launch client
+INFO       2023-06-05 14:05:26,082 main no socket parameters. Using defaults
+INFO       2023-06-05 14:05:26,083 main connecting to the server: 127.0.0.1 - 7777
+INFO       2023-06-05 14:05:26,083 wrap Before function call: create_presence with parameters () & {}.
+INFO       2023-06-05 14:05:26,083 create_presence created presence with user: `guest`
+INFO       2023-06-05 14:05:26,084 wrap After function call: create_presence. Вызов из модуля __main__. Вызов из функции main().
+INFO       2023-06-05 14:05:26,090 wrap Before function call: process_answer with parameters ({'response': 200},) & {}.
+INFO       2023-06-05 14:05:26,090 wrap After function call: process_answer. Вызов из модуля __main__. Вызов из функции main().
+INFO       2023-06-05 14:05:26,090 main message from server received: 200: ok
+INFO       2023-06-05 14:09:28,214 main launch client
+INFO       2023-06-05 14:09:28,215 main no socket parameters. Using defaults
+INFO       2023-06-05 14:09:28,215 main connecting to the server: 127.0.0.1 - 7777
+INFO       2023-06-05 14:09:28,215 wrap Before function call: create_presence with parameters () & {}.
+INFO       2023-06-05 14:09:28,215 create_presence created presence with user: `guest`
+INFO       2023-06-05 14:09:28,216 wrap After function call: create_presence. Вызов из модуля __main__. Вызов из функции main().
+INFO       2023-06-05 14:09:28,220 wrap Before function call: process_answer with parameters ({'response': 200},) & {}.
+INFO       2023-06-05 14:09:28,220 wrap After function call: process_answer. Вызов из модуля __main__. Вызов из функции main().
+INFO       2023-06-05 14:09:28,221 main message from server received: 200: ok

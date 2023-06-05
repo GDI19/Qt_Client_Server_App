@@ -4,13 +4,14 @@ import time
 import json
 import logging
 import logs.client_log_config
+from logs.client_log_config import log
 
 client_log = logging.getLogger('client_log')
 
 from common.utils import get_message, send_message
 
 
-
+@log
 def create_presence( account_name = 'guest'):
     presence_msg = {
         "action": "presence",
@@ -22,7 +23,7 @@ def create_presence( account_name = 'guest'):
     client_log.info(f'created presence with user: `{account_name}`')
     return presence_msg
 
-
+@log
 def process_answer(message):
     if 'response' in message:
         if message['response'] == 200:  
@@ -63,7 +64,7 @@ def main():
 
     try:
         answer = process_answer(get_message(transport))
-        client_log.info(f'message received: {answer}')
+        client_log.info(f'message from server received: {answer}')
 
     except (ValueError, json.JSONDecodeError):
         client_log.warning('Не удалось декодировать сообщение сервера.')

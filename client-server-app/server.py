@@ -4,6 +4,7 @@ import sys
 import time
 import logging
 import logs.server_log_config
+from logs.server_log_config import log
 
 
 server_log = logging.getLogger('server_log')
@@ -13,7 +14,7 @@ from common.utils import get_message, send_message
 
 DEFAULT_PORT = 7777
 
-
+@log
 def process_client_message(message):
     """
     Receive message from client, check it.
@@ -78,7 +79,7 @@ def main():
         client, addr = transport.accept()
         try:
             msg_form_client = get_message(client)
-            server_log.info(msg_form_client)
+            server_log.info(f'received message from client: {msg_form_client}')
             response = process_client_message(msg_form_client)
             send_message(client, response)
         except (ValueError, json.JSONDecodeError):

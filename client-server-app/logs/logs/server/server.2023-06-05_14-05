@@ -1,0 +1,8 @@
+INFO       2023-06-05 14:09:28,215 wrap Before function call: get_message with parameters {}.
+INFO       2023-06-05 14:09:28,217 wrap After function call: get_message.
+INFO       2023-06-05 14:09:28,218 main received message from client: {'action': 'presence', 'time': 1685963368.2157602, 'user': {'account_name': 'guest'}}
+INFO       2023-06-05 14:09:28,218 wrap Before function call: process_client_message with parameters {}.
+DEBUG      2023-06-05 14:09:28,218 process_client_message Processed msg with correct info
+INFO       2023-06-05 14:09:28,218 wrap After function call: process_client_message.
+INFO       2023-06-05 14:09:28,218 wrap Before function call: send_message with parameters {}.
+INFO       2023-06-05 14:09:28,218 wrap After function call: send_message.

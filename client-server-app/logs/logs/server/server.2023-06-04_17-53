@@ -1,0 +1,8 @@
+DEBUG      2023-06-04 17:52:20,109 main Server has been launched...
+DEBUG      2023-06-04 17:52:20,109 main Trying to parse parameters -p
+DEBUG      2023-06-04 17:52:20,110 main Trying to parse parameter -a
+DEBUG      2023-06-04 17:52:20,110 main using socket localhost - 7777
+INFO       2023-06-04 17:53:16,199 main {'action': 'presence', 'time': 1685890396.1987402, 'user': {'account_name': 'guest'}}
+INFO       2023-06-04 17:53:16,199 wrap Before function call: process_client_message with parameters {}.
+DEBUG      2023-06-04 17:53:16,199 process_client_message Processed msg with correct info
+INFO       2023-06-04 17:53:16,199 wrap After function call: process_client_message.
