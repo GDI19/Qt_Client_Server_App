@@ -1,3 +1,4 @@
+import argparse
 from socket import *
 import sys
 import time
@@ -5,10 +6,13 @@ import json
 import logging
 import logs.client_log_config
 from logs.client_log_config import log
+from datetime import datetime
 
 client_log = logging.getLogger('client_log')
 
 from common.utils import get_message, send_message
+
+DEFAULT_PORT =7777
 
 
 @log
@@ -16,9 +20,7 @@ def create_presence( account_name = 'guest'):
     presence_msg = {
         "action": "presence",
         "time": time.time(),
-        "user": {
-            "account_name": account_name,
-        }
+        "account_name": account_name,
     }
     client_log.info(f'created presence with user: `{account_name}`')
     return presence_msg
@@ -30,44 +32,91 @@ def process_answer(message):
             return '200: ok'
         else:
             return f"400: {message['error']}"
-    client_log.error('invalid message')
+        
+    if 'action' in message and message['action'] == 'message':
+        msg_time = datetime.fromtimestamp(message['time']).replace(second=0, microsecond=0)
+        sender = message['sender']
+        msg = message['message_text']
+        return f'{msg_time} {sender}: {msg}'
     
+    client_log.error('invalid message')
     raise ValueError
 
 
-def main():
-    '''Загружаем параметы коммандной строки'''
-    # client.py 192.168.57.33 8079
-    client_log.info('launch client')
+def arg_parser():
+    parser = argparse.ArgumentParser()
+    parser.add_argument('-a', default='localhost', nargs='?')
+    parser.add_argument('-p', default=DEFAULT_PORT, type=int, nargs='?')
+    parser.add_argument('-m', '--mode', default='listen', nargs='?')
+    namespace = parser.parse_args(sys.argv[1:])
+    server_address = namespace.a
+    server_port = namespace.p
+    client_mode = namespace.mode
 
-    try:
-        server_address = sys.argv[1]
-        server_port = int(sys.argv[2])
-        if server_port < 1024 or server_port > 65535:
-            raise ValueError
-    except IndexError:
-        client_log.info('no socket parameters. Using defaults')
-
-        server_address = '127.0.0.1'
-        server_port = 7777
-    except ValueError:
-        client_log.error('В качестве порта может быть указано только число в диапазоне от 1024 до 65535.')
+    if not 1023 < server_port < 65536:
+        client_log.critical(f'Попытка запуска клиента с неподходящим номером порта: {server_port}. '
+            f'Допустимы адреса с 1024 до 65535. Клиент завершается.')
         sys.exit(1)
+
+    if client_mode not in ('listen', 'send'):
+        client_log.critical(f'Указан недопустимый режим работы {client_mode}, '
+                        f'допустимые режимы: listen , send')
+        sys.exit(1)
+
+    return server_address, server_port, client_mode
+
+
+def create_meassage(text_for_msg, account_name='guest'):
+    return {
+        'action': 'message',
+        'account_name': account_name,
+        'time': time.time(),
+        'message_text': text_for_msg
+    }
+
+
+def main():
+    client_log.info('Launch client...')
+
+    server_address, server_port, client_mode = arg_parser()
 
     transport = socket(AF_INET, SOCK_STREAM)
     transport.connect((server_address, server_port))
-    client_log.info(f'connecting to the server: {server_address} - {server_port}')
     
-
+    client_log.info(f'Connecting to the server: {server_address} - {server_port} in mode: {client_mode}')
+    
     msg_to_server = create_presence()
     send_message(transport, msg_to_server)
+
 
     try:
         answer = process_answer(get_message(transport))
         client_log.info(f'message from server received: {answer}')
-
+        print('Connection to the server:', answer)
     except (ValueError, json.JSONDecodeError):
         client_log.warning('Не удалось декодировать сообщение сервера.')
+
+
+    if client_mode == 'send':
+        while True:
+            text_for_msg = input('Enter your message. To exit type `exit`.\n')
+            if text_for_msg == 'exit':
+                break
+            else:
+                try:
+                    msg_to_send = create_meassage(text_for_msg)
+                    send_message(transport, msg_to_send)
+                except error as er:
+                    client_log.error(f'Smthg went wrong while sending message. Error: {er}')
+    else:
+        while True:
+            try:
+                answer = process_answer(get_message(transport))
+                print(answer)
+            except error as er:
+                    client_log.error(f'Smthg went wrong while receiving message. Error: {er}')
+
+    
 
 
 if __name__ == '__main__':

@@ -1,4 +1,6 @@
+import argparse
 import json
+import select
 from socket import *
 import sys
 import time
@@ -15,77 +17,103 @@ from common.utils import get_message, send_message
 DEFAULT_PORT = 7777
 
 @log
-def process_client_message(message):
+def process_client_message(message, messages_list, client):
     """
     Receive message from client, check it.
     :param message: dict
     :return: response (dict)
     """
-    if 'action' in message and message['action'] == 'presence' and 'time' in message \
-        and 'user' in message and message['user']['account_name'] == 'guest':
+    if 'time' in message and 'action' in message and  message['account_name']:
         server_log.debug('Processed msg with correct info')
-        return {'response': 200}    
-    else:
-        server_log.critical('Processed msg with noncorrect info')
-        return {'response': 400, 'error': 'Bad Request'}
+        if message['action'] == 'presence':
+            send_message(client, {'response': 200})
+            return
+        
+        elif message['action'] == 'message' and 'message_text' in message:
+            messages_list.append((message['account_name'], message['message_text']))
+            return
     
+    server_log.critical('Processed msg with noncorrect info')
+    return {'response': 400, 'error': 'Bad Request'}
+
+
+@log
+def arg_parser():
+    parser = argparse.ArgumentParser()
+    parser.add_argument('-a', default='', nargs='?')
+    parser.add_argument('-p', default=DEFAULT_PORT, type=int, nargs='?')
+    namespace = parser.parse_args(sys.argv[1:])
+    listen_address = namespace.a
+    listen_port = namespace.p
+
+    if not 1024 < listen_port < 65535:
+        server_log.critical(
+            f'Попытка запуска сервера с указанием неподходящего порта '
+            f'{listen_port}. Допустимы адреса с 1024 до 65535.')
+        sys.exit(1)
+    return listen_address, listen_port
 
 
 def main():
     server_log.debug('Server has been launched...')
+    listen_address, listen_port = arg_parser()
 
-    try:
-        server_log.debug('Trying to parse parameters -p')
-
-        if '-p' in sys.argv:
-            listen_port = int(sys.argv[sys.argv.index('-p') + 1])
-        else:
-            listen_port = DEFAULT_PORT
-
-        if listen_port < 1024 or listen_port > 65535:
-            raise ValueError
-        
-    except IndexError:
-        server_log.info("После параметра -\'p\' необходимо указать номер порта.")
-        
-        server_log.warning('There is no parameter -p')
-        
-        sys.exit(1)
-    except ValueError:
-        server_log.info('Номер порта может быть указан только в диапазоне от 1024 до 65535.')
-        server_log.error('Not correct -p')
-        sys.exit(1)
-
-    try:
-        server_log.debug('Trying to parse parameter -a')
-
-        if '-a' in sys.argv:
-            listen_address = sys.argv[sys.argv.index('-a') + 1]
-        else:
-            listen_address = 'localhost'
-    except IndexError:
-        server_log.info('После параметра \'- a\' необходимо указать адрес, который будет слушать сервер.')
-        server_log.debug('There is no parameter -a')
-        sys.exit(1)
+    server_log.info(
+        f'Запущен сервер: {listen_address} порт: {listen_port}, '
+        f'Если адрес не указан, принимаются соединения с любых адресов.')
 
     transport = socket(AF_INET, SOCK_STREAM)
     # transport.setsockopt(SOL_SOCKET, SO_REUSEADDR, 1)
     transport.bind((listen_address, listen_port))
-    server_log.debug(f'using socket {listen_address} - {listen_port}')
-
     transport.listen(5)
+    transport.settimeout(1)
+
+    clients = []
+    messages = []
 
     while True:
-        client, addr = transport.accept()
         try:
-            msg_form_client = get_message(client)
-            server_log.info(f'received message from client: {msg_form_client}')
-            response = process_client_message(msg_form_client)
-            send_message(client, response)
-        except (ValueError, json.JSONDecodeError):
-            server_log.error('Not correct message from client')
-            
-            client.close()
+            client, addr = transport.accept()
+        except OSError as err:
+            pass
+        else:
+            print("Получен запрос на соединение с %s" % str(addr))
+            clients.append(client)
+
+        read_lst = [] 
+        write_lst = []
+
+
+        try:
+            read_lst, write_lst, err_lst = select.select(clients, clients, [], 0)
+        except OSError:
+            pass
+
+        if read_lst:
+            for client_with_message in read_lst:
+                try:
+                    msg_from_client = get_message(client_with_message)
+                    server_log.info(f'received message from client: {msg_from_client}')
+                    process_client_message(msg_from_client, messages, client_with_message)
+                except:
+                    server_log.error(f'Клиент {client_with_message.getpeername()} отключился от сервера.')
+                    clients.remove(client_with_message)
+        
+
+        while messages and write_lst:
+            message = {
+                'action': 'message',
+                'sender': messages[0][0],
+                'time': time.time(),
+                'message_text': messages[0][1]
+            }
+            del messages[0]
+            for waiting_client in write_lst:
+                try:
+                    send_message(waiting_client, message)
+                except:
+                    server_log.info(f'Клиент {waiting_client.getpeername()} отключился от сервера.')
+                    clients.remove(waiting_client)
 
 
 if __name__ == '__main__':

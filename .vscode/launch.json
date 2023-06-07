@@ -4,12 +4,19 @@
     // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
-    
         {
-            "name": "test_utils.py",
+            "name": "client.py",
             "type": "python",
             "request": "launch",
-            "program": "client-server-app/test_utils.py",
+            "program": "/home/gdi/visual-studio-code/practice/client-server-app/client.py",
+            "console": "integratedTerminal",
+            "justMyCode": true
+        },
+        {
+            "name": "server.py",
+            "type": "python",
+            "request": "launch",
+            "program": "/home/gdi/visual-studio-code/practice/client-server-app/server.py",
             "console": "integratedTerminal",
             "justMyCode": true
         }

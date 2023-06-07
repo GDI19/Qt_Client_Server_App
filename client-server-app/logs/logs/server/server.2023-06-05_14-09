@@ -1,0 +1,4 @@
+INFO       2023-06-05 14:09:28,217 wrap Before function call: send_message with parameters (<socket.socket fd=5, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 38726), raddr=('127.0.0.1', 7777)>, {'action': 'presence', 'time': 1685963368.2157602, 'user': {'account_name': 'guest'}}) & {}.
+INFO       2023-06-05 14:09:28,218 wrap After function call: send_message. Вызов из модуля common.utils. Вызов из функции main().
+INFO       2023-06-05 14:09:28,218 wrap Before function call: get_message with parameters (<socket.socket fd=5, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 38726), raddr=('127.0.0.1', 7777)>,) & {}.
+INFO       2023-06-05 14:09:28,220 wrap After function call: get_message. Вызов из модуля common.utils. Вызов из функции main().

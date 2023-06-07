@@ -1,4 +1,5 @@
 from functools import wraps
+import inspect
 import logging
 import logging.handlers
 import sys
@@ -11,7 +12,7 @@ crit_hand = logging.StreamHandler(sys.stderr)
 crit_hand.setLevel(logging.CRITICAL)
 crit_hand.setFormatter(format)
 
-app_log_hand = logging.handlers.TimedRotatingFileHandler('logs/logs/server/server', when='M', interval=1, encoding='utf-8')
+app_log_hand = logging.handlers.TimedRotatingFileHandler('logs/logs/server/server', when='H', interval=1, encoding='utf-8')
 #app_log_hand.setLevel(logging.DEBUG)
 app_log_hand.setFormatter(format)
 
@@ -29,6 +30,8 @@ def log(func):
         res = func(*args, **kwargs)
         server_log.info(f'After function call: {func.__name__}.' 
                         f' Вызов из модуля {func.__module__}.'
-                        f' Вызов из функции {traceback.format_stack()[0].strip().split()[-1]}.')
+                        f' Вызов из функции {traceback.format_stack()[0].strip().split()[-1]}.'
+                        f'Вызов из функции {inspect.stack()[1][3]}', stacklevel= 2)
+        
         return res
     return wrap
