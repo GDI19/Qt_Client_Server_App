@@ -1,4 +1,5 @@
 from functools import wraps
+import inspect
 import logging
 import traceback
 
@@ -20,6 +21,7 @@ def log(func):
         res = func(*args, **kwargs)
         client_log.info(f'After function call: {func.__name__}.' 
                         f' Вызов из модуля {func.__module__}.'
-                        f' Вызов из функции {traceback.format_stack()[0].strip().split()[-1]}.')
+                        f' Вызов из функции {traceback.format_stack()[0].strip().split()[-1]}.'
+                        f'Вызов из функции {inspect.stack()[1][3]}', stacklevel= 2)
         return res
     return wrap
