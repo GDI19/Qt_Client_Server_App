@@ -33,13 +33,13 @@ def process_answer(message):
         else:
             return f"400: {message['error']}"
         
-    if 'action' in message and message['action'] == 'message':
+    elif 'action' in message and message['action'] == 'message' and 'sender' in message and 'message_text' in message and 'time' in message:
         msg_time = datetime.fromtimestamp(message['time']).replace(second=0, microsecond=0)
         sender = message['sender']
         msg = message['message_text']
-        return f'{msg_time} {sender}: {msg}'
+        return f'{msg_time} - {sender}: {msg}'
     
-    client_log.error('invalid message')
+    client_log.error('Invalid message')
     raise ValueError
 
 
@@ -66,7 +66,7 @@ def arg_parser():
     return server_address, server_port, client_mode
 
 
-def create_meassage(text_for_msg, account_name='guest'):
+def create_message(text_for_msg, account_name='guest'):
     return {
         'action': 'message',
         'account_name': account_name,
@@ -84,12 +84,11 @@ def main():
     transport.connect((server_address, server_port))
     
     client_log.info(f'Connecting to the server: {server_address} - {server_port} in mode: {client_mode}')
-    
-    msg_to_server = create_presence()
-    send_message(transport, msg_to_server)
-
 
     try:
+        msg_to_server = create_presence()
+        send_message(transport, msg_to_server)
+
         answer = process_answer(get_message(transport))
         client_log.info(f'message from server received: {answer}')
         print('Connection to the server:', answer)
@@ -97,25 +96,30 @@ def main():
         client_log.warning('Не удалось декодировать сообщение сервера.')
 
 
-    if client_mode == 'send':
-        while True:
+    while True:
+        if client_mode == 'send':
             text_for_msg = input('Enter your message. To exit type `exit`.\n')
             if text_for_msg == 'exit':
+                transport.close()
+                client_log.info('Завершение работы по команде пользователя.')
+                print('Спасибо за использование нашего сервиса!')
                 break
             else:
                 try:
-                    msg_to_send = create_meassage(text_for_msg)
+                    msg_to_send = create_message(text_for_msg)
                     send_message(transport, msg_to_send)
                 except error as er:
-                    client_log.error(f'Smthg went wrong while sending message. Error: {er}')
-    else:
-        while True:
+                    #client_log.error(f'Smthg went wrong while sending message. Error: {er}')
+                    client_log.error(f'Соединение с сервером {server_address} было потеряно.')
+                    sys.exit(1)
+
+        elif client_mode == 'listen':
             try:
                 answer = process_answer(get_message(transport))
                 print(answer)
             except error as er:
-                    client_log.error(f'Smthg went wrong while receiving message. Error: {er}')
-
+                client_log.error(f'Соединение с сервером {server_address} было потеряно.')
+                sys.exit(1)
     
 
 
