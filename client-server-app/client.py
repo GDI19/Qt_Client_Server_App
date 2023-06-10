@@ -7,6 +7,7 @@ import logging
 import logs.client_log_config
 from logs.client_log_config import log
 from datetime import datetime
+import threading
 
 client_log = logging.getLogger('client_log')
 
@@ -20,13 +21,15 @@ def create_presence( account_name = 'guest'):
     presence_msg = {
         "action": "presence",
         "time": time.time(),
-        "account_name": account_name,
+        'user':{
+            "account_name": account_name}
     }
     client_log.info(f'created presence with user: `{account_name}`')
     return presence_msg
 
 @log
-def process_answer(message):
+def process_answer(transport):
+    message = get_message(transport)
     if 'response' in message:
         if message['response'] == 200:  
             return '200: ok'
@@ -37,7 +40,8 @@ def process_answer(message):
         msg_time = datetime.fromtimestamp(message['time']).replace(second=0, microsecond=0)
         sender = message['sender']
         msg = message['message_text']
-        return f'{msg_time} - {sender}: {msg}'
+        print(f'{msg_time} - {sender}: {msg}')
+        return
     
     client_log.error('Invalid message')
     raise ValueError
@@ -47,56 +51,88 @@ def arg_parser():
     parser = argparse.ArgumentParser()
     parser.add_argument('-a', default='localhost', nargs='?')
     parser.add_argument('-p', default=DEFAULT_PORT, type=int, nargs='?')
-    parser.add_argument('-m', '--mode', default='listen', nargs='?')
+    parser.add_argument('-n', '--name', default='guest', nargs='?')
     namespace = parser.parse_args(sys.argv[1:])
     server_address = namespace.a
     server_port = namespace.p
-    client_mode = namespace.mode
+    client_name = namespace.name
 
     if not 1023 < server_port < 65536:
         client_log.critical(f'Попытка запуска клиента с неподходящим номером порта: {server_port}. '
             f'Допустимы адреса с 1024 до 65535. Клиент завершается.')
         sys.exit(1)
 
-    if client_mode not in ('listen', 'send'):
-        client_log.critical(f'Указан недопустимый режим работы {client_mode}, '
-                        f'допустимые режимы: listen , send')
-        sys.exit(1)
+    # if client_mode not in ('listen', 'send'):
+    #     client_log.critical(f'Указан недопустимый режим работы {client_mode}, '
+    #                     f'допустимые режимы: listen , send')
+    #     sys.exit(1)
 
-    return server_address, server_port, client_mode
+    return server_address, server_port, client_name
 
 
-def create_message(text_for_msg, account_name='guest'):
-    return {
+def create_message(text_for_msg, account_name='guest', send_to='all'):
+    
+    msg_to_send ={
         'action': 'message',
-        'account_name': account_name,
+        'user':{
+            'account_name': account_name},
+        'send_to': send_to,
         'time': time.time(),
         'message_text': text_for_msg
     }
+    return msg_to_send
+
+
+def user_interactive(transport, user_name):
+    send_to = input('Введите имя пользователя для кого сообщение!\n')
+    text_for_msg = input('Введите сообщение. Для выхода введите: exit\n')
+    
+    if text_for_msg == 'exit' or  text_for_msg == 'EXIT' or text_for_msg == 'Exit':
+        print('Спасибо, за работу! До скорой встречи')
+        time.sleep(3)
+        sys.exit(0)
+    else:
+        message = create_message(text_for_msg, user_name, send_to)
+        send_message(transport, message)
 
 
 def main():
     client_log.info('Launch client...')
 
-    server_address, server_port, client_mode = arg_parser()
+    server_address, server_port, client_name = arg_parser()
 
     transport = socket(AF_INET, SOCK_STREAM)
     transport.connect((server_address, server_port))
     
-    client_log.info(f'Connecting to the server: {server_address} - {server_port} in mode: {client_mode}')
+    client_log.info(f'Connecting to the server: {server_address} - {server_port} user: {client_name}')
 
     try:
-        msg_to_server = create_presence()
-        send_message(transport, msg_to_server)
+        presence_to_server = create_presence(account_name=client_name)
+        send_message(transport, presence_to_server)
 
-        answer = process_answer(get_message(transport))
+        answer = process_answer(transport)
         client_log.info(f'message from server received: {answer}')
-        print('Connection to the server:', answer)
+        print(f'Username: {client_name}. Connection to the server:', answer)
     except (ValueError, json.JSONDecodeError):
         client_log.warning('Не удалось декодировать сообщение сервера.')
 
 
     while True:
+        try:
+            recv_thread = threading.Thread(target=process_answer, name='recv_thread', args=(transport,), daemon=True)
+            recv_thread.start()
+            
+            # msg_to_send = create_message(account_name=client_name)
+            send_thread = threading.Thread(target=user_interactive, name='send_thread', args=(transport, client_name), daemon=True)
+            send_thread.start()
+            
+
+        except error as er:
+                    client_log.error(f'Smthg went wrong while sending message. Error: {er}')
+                    client_log.error(f'Соединение с сервером {server_address} было потеряно.')
+                    sys.exit(1)
+        
+        """
         if client_mode == 'send':
             text_for_msg = input('Enter your message. To exit type `exit`.\n')
             if text_for_msg == 'exit':
@@ -120,7 +156,7 @@ def main():
             except error as er:
                 client_log.error(f'Соединение с сервером {server_address} было потеряно.')
                 sys.exit(1)
-    
+"""    
 
 
 if __name__ == '__main__':
