@@ -16,7 +16,7 @@ from common.utils import get_message, send_message
 DEFAULT_PORT =7777
 
 
-@log
+#@log
 def create_presence( account_name = 'guest'):
     presence_msg = {
         "action": "presence",
@@ -27,24 +27,35 @@ def create_presence( account_name = 'guest'):
     client_log.info(f'created presence with user: `{account_name}`')
     return presence_msg
 
-@log
+
+def create_exit_message(account_name):
+    exit_message = {
+        "action": "exit",
+        "time": time.time(),
+        'user':{
+            "account_name": account_name}
+    }
+    return exit_message
+
+#@log
 def process_answer(transport):
-    message = get_message(transport)
-    if 'response' in message:
-        if message['response'] == 200:  
-            return '200: ok'
-        else:
-            return f"400: {message['error']}"
+    while True:
+        message = get_message(transport)
+        if 'response' in message:
+            if message['response'] == 200:  
+                return '200: ok'
+            else:
+                return f"400: {message['error']}"
+            
+        elif 'action' in message and message['action'] == 'message' and 'sender' in message and 'message_text' in message and 'time' in message:
+            msg_time = datetime.fromtimestamp(message['time']).replace(second=0, microsecond=0)
+            sender = message['sender']
+            msg = message['message_text']
+            print(f'{msg_time} - {sender}: {msg}')
         
-    elif 'action' in message and message['action'] == 'message' and 'sender' in message and 'message_text' in message and 'time' in message:
-        msg_time = datetime.fromtimestamp(message['time']).replace(second=0, microsecond=0)
-        sender = message['sender']
-        msg = message['message_text']
-        print(f'{msg_time} - {sender}: {msg}')
-        return
-    
-    client_log.error('Invalid message')
-    raise ValueError
+        else:
+            client_log.error('Invalid message')
+            raise ValueError
 
 
 def arg_parser():
@@ -84,16 +95,19 @@ def create_message(text_for_msg, account_name='guest', send_to='all'):
 
 
 def user_interactive(transport, user_name):
-    send_to = input('Введите имя пользователя для кого сообщение!\n')
-    text_for_msg = input('Введите сообщение. Для выхода введите: exit\n')
-    
-    if text_for_msg == 'exit' or  text_for_msg == 'EXIT' or text_for_msg == 'Exit':
-        print('Спасибо, за работу! До скорой встречи')
-        time.sleep(3)
-        sys.exit(0)
-    else:
-        message = create_message(text_for_msg, user_name, send_to)
-        send_message(transport, message)
+    while True:
+        send_to = input('Введите имя пользователя для кого сообщение!\n')
+        text_for_msg = input('Введите сообщение. Для выхода введите: exit\n')
+        
+        if text_for_msg in ['exit', 'EXIT', 'Exit']:
+            exit_message = create_exit_message(user_name)
+            send_message(transport, exit_message)
+            print('Спасибо, за работу! До скорой встречи')
+            time.sleep(0.5)
+            break
+        else:
+            message = create_message(text_for_msg, user_name, send_to)
+            send_message(transport, message)
 
 
 def main():
@@ -117,22 +131,26 @@ def main():
         client_log.warning('Не удалось декодировать сообщение сервера.')
 
 
-    while True:
-        try:
-            recv_thread = threading.Thread(target=process_answer, name='recv_thread', args=(transport,), daemon=True)
-            recv_thread.start()
-            
-            # msg_to_send = create_message(account_name=client_name)
-            send_thread = threading.Thread(target=user_interactive, name='send_thread', args=(transport, client_name), daemon=True)
-            send_thread.start()
-            
+    
+    
+    recv_thread = threading.Thread(target=process_answer, name='recv_thread', args=(transport,), daemon=True)
+    recv_thread.start()
+    
+    send_thread = threading.Thread(target=user_interactive, name='send_thread', args=(transport, client_name), daemon=True)
+    send_thread.start()
 
-        except error as er:
-                    client_log.error(f'Smthg went wrong while sending message. Error: {er}')
-                    client_log.error(f'Соединение с сервером {server_address} было потеряно.')
-                    sys.exit(1)
-        
-        """
+    # except error as er:
+    #             client_log.error(f'Smthg went wrong while sending message. Error: {er}')
+    #             client_log.error(f'Соединение с сервером {server_address} было потеряно.')
+    #             sys.exit(1)
+    
+    while True:
+        if recv_thread.is_alive() and send_thread.is_alive():
+            time.sleep(2)
+            continue
+        else:
+            break
+"""
         if client_mode == 'send':
             text_for_msg = input('Enter your message. To exit type `exit`.\n')
             if text_for_msg == 'exit':

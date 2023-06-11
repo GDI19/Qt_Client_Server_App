@@ -16,8 +16,8 @@ from common.utils import get_message, send_message
 
 DEFAULT_PORT = 7777
 
-@log
-def process_client_message(message, messages_list, client, users):
+#@log
+def process_client_message(message, messages_list, client, clients, users):
     """
     Receive message from client, check it.
     :param message: dict
@@ -25,11 +25,22 @@ def process_client_message(message, messages_list, client, users):
     """
     if 'time' in message and 'action' in message and  'user' in message and 'account_name' in message['user']:
         server_log.debug('Processed msg with correct info')
-        if message['action'] == 'presence':
-            send_message(client, {'response': 200})
-            if message['user']['account_name'] not in users:
-                username = message['user']['account_name']
-                users[username] = client
+
+        if message['action'] == 'exit':
+            clients.remove(client)
+            client.close()
+            del users[message['user']['account_name']]
+            return
+        
+        elif message['action'] == 'presence':
+            new_user_in = message['user']['account_name']
+            if new_user_in not in users:
+                send_message(client, {'response': 200})
+                users[new_user_in] = client
+            else:
+                send_message(client, {'response': 400, 'error': f'Пользователь с таким именем: {new_user_in} уже подключен.'})
+                clients.remove(client)
+                client.close()
             return
         
         elif message['action'] == 'message' and 'message_text' in message and 'send_to' in message:
@@ -37,7 +48,10 @@ def process_client_message(message, messages_list, client, users):
             return
     
     server_log.critical('Processed msg with noncorrect info')
-    return {'response': 400, 'error': 'Bad Request'}
+    send_message(client, {'response': 400, 'error': 'Bad Request'})
+    #time.sleep(2)
+    #client.close()
+    return
 
 
 @log
@@ -98,10 +112,13 @@ def main():
                 try:
                     msg_from_client = get_message(client_with_message)
                     server_log.info(f'received message from client: {msg_from_client}')
-                    process_client_message(msg_from_client, messages, client_with_message, users)
+                    process_client_message(msg_from_client, messages, client_with_message, clients, users)
                 except:
                     server_log.error(f'Клиент {client_with_message.getpeername()} отключился от сервера.')
                     clients.remove(client_with_message)
+                    # for username, sock in users.items():
+                    #     if sock == client_with_message:
+                    #         users.pop(username)
         
 
         while messages and write_lst:
@@ -123,17 +140,33 @@ def main():
                         clients.remove(waiting_client)
 
             elif user_to_send in users:
-                for user, user_socket in users.items():
-                    if user == user_to_send:
-                        socket_to_send = user_socket
-                        try:
-                            send_message(socket_to_send, message)
-                        except:
-                            server_log.info(f'Клиент {socket_to_send.getpeername()} отключился от сервера.')
-                            del users[user]
-            else:
+                socket_to_send = users[user_to_send]
+                if socket_to_send in write_lst:    
+                    try:
+                        send_message(socket_to_send, message)
+                    except:
+                        server_log.info(f'Клиент {socket_to_send.getpeername()} отключился от сервера.')
+                        users.pop(user_to_send)
+                else:
+                    users.pop(user_to_send)
+            
+                failed_message = {
+                    'action': 'message',
+                    'send_to': message['sender'],
+                    'sender': 'server',
+                    'time': time.time(),
+                    'message_text': f'Сообщение для клиента {user_to_send} не отправлено'
+                }
+                try:
+                    back_socket = users[message['sender']]
+                    send_message(back_socket, failed_message)
+                except:
+                    server_log.info(f'Клиент {waiting_client.getpeername()} отключился от сервера.')
+                    clients.remove(back_socket)
+                    del users[message['sender']]
+                    
                 server_log.info(f'Сообщение: {message} \n для клиента не отправлено.'
-                                f'Такого пользователя {user_to_send} не существует.')
+                                    f'Такого пользователя {user_to_send} не существует.')
 
 
 

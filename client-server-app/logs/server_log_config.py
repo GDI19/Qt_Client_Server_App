@@ -12,7 +12,7 @@ crit_hand = logging.StreamHandler(sys.stderr)
 crit_hand.setLevel(logging.CRITICAL)
 crit_hand.setFormatter(format)
 
-app_log_hand = logging.handlers.TimedRotatingFileHandler('logs/logs/server/server', when='H', interval=1, encoding='utf-8')
+app_log_hand = logging.handlers.TimedRotatingFileHandler('client-server-app/logs/logs/server/server', when='H', interval=1, encoding='utf-8')
 #app_log_hand.setLevel(logging.DEBUG)
 app_log_hand.setFormatter(format)
 
