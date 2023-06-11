@@ -131,7 +131,7 @@ def main():
                     'message_text': messages[0][1]
                 }
             del messages[0]
-            if user_to_send == 'all':
+            if user_to_send in ['all', 'All', 'ALL']:
                 for waiting_client in write_lst:
                     try:
                         send_message(waiting_client, message)

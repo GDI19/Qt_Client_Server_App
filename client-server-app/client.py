@@ -96,7 +96,7 @@ def create_message(text_for_msg, account_name='guest', send_to='all'):
 
 def user_interactive(transport, user_name):
     while True:
-        send_to = input('Введите имя пользователя для кого сообщение!\n')
+        send_to = input('Введите имя пользователя для кого сообщение! `all` для всех\n')
         text_for_msg = input('Введите сообщение. Для выхода введите: exit\n')
         
         if text_for_msg in ['exit', 'EXIT', 'Exit']:
