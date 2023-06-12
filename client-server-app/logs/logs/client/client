@@ -2253,3 +2253,19 @@ INFO       2023-06-11 22:35:51,636 main Launch client...
 INFO       2023-06-11 22:35:51,662 main Connecting to the server: localhost - 7777 user: user2
 INFO       2023-06-11 22:35:51,663 create_presence created presence with user: `user2`
 INFO       2023-06-11 22:35:52,665 main message from server received: 200: ok
+INFO       2023-06-12 15:19:49,114 main Launch client...
+INFO       2023-06-12 15:19:49,123 main Connecting to the server: localhost - 7777 user: user1
+INFO       2023-06-12 15:19:49,124 create_presence created presence with user: `user1`
+INFO       2023-06-12 15:19:50,128 main message from server received: 200: ok
+INFO       2023-06-12 15:20:05,120 main Launch client...
+INFO       2023-06-12 15:20:05,129 main Connecting to the server: localhost - 7777 user: user2
+INFO       2023-06-12 15:20:05,130 create_presence created presence with user: `user2`
+INFO       2023-06-12 15:20:06,133 main message from server received: 200: ok
+INFO       2023-06-12 16:45:11,504 main Launch client...
+INFO       2023-06-12 16:45:11,517 main Connecting to the server: localhost - 7777 user: user1
+INFO       2023-06-12 16:45:11,518 create_presence created presence with user: `user1`
+INFO       2023-06-12 16:45:12,522 main message from server received: 200: ok
+INFO       2023-06-12 16:45:21,781 main Launch client...
+INFO       2023-06-12 16:45:21,791 main Connecting to the server: localhost - 7777 user: user2
+INFO       2023-06-12 16:45:21,792 create_presence created presence with user: `user2`
+INFO       2023-06-12 16:45:22,796 main message from server received: 200: ok

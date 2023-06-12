@@ -71,6 +71,26 @@ def arg_parser():
     return listen_address, listen_port
 
 
+def send_msg_failed_notification(message, user_to_send, users, clients):
+    failed_message = {
+        'action': 'message',
+        'send_to': message['sender'],
+        'sender': 'server',
+        'time': time.time(),
+        'message_text': f'Сообщение для клиента {user_to_send} не отправлено'
+    }
+    try:
+        back_socket = users[message['sender']]
+        send_message(back_socket, failed_message)
+    except:
+        clients.remove(back_socket)
+        del users[message['sender']]
+        
+    server_log.info(f'Сообщение: {message} \n для клиента не отправлено.'
+                        f'Такого пользователя {user_to_send} нет.')
+    
+
+
 def main():
     server_log.debug('Server has been launched...')
     listen_address, listen_port = arg_parser()
@@ -145,33 +165,17 @@ def main():
                     try:
                         send_message(socket_to_send, message)
                     except:
+                        send_msg_failed_notification(message, user_to_send, users, clients)
                         server_log.info(f'Клиент {socket_to_send.getpeername()} отключился от сервера.')
                         users.pop(user_to_send)
                 else:
-                    users.pop(user_to_send)
-            
-                failed_message = {
-                    'action': 'message',
-                    'send_to': message['sender'],
-                    'sender': 'server',
-                    'time': time.time(),
-                    'message_text': f'Сообщение для клиента {user_to_send} не отправлено'
-                }
-                try:
-                    back_socket = users[message['sender']]
-                    send_message(back_socket, failed_message)
-                except:
+                    send_msg_failed_notification(message, user_to_send, users, clients)
                     server_log.info(f'Клиент {waiting_client.getpeername()} отключился от сервера.')
-                    clients.remove(back_socket)
-                    del users[message['sender']]
-                    
-                server_log.info(f'Сообщение: {message} \n для клиента не отправлено.'
-                                    f'Такого пользователя {user_to_send} не существует.')
+                    users.pop(user_to_send)
 
-
-
-            
-
+            else:           
+                send_msg_failed_notification(message, user_to_send, users, clients)
+                
 
 if __name__ == '__main__':
     main()
