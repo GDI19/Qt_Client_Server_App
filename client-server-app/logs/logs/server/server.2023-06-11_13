@@ -1,0 +1,48 @@
+DEBUG      2023-06-11 12:52:56,877 main Server has been launched...
+INFO       2023-06-11 12:52:56,880 wrap Before function call: arg_parser with parameters () & {}.
+INFO       2023-06-11 12:52:57,043 main After function call: arg_parser. Вызов из модуля __main__. Вызов из функции None,.Вызов из функции main
+INFO       2023-06-11 12:52:57,044 main Запущен сервер:  порт: 7777, Если адрес не указан, принимаются соединения с любых адресов.
+INFO       2023-06-11 12:56:11,919 main received message from client: {'action': 'presence', 'time': 1686477305.2028162, 'user': {'account_name': 'user1'}}
+DEBUG      2023-06-11 12:56:11,920 process_client_message Processed msg with correct info
+ERROR      2023-06-11 13:01:28,858 main Клиент ('127.0.0.1', 38294) отключился от сервера.
+INFO       2023-06-11 13:01:32,286 main received message from client: {'action': 'presence', 'time': 1686477686.1263216, 'user': {'account_name': 'user1'}}
+DEBUG      2023-06-11 13:01:32,287 process_client_message Processed msg with correct info
+ERROR      2023-06-11 13:16:09,911 main Клиент ('127.0.0.1', 44088) отключился от сервера.
+INFO       2023-06-11 13:18:45,939 main received message from client: {'action': 'presence', 'time': 1686478677.2670484, 'user': {'account_name': 'user1'}}
+DEBUG      2023-06-11 13:19:32,490 process_client_message Processed msg with correct info
+INFO       2023-06-11 13:25:10,629 main received message from client: {'action': 'message', 'user': {'account_name': 'user1'}, 'send_to': 'all', 'time': 1686479110.1752515, 'message_text': 'helllo'}
+DEBUG      2023-06-11 13:25:10,629 process_client_message Processed msg with correct info
+INFO       2023-06-11 13:27:06,922 main received message from client: {'action': 'message', 'user': {'account_name': 'user1'}, 'send_to': 'all', 'time': 1686479152.2248025, 'message_text': 'every hi'}
+DEBUG      2023-06-11 13:27:08,060 process_client_message Processed msg with correct info
+INFO       2023-06-11 13:29:06,558 main received message from client: {'action': 'message', 'user': {'account_name': 'user1'}, 'send_to': 'all', 'time': 1686479327.4564953, 'message_text': 'hi 3'}
+DEBUG      2023-06-11 13:29:06,559 process_client_message Processed msg with correct info
+INFO       2023-06-11 13:29:30,585 main received message from client: {'action': 'message', 'user': {'account_name': 'user1'}, 'send_to': 'all', 'time': 1686479369.8685217, 'message_text': 'hi 4'}
+DEBUG      2023-06-11 13:29:30,585 process_client_message Processed msg with correct info
+INFO       2023-06-11 13:33:20,821 main received message from client: {'action': 'message', 'user': {'account_name': 'user1'}, 'send_to': 'all', 'time': 1686479599.8760734, 'message_text': 'all'}
+DEBUG      2023-06-11 13:33:20,821 process_client_message Processed msg with correct info
+DEBUG      2023-06-11 13:40:06,656 main Server has been launched...
+INFO       2023-06-11 13:40:06,656 wrap Before function call: arg_parser with parameters () & {}.
+INFO       2023-06-11 13:40:06,676 main After function call: arg_parser. Вызов из модуля __main__. Вызов из функции main().Вызов из функции main
+INFO       2023-06-11 13:40:06,676 main Запущен сервер:  порт: 7777, Если адрес не указан, принимаются соединения с любых адресов.
+INFO       2023-06-11 13:40:32,031 main received message from client: {'action': 'presence', 'time': 1686480032.0308645, 'user': {'account_name': 'user1'}}
+DEBUG      2023-06-11 13:40:32,031 process_client_message Processed msg with correct info
+INFO       2023-06-11 13:40:46,046 main received message from client: {'action': 'message', 'user': {'account_name': 'user1'}, 'send_to': 'all', 'time': 1686480045.3137124, 'message_text': 'hi to all'}
+DEBUG      2023-06-11 13:40:46,047 process_client_message Processed msg with correct info
+INFO       2023-06-11 13:41:02,062 main received message from client: {'action': 'message', 'user': {'account_name': 'user1'}, 'send_to': 'all', 'time': 1686480061.8330362, 'message_text': 'hi to all 2'}
+DEBUG      2023-06-11 13:41:02,063 process_client_message Processed msg with correct info
+DEBUG      2023-06-11 13:45:57,849 main Server has been launched...
+INFO       2023-06-11 13:45:57,850 wrap Before function call: arg_parser with parameters () & {}.
+INFO       2023-06-11 13:45:57,873 main After function call: arg_parser. Вызов из модуля __main__. Вызов из функции main().Вызов из функции main
+INFO       2023-06-11 13:45:57,874 main Запущен сервер:  порт: 7777, Если адрес не указан, принимаются соединения с любых адресов.
+INFO       2023-06-11 13:46:02,741 main received message from client: {'action': 'presence', 'time': 1686480362.7408319, 'user': {'account_name': 'user1'}}
+DEBUG      2023-06-11 13:46:02,741 process_client_message Processed msg with correct info
+INFO       2023-06-11 13:46:18,758 main received message from client: {'action': 'message', 'user': {'account_name': 'user1'}, 'send_to': 'all', 'time': 1686480378.3137898, 'message_text': 'hi all'}
+DEBUG      2023-06-11 13:46:18,759 process_client_message Processed msg with correct info
+ERROR      2023-06-11 13:46:21,762 main Клиент ('127.0.0.1', 45742) отключился от сервера.
+INFO       2023-06-11 13:50:37,216 main received message from client: {'action': 'presence', 'time': 1686480636.214924, 'user': {'account_name': 'user1'}}
+DEBUG      2023-06-11 13:50:37,216 process_client_message Processed msg with correct info
+INFO       2023-06-11 13:50:46,226 main received message from client: {'action': 'message', 'user': {'account_name': 'user1'}, 'send_to': 'all', 'time': 1686480646.023707, 'message_text': 'hi all2'}
+DEBUG      2023-06-11 13:50:46,228 process_client_message Processed msg with correct info
+ERROR      2023-06-11 13:50:48,230 main Клиент ('127.0.0.1', 50156) отключился от сервера.
+INFO       2023-06-11 14:23:06,935 main received message from client: {'action': 'presence', 'time': 1686482540.5581875, 'user': {'account_name': 'user1'}}
+DEBUG      2023-06-11 14:23:06,936 process_client_message Processed msg with correct info

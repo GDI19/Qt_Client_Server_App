@@ -5,12 +5,22 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "client.py",
+            "name": "client_1",
             "type": "python",
             "request": "launch",
             "program": "/home/gdi/visual-studio-code/practice/client-server-app/client.py",
             "console": "integratedTerminal",
-            "justMyCode": true
+            "justMyCode": true,
+            "args": ["-n", "user1"]
+        },
+        {
+            "name": "client_2",
+            "type": "python",
+            "request": "launch",
+            "program": "/home/gdi/visual-studio-code/practice/client-server-app/client.py",
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "args": ["-n", "user2"]
         },
         {
             "name": "server.py",

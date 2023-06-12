@@ -2,7 +2,7 @@ import json
 from logs.server_log_config import log
 
 
-@log
+#@log
 def get_message(client):
     """
     Receive bytes and decode message.
@@ -20,7 +20,7 @@ def get_message(client):
         raise ValueError
     raise ValueError
 
-@log
+#@log
 def send_message(sock, message):
     """
     Encode and send message.
