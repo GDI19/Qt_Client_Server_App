@@ -311,3 +311,67 @@ INFO       2023-06-07 16:59:21,123 wrap Before function call: process_answer wit
 INFO       2023-06-07 16:59:21,124 main After function call: process_answer. Вызов из модуля __main__. Вызов из функции main().Вызов из функции main
 INFO       2023-06-07 16:59:21,124 main message from server received: 200: ok
 INFO       2023-06-07 16:59:29,147 wrap Before function call: process_answer with parameters ({'action': 'message', 'sender': 'guest', 'time': 1686146369.141601, 'message_text': 'hey'},) & {}.
+INFO       2023-06-15 21:48:22,038 main Launch client...
+INFO       2023-06-15 21:48:22,077 main Connecting to the server: localhost - 7777 in mode: listen
+INFO       2023-06-15 21:48:22,078 wrap Before function call: create_presence with parameters () & {}.
+INFO       2023-06-15 21:48:22,078 create_presence created presence with user: `guest`
+INFO       2023-06-15 21:48:22,114 main After function call: create_presence. Вызов из модуля __main__. Вызов из функции main().Вызов из функции main
+INFO       2023-06-15 21:48:23,072 wrap Before function call: process_answer with parameters ({'response': 200},) & {}.
+INFO       2023-06-15 21:48:23,073 main After function call: process_answer. Вызов из модуля __main__. Вызов из функции main().Вызов из функции main
+INFO       2023-06-15 21:48:23,073 main message from server received: 200: ok
+INFO       2023-06-15 21:48:23,443 main Launch client...
+INFO       2023-06-15 21:48:23,460 main Connecting to the server: localhost - 7777 in mode: listen
+INFO       2023-06-15 21:48:23,461 wrap Before function call: create_presence with parameters () & {}.
+INFO       2023-06-15 21:48:23,462 create_presence created presence with user: `guest`
+INFO       2023-06-15 21:48:23,478 main After function call: create_presence. Вызов из модуля __main__. Вызов из функции main().Вызов из функции main
+INFO       2023-06-15 21:48:24,174 main Launch client...
+INFO       2023-06-15 21:48:24,201 wrap Before function call: process_answer with parameters ({'response': 200},) & {}.
+INFO       2023-06-15 21:48:24,202 main After function call: process_answer. Вызов из модуля __main__. Вызов из функции main().Вызов из функции main
+INFO       2023-06-15 21:48:24,202 main message from server received: 200: ok
+INFO       2023-06-15 21:48:24,205 main Connecting to the server: localhost - 7777 in mode: listen
+INFO       2023-06-15 21:48:24,209 wrap Before function call: create_presence with parameters () & {}.
+INFO       2023-06-15 21:48:24,209 create_presence created presence with user: `guest`
+INFO       2023-06-15 21:48:24,230 main After function call: create_presence. Вызов из модуля __main__. Вызов из функции main().Вызов из функции main
+INFO       2023-06-15 21:48:24,591 main Launch client...
+INFO       2023-06-15 21:48:24,626 wrap Before function call: process_answer with parameters ({'response': 200},) & {}.
+INFO       2023-06-15 21:48:24,626 main After function call: process_answer. Вызов из модуля __main__. Вызов из функции main().Вызов из функции main
+INFO       2023-06-15 21:48:24,627 main message from server received: 200: ok
+INFO       2023-06-15 21:48:24,630 main Connecting to the server: localhost - 7777 in mode: listen
+INFO       2023-06-15 21:48:24,630 wrap Before function call: create_presence with parameters () & {}.
+INFO       2023-06-15 21:48:24,630 create_presence created presence with user: `guest`
+INFO       2023-06-15 21:48:24,644 main After function call: create_presence. Вызов из модуля __main__. Вызов из функции main().Вызов из функции main
+INFO       2023-06-15 21:48:25,199 main Launch client...
+INFO       2023-06-15 21:48:25,215 wrap Before function call: process_answer with parameters ({'response': 200},) & {}.
+INFO       2023-06-15 21:48:25,215 main After function call: process_answer. Вызов из модуля __main__. Вызов из функции main().Вызов из функции main
+INFO       2023-06-15 21:48:25,216 main message from server received: 200: ok
+INFO       2023-06-15 21:48:25,219 main Connecting to the server: localhost - 7777 in mode: send
+INFO       2023-06-15 21:48:25,220 wrap Before function call: create_presence with parameters () & {}.
+INFO       2023-06-15 21:48:25,220 create_presence created presence with user: `guest`
+INFO       2023-06-15 21:48:25,232 main After function call: create_presence. Вызов из модуля __main__. Вызов из функции main().Вызов из функции main
+INFO       2023-06-15 21:48:25,346 main Launch client...
+INFO       2023-06-15 21:48:25,365 main Connecting to the server: localhost - 7777 in mode: send
+INFO       2023-06-15 21:48:25,365 wrap Before function call: create_presence with parameters () & {}.
+INFO       2023-06-15 21:48:25,365 create_presence created presence with user: `guest`
+INFO       2023-06-15 21:48:25,366 wrap Before function call: process_answer with parameters ({'response': 200},) & {}.
+INFO       2023-06-15 21:48:25,367 main After function call: process_answer. Вызов из модуля __main__. Вызов из функции main().Вызов из функции main
+INFO       2023-06-15 21:48:25,367 main message from server received: 200: ok
+INFO       2023-06-15 21:48:25,381 main After function call: create_presence. Вызов из модуля __main__. Вызов из функции main().Вызов из функции main
+INFO       2023-06-15 21:48:26,378 wrap Before function call: process_answer with parameters ({'response': 200},) & {}.
+INFO       2023-06-15 21:48:26,378 main After function call: process_answer. Вызов из модуля __main__. Вызов из функции main().Вызов из функции main
+INFO       2023-06-15 21:48:26,378 main message from server received: 200: ok
+INFO       2023-06-15 21:48:39,398 wrap Before function call: process_answer with parameters ({'action': 'message', 'sender': 'guest', 'time': 1686854919.3960257, 'message_text': 'hi all'},) & {}.
+INFO       2023-06-15 21:48:39,399 main After function call: process_answer. Вызов из модуля __main__. Вызов из функции main().Вызов из функции main
+INFO       2023-06-15 21:48:39,404 wrap Before function call: process_answer with parameters ({'action': 'message', 'sender': 'guest', 'time': 1686854919.3960257, 'message_text': 'hi all'},) & {}.
+INFO       2023-06-15 21:48:39,405 main After function call: process_answer. Вызов из модуля __main__. Вызов из функции main().Вызов из функции main
+INFO       2023-06-15 21:48:39,409 wrap Before function call: process_answer with parameters ({'action': 'message', 'sender': 'guest', 'time': 1686854919.3960257, 'message_text': 'hi all'},) & {}.
+INFO       2023-06-15 21:48:39,410 main After function call: process_answer. Вызов из модуля __main__. Вызов из функции main().Вызов из функции main
+INFO       2023-06-15 21:48:39,415 wrap Before function call: process_answer with parameters ({'action': 'message', 'sender': 'guest', 'time': 1686854919.3960257, 'message_text': 'hi all'},) & {}.
+INFO       2023-06-15 21:48:39,416 main After function call: process_answer. Вызов из модуля __main__. Вызов из функции main().Вызов из функции main
+INFO       2023-06-15 21:49:01,450 wrap Before function call: process_answer with parameters ({'action': 'message', 'sender': 'guest', 'time': 1686854941.4485662, 'message_text': 'hello all'},) & {}.
+INFO       2023-06-15 21:49:01,451 main After function call: process_answer. Вызов из модуля __main__. Вызов из функции main().Вызов из функции main
+INFO       2023-06-15 21:49:01,453 wrap Before function call: process_answer with parameters ({'action': 'message', 'sender': 'guest', 'time': 1686854941.4485662, 'message_text': 'hello all'},) & {}.
+INFO       2023-06-15 21:49:01,454 main After function call: process_answer. Вызов из модуля __main__. Вызов из функции main().Вызов из функции main
+INFO       2023-06-15 21:49:01,455 wrap Before function call: process_answer with parameters ({'action': 'message', 'sender': 'guest', 'time': 1686854941.4485662, 'message_text': 'hello all'},) & {}.
+INFO       2023-06-15 21:49:01,455 main After function call: process_answer. Вызов из модуля __main__. Вызов из функции main().Вызов из функции main
+INFO       2023-06-15 21:49:01,456 wrap Before function call: process_answer with parameters ({'action': 'message', 'sender': 'guest', 'time': 1686854941.4485662, 'message_text': 'hello all'},) & {}.
+INFO       2023-06-15 21:49:01,457 main After function call: process_answer. Вызов из модуля __main__. Вызов из функции main().Вызов из функции main
