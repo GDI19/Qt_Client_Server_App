@@ -2269,3 +2269,25 @@ INFO       2023-06-12 16:45:21,781 main Launch client...
 INFO       2023-06-12 16:45:21,791 main Connecting to the server: localhost - 7777 user: user2
 INFO       2023-06-12 16:45:21,792 create_presence created presence with user: `user2`
 INFO       2023-06-12 16:45:22,796 main message from server received: 200: ok
+INFO       2023-06-18 15:59:29,566 main Launch client...
+INFO       2023-06-18 15:59:29,579 main Connecting to the server: localhost - 7777 user: guest
+INFO       2023-06-18 15:59:29,579 create_presence created presence with user: `guest`
+INFO       2023-06-18 15:59:30,081 main message from server received: 200: ok
+INFO       2023-06-18 16:00:22,771 main Launch client...
+INFO       2023-06-18 16:00:22,782 main Connecting to the server: localhost - 7777 user: guest
+INFO       2023-06-18 16:00:22,782 create_presence created presence with user: `guest`
+INFO       2023-06-18 16:00:23,284 main message from server received: 400: Пользователь с таким именем: guest уже подключен.
+INFO       2023-06-18 16:00:52,715 main Launch client...
+INFO       2023-06-18 16:00:52,725 main Connecting to the server: localhost - 7777 user: user
+INFO       2023-06-18 16:00:52,726 create_presence created presence with user: `user`
+INFO       2023-06-18 16:00:52,727 main message from server received: 200: ok
+INFO       2023-06-18 16:59:00,494 main Launch client...
+CRITICAL   2023-06-18 16:59:00,504 arg_parser Попытка запуска клиента с неподходящим номером порта: 34. Допустимы адреса с 1024 до 65535. Клиент завершается.
+INFO       2023-06-18 17:13:34,928 main Launch client...
+INFO       2023-06-18 17:13:34,943 main Connecting to the server: localhost - 7777 user: user1
+INFO       2023-06-18 17:13:34,944 create_presence created presence with user: `user1`
+INFO       2023-06-18 17:13:35,447 main message from server received: 200: ok
+INFO       2023-06-18 17:13:47,298 main Launch client...
+INFO       2023-06-18 17:13:47,310 main Connecting to the server: localhost - 7777 user: user2
+INFO       2023-06-18 17:13:47,311 create_presence created presence with user: `user2`
+INFO       2023-06-18 17:13:47,813 main message from server received: 200: ok
