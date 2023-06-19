@@ -2269,3 +2269,264 @@ INFO       2023-06-12 16:45:21,781 main Launch client...
 INFO       2023-06-12 16:45:21,791 main Connecting to the server: localhost - 7777 user: user2
 INFO       2023-06-12 16:45:21,792 create_presence created presence with user: `user2`
 INFO       2023-06-12 16:45:22,796 main message from server received: 200: ok
+INFO       2023-06-18 15:59:29,566 main Launch client...
+INFO       2023-06-18 15:59:29,579 main Connecting to the server: localhost - 7777 user: guest
+INFO       2023-06-18 15:59:29,579 create_presence created presence with user: `guest`
+INFO       2023-06-18 15:59:30,081 main message from server received: 200: ok
+INFO       2023-06-18 16:00:22,771 main Launch client...
+INFO       2023-06-18 16:00:22,782 main Connecting to the server: localhost - 7777 user: guest
+INFO       2023-06-18 16:00:22,782 create_presence created presence with user: `guest`
+INFO       2023-06-18 16:00:23,284 main message from server received: 400: Пользователь с таким именем: guest уже подключен.
+INFO       2023-06-18 16:00:52,715 main Launch client...
+INFO       2023-06-18 16:00:52,725 main Connecting to the server: localhost - 7777 user: user
+INFO       2023-06-18 16:00:52,726 create_presence created presence with user: `user`
+INFO       2023-06-18 16:00:52,727 main message from server received: 200: ok
+INFO       2023-06-18 16:59:00,494 main Launch client...
+CRITICAL   2023-06-18 16:59:00,504 arg_parser Попытка запуска клиента с неподходящим номером порта: 34. Допустимы адреса с 1024 до 65535. Клиент завершается.
+INFO       2023-06-18 17:13:34,928 main Launch client...
+INFO       2023-06-18 17:13:34,943 main Connecting to the server: localhost - 7777 user: user1
+INFO       2023-06-18 17:13:34,944 create_presence created presence with user: `user1`
+INFO       2023-06-18 17:13:35,447 main message from server received: 200: ok
+INFO       2023-06-18 17:13:47,298 main Launch client...
+INFO       2023-06-18 17:13:47,310 main Connecting to the server: localhost - 7777 user: user2
+INFO       2023-06-18 17:13:47,311 create_presence created presence with user: `user2`
+INFO       2023-06-18 17:13:47,813 main message from server received: 200: ok
+INFO       2023-06-18 22:01:05,013 main Launch client...
+INFO       2023-06-18 22:01:05,024 main Connecting to the server: localhost - 7777 user: user1
+INFO       2023-06-18 22:01:05,037 wrap Before function call: create_presence with parameters () & {'account_name': 'user1'}.
+INFO       2023-06-18 22:01:05,037 create_presence created presence with user: `user1`
+INFO       2023-06-18 22:01:05,197 main After function call: create_presence. Вызов из модуля __main__. Вызов из функции None,.Вызов из функции main
+INFO       2023-06-18 22:01:05,541 main message from server received: 200: ok
+INFO       2023-06-18 22:01:32,089 main Launch client...
+INFO       2023-06-18 22:01:32,103 main Connecting to the server: localhost - 7777 user: user2
+INFO       2023-06-18 22:01:32,112 wrap Before function call: create_presence with parameters () & {'account_name': 'user2'}.
+INFO       2023-06-18 22:01:32,113 create_presence created presence with user: `user2`
+INFO       2023-06-18 22:01:32,237 main After function call: create_presence. Вызов из модуля __main__. Вызов из функции None,.Вызов из функции main
+INFO       2023-06-18 22:01:32,614 main message from server received: 200: ok
+INFO       2023-06-18 22:02:25,792 create_message Отправлено сообщение для пользователя all
+INFO       2023-06-18 22:02:26,180 run message from server received: {'action': 'message', 'send_to': 'all', 'sender': 'user1', 'time': 1687114946.1794653, 'message_text': 'hello all'}
+INFO       2023-06-18 22:02:26,180 run message from server received: {'action': 'message', 'send_to': 'all', 'sender': 'user1', 'time': 1687114946.1794653, 'message_text': 'hello all'}
+INFO       2023-06-18 22:04:07,165 create_message Отправлено сообщение для пользователя all
+INFO       2023-06-18 22:04:07,306 run message from server received: {'action': 'message', 'send_to': 'all', 'sender': 'user2', 'time': 1687115047.30655, 'message_text': 'hi all'}
+INFO       2023-06-18 22:04:07,306 run message from server received: {'action': 'message', 'send_to': 'all', 'sender': 'user2', 'time': 1687115047.30655, 'message_text': 'hi all'}
+INFO       2023-06-18 22:07:05,111 create_message Отправлено сообщение для пользователя user2
+INFO       2023-06-18 22:07:05,538 run message from server received: {'action': 'message', 'send_to': 'user2', 'sender': 'user1', 'time': 1687115225.5377393, 'message_text': 'hi u2'}
+CRITICAL   2023-06-18 22:11:32,824 run Потеряно соединение с сервером.
+CRITICAL   2023-06-18 22:11:32,826 run Потеряно соединение с сервером.
+INFO       2023-06-18 22:14:21,265 main Launch client...
+INFO       2023-06-18 22:14:21,276 main Connecting to the server: localhost - 7777 user: user1
+INFO       2023-06-18 22:14:21,277 wrap Before function call: create_presence with parameters () & {'account_name': 'user1'}.
+INFO       2023-06-18 22:14:21,278 create_presence created presence with user: `user1`
+INFO       2023-06-18 22:14:21,426 main After function call: create_presence. Вызов из модуля __main__. Вызов из функции None,.Вызов из функции main
+INFO       2023-06-18 22:14:21,784 main message from server received: 200: ok
+INFO       2023-06-18 22:14:36,223 main Launch client...
+INFO       2023-06-18 22:14:36,236 main Connecting to the server: localhost - 7777 user: user2
+INFO       2023-06-18 22:14:36,238 wrap Before function call: create_presence with parameters () & {'account_name': 'user2'}.
+INFO       2023-06-18 22:14:36,239 create_presence created presence with user: `user2`
+INFO       2023-06-18 22:14:36,369 main After function call: create_presence. Вызов из модуля __main__. Вызов из функции None,.Вызов из функции main
+INFO       2023-06-18 22:14:36,741 main message from server received: 200: ok
+INFO       2023-06-18 22:14:52,957 create_message Отправлено сообщение для пользователя all
+INFO       2023-06-18 22:14:53,264 run message from server received: {'action': 'message', 'send_to': 'all', 'sender': 'user1', 'time': 1687115693.2639565, 'message_text': 'hi all'}
+INFO       2023-06-18 22:14:53,264 run message from server received: {'action': 'message', 'send_to': 'all', 'sender': 'user1', 'time': 1687115693.2639565, 'message_text': 'hi all'}
+INFO       2023-06-18 22:15:25,338 run Завершение работы по команде пользователя.
+INFO       2023-06-18 22:16:04,291 main Launch client...
+INFO       2023-06-18 22:16:04,306 main Connecting to the server: localhost - 7777 user: user2
+INFO       2023-06-18 22:16:04,308 wrap Before function call: create_presence with parameters () & {'account_name': 'user2'}.
+INFO       2023-06-18 22:16:04,309 create_presence created presence with user: `user2`
+INFO       2023-06-18 22:16:04,441 main After function call: create_presence. Вызов из модуля __main__. Вызов из функции None,.Вызов из функции main
+INFO       2023-06-18 22:16:04,811 main message from server received: 400: Пользователь с таким именем: user2 уже подключен.
+CRITICAL   2023-06-18 22:16:04,824 run Потеряно соединение с сервером.
+INFO       2023-06-18 22:16:43,376 main Launch client...
+INFO       2023-06-18 22:16:43,391 main Connecting to the server: localhost - 7777 user: user2
+INFO       2023-06-18 22:16:43,393 wrap Before function call: create_presence with parameters () & {'account_name': 'user2'}.
+INFO       2023-06-18 22:16:43,394 create_presence created presence with user: `user2`
+INFO       2023-06-18 22:16:43,518 main After function call: create_presence. Вызов из модуля __main__. Вызов из функции None,.Вызов из функции main
+INFO       2023-06-18 22:16:43,895 main message from server received: 400: Пользователь с таким именем: user2 уже подключен.
+CRITICAL   2023-06-18 22:16:43,902 run Потеряно соединение с сервером.
+INFO       2023-06-18 22:18:02,042 create_message Отправлено сообщение для пользователя user2
+INFO       2023-06-18 22:18:02,496 run message from server received: {'action': 'message', 'send_to': 'user1', 'sender': 'server', 'time': 1687115882.4955416, 'message_text': 'Сообщение для клиента user2 не отправлено'}
+INFO       2023-06-18 22:18:17,699 main Launch client...
+INFO       2023-06-18 22:18:17,711 main Connecting to the server: localhost - 7777 user: user2
+INFO       2023-06-18 22:18:17,714 wrap Before function call: create_presence with parameters () & {'account_name': 'user2'}.
+INFO       2023-06-18 22:18:17,714 create_presence created presence with user: `user2`
+INFO       2023-06-18 22:18:17,846 main After function call: create_presence. Вызов из модуля __main__. Вызов из функции None,.Вызов из функции main
+INFO       2023-06-18 22:18:18,216 main message from server received: 200: ok
+INFO       2023-06-18 22:18:39,658 create_message Отправлено сообщение для пользователя all
+INFO       2023-06-18 22:18:39,744 run message from server received: {'action': 'message', 'send_to': 'all', 'sender': 'user2', 'time': 1687115919.7430267, 'message_text': 'i am in'}
+INFO       2023-06-18 22:18:39,744 run message from server received: {'action': 'message', 'send_to': 'all', 'sender': 'user2', 'time': 1687115919.7430267, 'message_text': 'i am in'}
+INFO       2023-06-18 22:24:05,883 run Завершение работы по команде пользователя.
+INFO       2023-06-18 22:24:40,517 main Launch client...
+INFO       2023-06-18 22:24:40,530 main Connecting to the server: localhost - 7777 user: user1
+INFO       2023-06-18 22:24:40,534 wrap Before function call: create_presence with parameters () & {'account_name': 'user1'}.
+INFO       2023-06-18 22:24:40,535 create_presence created presence with user: `user1`
+INFO       2023-06-18 22:24:40,692 main After function call: create_presence. Вызов из модуля __main__. Вызов из функции None,.Вызов из функции main
+INFO       2023-06-18 22:24:41,039 main message from server received: 400: Пользователь с таким именем: user1 уже подключен.
+CRITICAL   2023-06-18 22:24:41,047 run Потеряно соединение с сервером.
+INFO       2023-06-18 22:28:07,734 main Launch client...
+INFO       2023-06-18 22:28:07,750 main Connecting to the server: localhost - 7777 user: user1
+INFO       2023-06-18 22:28:07,754 wrap Before function call: create_presence with parameters () & {'account_name': 'user1'}.
+INFO       2023-06-18 22:28:07,755 create_presence created presence with user: `user1`
+INFO       2023-06-18 22:28:07,972 main After function call: create_presence. Вызов из модуля __main__. Вызов из функции None,.Вызов из функции main
+INFO       2023-06-18 22:28:08,255 main message from server received: 400: Пользователь с таким именем: user1 уже подключен.
+CRITICAL   2023-06-18 22:28:08,271 run Потеряно соединение с сервером.
+INFO       2023-06-18 22:33:39,550 main Launch client...
+INFO       2023-06-18 22:33:39,563 main Connecting to the server: localhost - 7777 user: user1
+INFO       2023-06-18 22:33:39,565 wrap Before function call: create_presence with parameters () & {'account_name': 'user1'}.
+INFO       2023-06-18 22:33:39,566 create_presence created presence with user: `user1`
+INFO       2023-06-18 22:33:39,697 main After function call: create_presence. Вызов из модуля __main__. Вызов из функции None,.Вызов из функции main
+INFO       2023-06-18 22:33:40,069 main message from server received: 400: Пользователь с таким именем: user1 уже подключен.
+CRITICAL   2023-06-18 22:33:40,077 run Потеряно соединение с сервером.
+CRITICAL   2023-06-18 22:35:55,675 run Потеряно соединение с сервером.
+INFO       2023-06-18 22:37:47,321 main Launch client...
+INFO       2023-06-18 22:37:47,332 main Connecting to the server: localhost - 7777 user: user1
+INFO       2023-06-18 22:37:47,335 wrap Before function call: create_presence with parameters () & {'account_name': 'user1'}.
+INFO       2023-06-18 22:37:47,336 create_presence created presence with user: `user1`
+INFO       2023-06-18 22:37:47,546 main After function call: create_presence. Вызов из модуля __main__. Вызов из функции None,.Вызов из функции main
+INFO       2023-06-18 22:37:47,839 main message from server received: 200: ok
+INFO       2023-06-18 22:37:56,814 main Launch client...
+INFO       2023-06-18 22:37:56,827 main Connecting to the server: localhost - 7777 user: user2
+INFO       2023-06-18 22:37:56,830 wrap Before function call: create_presence with parameters () & {'account_name': 'user2'}.
+INFO       2023-06-18 22:37:56,830 create_presence created presence with user: `user2`
+INFO       2023-06-18 22:37:56,992 main After function call: create_presence. Вызов из модуля __main__. Вызов из функции None,.Вызов из функции main
+INFO       2023-06-18 22:37:57,331 main message from server received: 200: ok
+INFO       2023-06-18 22:38:21,550 create_message Отправлено сообщение для пользователя all
+INFO       2023-06-18 22:38:21,865 run message from server received: {'action': 'message', 'send_to': 'all', 'sender': 'user2', 'time': 1687117101.8645377, 'message_text': 'hi all'}
+INFO       2023-06-18 22:38:21,865 run message from server received: {'action': 'message', 'send_to': 'all', 'sender': 'user2', 'time': 1687117101.8645377, 'message_text': 'hi all'}
+INFO       2023-06-18 22:39:25,946 create_message Отправлено сообщение для пользователя user1
+INFO       2023-06-18 22:39:26,447 run message from server received: {'action': 'message', 'send_to': 'user1', 'sender': 'user2', 'time': 1687117166.4466238, 'message_text': 'hi u1'}
+INFO       2023-06-18 22:39:58,294 run Завершение работы по команде пользователя.
+INFO       2023-06-19 12:29:16,705 main Launch client...
+INFO       2023-06-19 12:29:16,717 main Connecting to the server: localhost - 7777 user: user1
+INFO       2023-06-19 12:29:16,722 wrap Before function call: create_presence with parameters () & {'account_name': 'user1'}.
+INFO       2023-06-19 12:29:16,723 create_presence created presence with user: `user1`
+INFO       2023-06-19 12:29:16,885 main After function call: create_presence. Вызов из модуля __main__. Вызов из функции None,.Вызов из функции main
+INFO       2023-06-19 12:29:17,225 main message from server received: 200: ok
+INFO       2023-06-19 12:29:50,877 create_message Отправлено сообщение для пользователя all
+INFO       2023-06-19 12:29:50,952 run message from server received: {'action': 'message', 'send_to': 'all', 'sender': 'user1', 'time': 1687166990.9438415, 'message_text': 'hi all'}
+INFO       2023-06-19 12:33:16,953 run Завершение работы по команде пользователя.
+INFO       2023-06-19 12:42:20,844 main Launch client...
+INFO       2023-06-19 12:42:20,866 main Connecting to the server: localhost - 7777 user: user1
+INFO       2023-06-19 12:42:20,871 wrap Before function call: create_presence with parameters () & {'account_name': 'user1'}.
+INFO       2023-06-19 12:42:20,872 create_presence created presence with user: `user1`
+INFO       2023-06-19 12:42:21,006 main After function call: create_presence. Вызов из модуля __main__. Вызов из функции None,.Вызов из функции main
+INFO       2023-06-19 12:42:21,375 main message from server received: 200: ok
+INFO       2023-06-19 12:42:36,573 run Завершение работы по команде пользователя.
+INFO       2023-06-19 12:47:25,712 main Launch client...
+INFO       2023-06-19 12:47:25,724 main Connecting to the server: localhost - 7777 user: user2
+INFO       2023-06-19 12:47:25,726 wrap Before function call: create_presence with parameters () & {'account_name': 'user2'}.
+INFO       2023-06-19 12:47:25,726 create_presence created presence with user: `user2`
+INFO       2023-06-19 12:47:25,865 main After function call: create_presence. Вызов из модуля __main__. Вызов из функции None,.Вызов из функции main
+INFO       2023-06-19 12:49:52,804 main Launch client...
+INFO       2023-06-19 12:49:53,983 main Connecting to the server: localhost - 7777 user: user1
+INFO       2023-06-19 12:49:53,984 wrap Before function call: create_presence with parameters () & {'account_name': 'user1'}.
+INFO       2023-06-19 12:49:53,985 create_presence created presence with user: `user1`
+INFO       2023-06-19 12:49:54,138 main After function call: create_presence. Вызов из модуля __main__. Вызов из функции None,.Вызов из функции main
+INFO       2023-06-19 12:49:54,491 main message from server received: 200: ok
+INFO       2023-06-19 13:35:59,852 run Завершение работы по команде пользователя.
+INFO       2023-06-19 13:37:57,565 main Launch client...
+INFO       2023-06-19 13:37:57,586 main Connecting to the server: localhost - 7777 user: user2
+INFO       2023-06-19 13:37:57,588 wrap Before function call: create_presence with parameters () & {'account_name': 'user2'}.
+INFO       2023-06-19 13:37:57,592 create_presence created presence with user: `user2`
+INFO       2023-06-19 13:37:57,750 main After function call: create_presence. Вызов из модуля __main__. Вызов из функции None,.Вызов из функции main
+INFO       2023-06-19 13:37:58,093 main message from server received: 200: ok
+INFO       2023-06-19 13:38:34,665 run Завершение работы по команде пользователя.
+INFO       2023-06-19 13:49:22,255 main Launch client...
+INFO       2023-06-19 13:49:22,266 main Connecting to the server: localhost - 7777 user: user1
+INFO       2023-06-19 13:49:22,269 wrap Before function call: create_presence with parameters () & {'account_name': 'user1'}.
+INFO       2023-06-19 13:49:22,270 create_presence created presence with user: `user1`
+INFO       2023-06-19 13:49:22,434 main After function call: create_presence. Вызов из модуля __main__. Вызов из функции None,.Вызов из функции main
+INFO       2023-06-19 13:49:22,774 main message from server received: 200: ok
+INFO       2023-06-19 13:49:28,368 run Завершение работы по команде пользователя.
+CRITICAL   2023-06-19 13:49:28,783 run Потеряно соединение с сервером.
+INFO       2023-06-19 13:54:16,260 main Launch client...
+INFO       2023-06-19 13:54:16,271 main Connecting to the server: localhost - 7777 user: user1
+INFO       2023-06-19 13:54:16,274 wrap Before function call: create_presence with parameters () & {'account_name': 'user1'}.
+INFO       2023-06-19 13:54:16,274 create_presence created presence with user: `user1`
+INFO       2023-06-19 13:54:16,469 main After function call: create_presence. Вызов из модуля __main__. Вызов из функции None,.Вызов из функции main
+INFO       2023-06-19 13:54:16,780 main message from server received: 200: ok
+INFO       2023-06-19 13:54:22,514 run Завершение работы по команде пользователя.
+CRITICAL   2023-06-19 13:54:22,789 run Потеряно соединение с сервером.
+INFO       2023-06-19 13:55:48,981 main Launch client...
+INFO       2023-06-19 13:55:49,000 main Connecting to the server: localhost - 7777 user: user1
+INFO       2023-06-19 13:55:49,002 wrap Before function call: create_presence with parameters () & {'account_name': 'user1'}.
+INFO       2023-06-19 13:55:49,002 create_presence created presence with user: `user1`
+INFO       2023-06-19 13:55:49,219 main After function call: create_presence. Вызов из модуля __main__. Вызов из функции None,.Вызов из функции main
+INFO       2023-06-19 13:55:49,506 main message from server received: 200: ok
+INFO       2023-06-19 13:57:22,941 create_message Отправлено сообщение для пользователя all hi
+INFO       2023-06-19 13:57:39,618 run message from server received: {'action': 'message', 'send_to': 'user1', 'sender': 'server', 'time': 1687172259.6109881, 'message_text': 'Сообщение для клиента all hi не отправлено'}
+INFO       2023-06-19 14:01:06,931 create_message Отправлено сообщение для пользователя all
+INFO       2023-06-19 14:02:48,694 run message from server received: {'action': 'message', 'send_to': 'all', 'sender': 'user1', 'time': 1687172558.434258, 'message_text': 'hi all'}
+INFO       2023-06-19 14:05:34,430 run Завершение работы по команде пользователя.
+CRITICAL   2023-06-19 14:11:54,494 run Потеряно соединение с сервером.
+INFO       2023-06-19 14:12:33,449 main Launch client...
+INFO       2023-06-19 14:12:33,463 main Connecting to the server: localhost - 7777 user: user1
+INFO       2023-06-19 14:12:33,468 wrap Before function call: create_presence with parameters () & {'account_name': 'user1'}.
+INFO       2023-06-19 14:12:33,468 create_presence created presence with user: `user1`
+INFO       2023-06-19 14:12:33,623 main After function call: create_presence. Вызов из модуля __main__. Вызов из функции None,.Вызов из функции main
+INFO       2023-06-19 14:12:33,971 main message from server received: 200: ok
+INFO       2023-06-19 14:12:42,794 run Завершение работы по команде пользователя.
+CRITICAL   2023-06-19 14:12:42,983 run Потеряно соединение с сервером.
+INFO       2023-06-19 14:13:49,050 main Launch client...
+INFO       2023-06-19 14:13:49,066 main Connecting to the server: localhost - 7777 user: user1
+INFO       2023-06-19 14:13:49,068 wrap Before function call: create_presence with parameters () & {'account_name': 'user1'}.
+INFO       2023-06-19 14:13:49,069 create_presence created presence with user: `user1`
+INFO       2023-06-19 14:13:49,200 main After function call: create_presence. Вызов из модуля __main__. Вызов из функции None,.Вызов из функции main
+INFO       2023-06-19 14:13:49,571 main message from server received: 200: ok
+INFO       2023-06-19 14:14:04,138 main Launch client...
+INFO       2023-06-19 14:14:04,149 main Connecting to the server: localhost - 7777 user: user2
+INFO       2023-06-19 14:14:04,150 wrap Before function call: create_presence with parameters () & {'account_name': 'user2'}.
+INFO       2023-06-19 14:14:04,151 create_presence created presence with user: `user2`
+INFO       2023-06-19 14:14:04,284 main After function call: create_presence. Вызов из модуля __main__. Вызов из функции None,.Вызов из функции main
+INFO       2023-06-19 14:14:04,654 main message from server received: 200: ok
+INFO       2023-06-19 14:14:14,677 create_message Отправлено сообщение для пользователя all
+INFO       2023-06-19 14:14:15,169 run message from server received: {'action': 'message', 'send_to': 'all', 'sender': 'user2', 'time': 1687173255.1684723, 'message_text': 'hi all'}
+INFO       2023-06-19 14:14:15,169 run message from server received: {'action': 'message', 'send_to': 'all', 'sender': 'user2', 'time': 1687173255.1684723, 'message_text': 'hi all'}
+INFO       2023-06-19 14:16:11,823 create_message Отправлено сообщение для пользователя user2
+INFO       2023-06-19 14:19:47,214 run message from server received: {'action': 'message', 'send_to': 'user2', 'sender': 'user1', 'time': 1687173538.7255795, 'message_text': 'hey u2'}
+INFO       2023-06-19 14:38:14,448 run Завершение работы по команде пользователя.
+INFO       2023-06-19 14:42:24,994 main Launch client...
+INFO       2023-06-19 14:42:25,007 main Connecting to the server: localhost - 7777 user: user2
+INFO       2023-06-19 14:42:25,009 wrap Before function call: create_presence with parameters () & {'account_name': 'user2'}.
+INFO       2023-06-19 14:42:25,009 create_presence created presence with user: `user2`
+INFO       2023-06-19 14:42:25,131 main After function call: create_presence. Вызов из модуля __main__. Вызов из функции None,.Вызов из функции main
+INFO       2023-06-19 14:42:32,689 main message from server received: 200: ok
+INFO       2023-06-19 14:50:20,945 main Launch client...
+INFO       2023-06-19 14:50:20,956 main Connecting to the server: localhost - 7777 user: user1
+INFO       2023-06-19 14:50:20,957 wrap Before function call: create_presence with parameters () & {'account_name': 'user1'}.
+INFO       2023-06-19 14:50:20,958 create_presence created presence with user: `user1`
+INFO       2023-06-19 14:50:21,089 main After function call: create_presence. Вызов из модуля __main__. Вызов из функции None,.Вызов из функции main
+INFO       2023-06-19 14:50:21,462 main message from server received: 200: ok
+INFO       2023-06-19 14:56:14,073 main Launch client...
+INFO       2023-06-19 14:56:14,087 main Connecting to the server: localhost - 7777 user: user1
+INFO       2023-06-19 14:56:14,090 wrap Before function call: create_presence with parameters () & {'account_name': 'user1'}.
+INFO       2023-06-19 14:56:14,091 create_presence created presence with user: `user1`
+INFO       2023-06-19 14:56:14,225 main After function call: create_presence. Вызов из модуля __main__. Вызов из функции None,.Вызов из функции main
+INFO       2023-06-19 14:56:14,595 main message from server received: 200: ok
+INFO       2023-06-19 14:59:19,594 main Launch client...
+INFO       2023-06-19 14:59:19,607 main Connecting to the server: localhost - 7777 user: user1
+INFO       2023-06-19 14:59:19,611 wrap Before function call: create_presence with parameters () & {'account_name': 'user1'}.
+INFO       2023-06-19 14:59:19,612 create_presence created presence with user: `user1`
+INFO       2023-06-19 14:59:19,727 main After function call: create_presence. Вызов из модуля __main__. Вызов из функции None,.Вызов из функции main
+INFO       2023-06-19 14:59:20,115 main message from server received: 200: ok
+INFO       2023-06-19 15:02:11,352 main Launch client...
+INFO       2023-06-19 15:02:11,363 main Connecting to the server: localhost - 7777 user: user1
+INFO       2023-06-19 15:02:11,366 wrap Before function call: create_presence with parameters () & {'account_name': 'user1'}.
+INFO       2023-06-19 15:02:11,366 create_presence created presence with user: `user1`
+INFO       2023-06-19 15:02:11,490 main After function call: create_presence. Вызов из модуля __main__. Вызов из функции None,.Вызов из функции main
+INFO       2023-06-19 15:02:11,873 main message from server received: 200: ok
+INFO       2023-06-19 15:09:36,130 main Launch client...
+INFO       2023-06-19 15:09:36,140 main Connecting to the server: localhost - 7777 user: user1
+INFO       2023-06-19 15:09:36,142 wrap Before function call: create_presence with parameters () & {'account_name': 'user1'}.
+INFO       2023-06-19 15:09:36,142 create_presence created presence with user: `user1`
+INFO       2023-06-19 15:09:36,321 main After function call: create_presence. Вызов из модуля __main__. Вызов из функции None,.Вызов из функции main
+INFO       2023-06-19 15:09:36,646 main message from server received: 200: ok
+INFO       2023-06-19 18:03:44,024 main Launch client...
+INFO       2023-06-19 18:03:44,035 main Connecting to the server: localhost - 7777 user: user1
+INFO       2023-06-19 18:03:44,037 wrap Before function call: create_presence with parameters () & {'account_name': 'user1'}.
+INFO       2023-06-19 18:03:44,037 create_presence created presence with user: `user1`
+INFO       2023-06-19 18:03:44,175 main After function call: create_presence. Вызов из модуля __main__. Вызов из функции None,.Вызов из функции main
+INFO       2023-06-19 18:03:44,541 main message from server received: 200: ok
+INFO       2023-06-19 18:03:56,792 create_message Отправлено сообщение для пользователя all
+INFO       2023-06-19 18:03:57,059 run message from server received: {'action': 'message', 'send_to': 'all', 'sender': 'user1', 'time': 1687187037.0584679, 'message_text': 'hello'}
+INFO       2023-06-19 18:04:15,481 run Завершение работы по команде пользователя.
+CRITICAL   2023-06-19 18:04:15,583 run Потеряно соединение с сервером.

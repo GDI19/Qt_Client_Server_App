@@ -15,12 +15,12 @@ while True:
     elif ACTION == 's':
         catalog = os.getcwd()
         p = f'python3 "{catalog}/server.py"'
-        PROCESS.append(subprocess.Popen([ p]))
+        PROCESS.append(subprocess.Popen(['konsole', '-e', p]))
         print(p)
         time.sleep(0.1)
         for i in range(5):
             p = f'python3 "{catalog}/client.py" -n user{i}'
-            PROCESS.append(subprocess.Popen([ p]))
+            PROCESS.append(subprocess.Popen(['konsole', '-e', p]))
             print(p)
             time.sleep(0.1)
             
