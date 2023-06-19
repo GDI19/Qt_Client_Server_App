@@ -1,4 +1,0 @@
-INFO       2023-06-04 17:58:51,486 wrap Before function call: create_presence with parameters {}.
-INFO       2023-06-04 17:58:51,486 wrap After function call: create_presence.
-INFO       2023-06-04 17:58:51,488 wrap Before function call: process_answer with parameters {}.
-INFO       2023-06-04 17:58:51,488 wrap After function call: process_answer.

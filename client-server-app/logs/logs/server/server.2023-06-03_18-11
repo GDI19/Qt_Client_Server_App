@@ -1,2 +1,0 @@
-CRITICAL   2023-06-03 18:11:39,342 process_client_message Processed msg with noncorrect info
-DEBUG      2023-06-03 18:12:22,477 process_client_message Processed msg with correct info

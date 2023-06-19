@@ -1,4 +1,0 @@
-DEBUG      2023-06-03 18:33:54,766 main Server has been launched...
-DEBUG      2023-06-03 18:33:54,768 main Trying to parse parameters -p
-DEBUG      2023-06-03 18:33:54,768 main Trying to parse parameter -a
-DEBUG      2023-06-03 18:33:54,769 main using socket localhost - 1234

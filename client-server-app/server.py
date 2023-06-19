@@ -5,6 +5,8 @@ from socket import *
 import sys
 import time
 import logging
+
+from metaclasses import ServerVerifier
 import logs.server_log_config
 from logs.server_log_config import log
 from common.utils import get_message, send_message
@@ -25,7 +27,7 @@ def arg_parser():
     return listen_address, listen_port
 
 
-class Server():
+class Server(metaclass=ServerVerifier):
     port = Port()
     def __init__(self, listen_address, listen_port):
         self.address = listen_address
@@ -87,8 +89,13 @@ class Server():
                         server_log.info(f'received message from client: {msg_from_client}')
                         self.process_client_message(msg_from_client, client_with_message)
                     except:
-                        server_log.error(f'Клиент {client_with_message.getpeername()} отключился от сервера.')
+                        server_log.error(f'Клиент {client_with_message} отключился от сервера.')
                         self.clients.remove(client_with_message)
+                        user_to_del = ''
+                        for user, sock in self.users.items():
+                            if sock == client_with_message:
+                                user_to_del = user
+                        self.users.pop(user_to_del)
                 
             """
             for message in self.messages:
@@ -117,6 +124,7 @@ class Server():
                         except:
                             server_log.info(f'Клиент {waiting_client.getpeername()} отключился от сервера.')
                             self.clients.remove(waiting_client)
+                            
 
                 elif user_to_send in self.users:
                     socket_to_send = self.users[user_to_send]
@@ -160,7 +168,7 @@ class Server():
             if message['action'] == 'exit':
                 self.clients.remove(client)
                 client.close()
-                del self.users[message['user']['account_name']]
+                self.users.pop( message['user']['account_name'], 'No obj in pop users') #del self.users[message['user']['account_name']]
                 return
             
             elif message['action'] == 'presence':

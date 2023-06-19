@@ -1,1 +1,0 @@
-INFO       2023-06-07 12:36:27,286 wrap Before function call: send_message with parameters (<socket.socket fd=5, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 57948), raddr=('127.0.0.1', 7777)>, {'action': 'presence', 'time': 1686130587.285659, 'user': {'account_name': 'guest'}}) & {}.
