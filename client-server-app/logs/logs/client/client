@@ -2530,3 +2530,15 @@ INFO       2023-06-19 18:03:56,792 create_message Отправлено сооб�
 INFO       2023-06-19 18:03:57,059 run message from server received: {'action': 'message', 'send_to': 'all', 'sender': 'user1', 'time': 1687187037.0584679, 'message_text': 'hello'}
 INFO       2023-06-19 18:04:15,481 run Завершение работы по команде пользователя.
 CRITICAL   2023-06-19 18:04:15,583 run Потеряно соединение с сервером.
+INFO       2023-06-22 12:47:23,325 main Launch client...
+INFO       2023-06-22 12:47:23,373 main Connecting to the server: localhost - 7777 user: user1
+INFO       2023-06-22 12:47:23,384 wrap Before function call: create_presence with parameters () & {'account_name': 'user1'}.
+INFO       2023-06-22 12:47:23,384 create_presence created presence with user: `user1`
+INFO       2023-06-22 12:47:23,524 main After function call: create_presence. Вызов из модуля __main__. Вызов из функции None,.Вызов из функции main
+INFO       2023-06-22 12:47:23,880 main message from server received: 200: ok
+INFO       2023-06-22 12:47:41,351 create_message Отправлено сообщение для пользователя all
+INFO       2023-06-22 12:47:41,403 run message from server received: {'action': 'message', 'send_to': 'all', 'sender': 'user1', 'time': 1687427261.4029021, 'message_text': 'hi me'}
+INFO       2023-06-22 12:47:58,892 create_message Отправлено сообщение для пользователя user1
+INFO       2023-06-22 12:47:58,927 run message from server received: {'action': 'message', 'send_to': 'user1', 'sender': 'user1', 'time': 1687427278.927281, 'message_text': 'hi me'}
+INFO       2023-06-22 12:48:10,178 run Завершение работы по команде пользователя.
+CRITICAL   2023-06-22 12:48:10,445 run Потеряно соединение с сервером.
