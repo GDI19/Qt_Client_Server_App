@@ -1,11 +1,19 @@
-INFO       2023-06-19 18:00:31,377 wrap Before function call: arg_parser with parameters () & {}.
-INFO       2023-06-19 18:00:31,585 main After function call: arg_parser. Вызов из модуля __main__. Вызов из функции None,.Вызов из функции main
-DEBUG      2023-06-19 18:00:31,586 init_socket Server has been launched...
-INFO       2023-06-19 18:00:31,586 init_socket Запущен сервер:  порт: 7777, Если адрес не указан, принимаются соединения с любых адресов.
-INFO       2023-06-19 18:03:44,036 main_loop Установлено соедение с ПК 
-INFO       2023-06-19 18:03:44,538 main_loop received message from client: {'action': 'presence', 'time': 1687187024.037885, 'user': {'account_name': 'user1'}}
-DEBUG      2023-06-19 18:03:44,539 process_client_message Processed msg with correct info
-INFO       2023-06-19 18:03:57,057 main_loop received message from client: {'action': 'message', 'user': {'account_name': 'user1'}, 'send_to': 'all', 'time': 1687187036.7920308, 'message_text': 'hello'}
-DEBUG      2023-06-19 18:03:57,058 process_client_message Processed msg with correct info
-INFO       2023-06-19 18:04:15,581 main_loop received message from client: {'action': 'exit', 'time': 1687187055.4808903, 'user': {'account_name': 'user1'}}
-DEBUG      2023-06-19 18:04:15,582 process_client_message Processed msg with correct info
+INFO       2023-06-22 12:43:13,658 wrap Before function call: arg_parser with parameters () & {}.
+INFO       2023-06-22 12:43:13,766 main After function call: arg_parser. Вызов из модуля __main__. Вызов из функции main().Вызов из функции main
+INFO       2023-06-22 12:45:26,646 wrap Before function call: arg_parser with parameters () & {}.
+INFO       2023-06-22 12:45:26,685 main After function call: arg_parser. Вызов из модуля __main__. Вызов из функции main().Вызов из функции main
+DEBUG      2023-06-22 12:45:26,685 init_socket Server has been launched...
+INFO       2023-06-22 12:45:26,685 init_socket Запущен сервер:  порт: 7777, Если адрес не указан, принимаются соединения с любых адресов.
+INFO       2023-06-22 12:47:12,104 wrap Before function call: arg_parser with parameters () & {}.
+INFO       2023-06-22 12:47:12,372 main After function call: arg_parser. Вызов из модуля __main__. Вызов из функции None,.Вызов из функции main
+DEBUG      2023-06-22 12:47:12,373 init_socket Server has been launched...
+INFO       2023-06-22 12:47:12,374 init_socket Запущен сервер:  порт: 7777, Если адрес не указан, принимаются соединения с любых адресов.
+INFO       2023-06-22 12:47:23,374 main_loop Установлено соедение с ПК 
+INFO       2023-06-22 12:47:23,877 main_loop received message from client: {'action': 'presence', 'time': 1687427243.384916, 'user': {'account_name': 'user1'}}
+DEBUG      2023-06-22 12:47:23,878 process_client_message Processed msg with correct info
+INFO       2023-06-22 12:47:41,401 main_loop received message from client: {'action': 'message', 'user': {'account_name': 'user1'}, 'send_to': 'all', 'time': 1687427261.3513098, 'message_text': 'hi me'}
+DEBUG      2023-06-22 12:47:41,402 process_client_message Processed msg with correct info
+INFO       2023-06-22 12:47:58,925 main_loop received message from client: {'action': 'message', 'user': {'account_name': 'user1'}, 'send_to': 'user1', 'time': 1687427278.8918324, 'message_text': 'hi me'}
+DEBUG      2023-06-22 12:47:58,926 process_client_message Processed msg with correct info
+INFO       2023-06-22 12:48:10,443 main_loop received message from client: {'action': 'exit', 'time': 1687427290.178416, 'user': {'account_name': 'user1'}}
+DEBUG      2023-06-22 12:48:10,444 process_client_message Processed msg with correct info

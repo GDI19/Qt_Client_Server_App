@@ -3,8 +3,12 @@ import json
 import select
 from socket import *
 import sys
+import threading
 import time
 import logging
+from class_serverdb import ServerStorage
+
+from sqlalchemy import create_engine
 
 from metaclasses import ServerVerifier
 import logs.server_log_config
@@ -27,9 +31,9 @@ def arg_parser():
     return listen_address, listen_port
 
 
-class Server(metaclass=ServerVerifier):
+class Server(threading.Thread, metaclass=ServerVerifier):
     port = Port()
-    def __init__(self, listen_address, listen_port):
+    def __init__(self, listen_address, listen_port, database):
         self.address = listen_address
         self.port = listen_port
 
@@ -41,6 +45,10 @@ class Server(metaclass=ServerVerifier):
 
         # [(username_from, message, username_to), ...] Список сообщений на отправку
         self.messages = []  
+
+        self.database = database
+
+        super().__init__()
 
 
     def init_socket(self):
@@ -59,7 +67,7 @@ class Server(metaclass=ServerVerifier):
         self.sock.listen()
 
 
-    def main_loop(self):
+    def run(self):
         self.init_socket()
 
         while True:
@@ -166,6 +174,7 @@ class Server(metaclass=ServerVerifier):
             server_log.debug('Processed msg with correct info')
 
             if message['action'] == 'exit':
+                self.database.user_logout(message['user']['account_name'])
                 self.clients.remove(client)
                 client.close()
                 self.users.pop( message['user']['account_name'], 'No obj in pop users') #del self.users[message['user']['account_name']]
@@ -174,8 +183,10 @@ class Server(metaclass=ServerVerifier):
             elif message['action'] == 'presence':
                 new_user_in = message['user']['account_name']
                 if new_user_in not in self.users:
-                    send_message(client, {'response': 200})
                     self.users[new_user_in] = client
+                    client_ip, client_port = client.getpeername()
+                    self.database.user_login(new_user_in, client_ip, client_port)
+                    send_message(client, {'response': 200})
                 else:
                     send_message(client, {'response': 400, 'error': f'Пользователь с таким именем: {new_user_in} уже подключен.'})
                     self.clients.remove(client)
@@ -208,14 +219,44 @@ class Server(metaclass=ServerVerifier):
             
         server_log.info(f'Сообщение: {message} \n для клиента не отправлено.'
                             f'Такого пользователя {user_to_send} нет.')
-      
+        
+
+def print_help():
+    print('Поддерживаемые комманды:')
+    print('users - список известных пользователей')
+    print('connected - список подключенных пользователей')
+    print('loghist - история входов пользователя')
+    print('exit - завершение работы сервера.')
+    print('help - вывод справки по поддерживаемым командам')
+
 
 def main():
     listen_address, listen_port = arg_parser()
+    database = ServerStorage()
     
-    server = Server(listen_address, listen_port)
-    server.main_loop()
+    server = Server(listen_address, listen_port, database)
+    server.daemon = True
+    server.start()
 
+    print_help()
+    while True:
+        command = input('Введите комманду: ')
+        if command == 'help':
+            print_help()
+        elif command == 'exit':
+            break
+        elif command == 'users':
+            for user in sorted(database.users_list()):
+                print(f'Пользователь {user[0]}, последний вход: {user[1]}')
+        elif command == 'connected':
+            for user in sorted(database.active_users_list()):
+                print(f'Пользователь {user[0]}, подключен: {user[1]}:{user[2]}, время установки соединения: {user[3]}')
+        elif command == 'loghist':
+            name = input('Введите имя пользователя для просмотра истории. Для вывода всей истории, просто нажмите Enter: ')
+            for user in sorted(database.login_history(name)):
+                print(f'Пользователь: {user[0]} время входа: {user[1]}. Вход с: {user[2]}:{user[3]}')
+        else:
+            print('Команда не распознана.')
 
 if __name__ == '__main__':
     main()

@@ -11,7 +11,8 @@ class Port():
                 f'{value}. Допустимы адреса с 1024 до 65535.')
             exit(1)
         instance.__dict__[self.name] = value
-
+        # super().__set__(instance, value)
+        
     def __set_name__(self, owner, name):
         # owner - <class '__main__.Server'>
         # name - port
