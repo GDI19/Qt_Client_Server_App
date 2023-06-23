@@ -10,3 +10,5 @@ client-server-app/logs/logs/server/server.2023-06-19_18
 client-server-app/__pycache__/descriptors.cpython-310.pyc
 pract/lsn8/process_queue.py
 pract/lsn8/queue.py
+.vscode/launch.json
+

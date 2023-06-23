@@ -5,6 +5,14 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "name": "class_serverdb",
+            "type": "python",
+            "request": "launch",
+            "program": "/home/gdi/visual-studio-code/practice/client-server-app/class_serverdb.py",
+            "console": "integratedTerminal",
+            "justMyCode": true
+        },
+        {
             "name": "thread queue",
             "type": "python",
             "request": "launch",

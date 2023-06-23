@@ -1,15 +1,3 @@
-"""
-таблицы
-a) клиент:
-    * логин;
-    * информация.
-b) история клиента:
-    * время входа;
-    * ip-адрес.
-c) список контактов (составляется на основании выборки всех записей с id_владельца):
-    * id_владельца;
-    * id_клиента.
-"""
 import datetime
 from sqlalchemy.orm import mapper, sessionmaker
 from sqlalchemy import Column, Integer, MetaData, String, Table, create_engine, ForeignKey, DateTime
@@ -82,15 +70,27 @@ class ServerStorage:
         self.session.commit()
 
     def user_login(self, username, ip, port):
+        print('-'*20)
         print(username, ip, port)
+        print('-'*20)
 
-        found_user = self.session.query(self.AllUsers).filter_by(name=username )
+        found_user = self.session.query(self.AllUsers).filter_by(name=username)
+        print('found_user:', found_user)
+        print('count found_user:', found_user.count())
 
         if found_user.count():
             user = found_user.first()
+            print('-'*20)
+            print(user)
+            print('-'*20)
+
             user.last_login = datetime.datetime.now()
         else:
             user = self.AllUsers(username )
+            print('-'*20)
+            print(user)
+            print('-'*20)
+
             self.session.add(user)
             self.session.commit()
 
@@ -116,6 +116,7 @@ class ServerStorage:
     # Функция возвращает список кортежей известных пользователей со временем последнего входа.
     def users_list(self):
         query = self.session.query(self.AllUsers.name, self.AllUsers.last_login,)
+        print('query u_list', query)
         return query.all()
     
 
@@ -126,7 +127,7 @@ class ServerStorage:
             self.ActiveUsers.ip_address,
             self.ActiveUsers.ip_port,
             self.ActiveUsers.login_time
-        )
+        ).join(self.AllUsers)
         return query.all()
     
 
@@ -149,12 +150,19 @@ if __name__ == "__main__":
 
     test_db.user_login('client_1', '192.168.1.4', 8888)
     test_db.user_login('client_2', '192.168.1.5', 7777)
-
-    print(test_db.active_users_list())
     
+    print('-'*20)
+    print('active_users_list: 2', test_db.active_users_list())
+    
+    print('-'*20)
     test_db.user_logout('client_1')
-    print(test_db.active_users_list())
-
+    print('active_users_list: 1', test_db.active_users_list())
+    
+    print('-'*20)
     test_db.login_history('client_1')
-    print(test_db.users_list())
+    print('users_list', test_db.users_list())
+
+    print('-'*20)
+    test_db.login_history('client_1')
+    print('login_history c1', test_db.login_history('client_1'))
 
