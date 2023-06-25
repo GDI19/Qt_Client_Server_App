@@ -1,76 +1,61 @@
-INFO       2023-06-23 21:48:55,825 wrap Before function call: arg_parser with parameters () & {}.
-INFO       2023-06-23 21:48:56,096 main After function call: arg_parser. Вызов из модуля __main__. Вызов из функции None,.Вызов из функции main
-DEBUG      2023-06-23 21:48:56,271 init_socket Server has been launched...
-INFO       2023-06-23 21:48:56,272 init_socket Запущен сервер:  порт: 7777, Если адрес не указан, принимаются соединения с любых адресов.
-INFO       2023-06-23 21:49:03,352 run Установлено соедение с ПК 
-INFO       2023-06-23 21:49:03,854 run received message from client: {'action': 'presence', 'time': 1687546143.3547537, 'user': {'account_name': 'user1'}}
-DEBUG      2023-06-23 21:49:03,855 process_client_message Processed msg with correct info
-INFO       2023-06-23 21:50:06,258 wrap Before function call: arg_parser with parameters () & {}.
-INFO       2023-06-23 21:50:06,469 main After function call: arg_parser. Вызов из модуля __main__. Вызов из функции None,.Вызов из функции main
-DEBUG      2023-06-23 21:50:06,696 init_socket Server has been launched...
-INFO       2023-06-23 21:50:06,696 init_socket Запущен сервер:  порт: 7777, Если адрес не указан, принимаются соединения с любых адресов.
-INFO       2023-06-23 21:50:39,552 wrap Before function call: arg_parser with parameters () & {}.
-INFO       2023-06-23 21:50:39,756 main After function call: arg_parser. Вызов из модуля __main__. Вызов из функции None,.Вызов из функции main
-DEBUG      2023-06-23 21:50:39,937 init_socket Server has been launched...
-INFO       2023-06-23 21:50:39,937 init_socket Запущен сервер:  порт: 7777, Если адрес не указан, принимаются соединения с любых адресов.
-INFO       2023-06-23 21:50:59,287 wrap Before function call: arg_parser with parameters () & {}.
-INFO       2023-06-23 21:50:59,482 main After function call: arg_parser. Вызов из модуля __main__. Вызов из функции None,.Вызов из функции main
-DEBUG      2023-06-23 21:50:59,687 init_socket Server has been launched...
-INFO       2023-06-23 21:50:59,688 init_socket Запущен сервер:  порт: 7777, Если адрес не указан, принимаются соединения с любых адресов.
-INFO       2023-06-23 21:51:11,462 wrap Before function call: arg_parser with parameters () & {}.
-INFO       2023-06-23 21:51:11,631 main After function call: arg_parser. Вызов из модуля __main__. Вызов из функции None,.Вызов из функции main
-DEBUG      2023-06-23 21:51:11,812 init_socket Server has been launched...
-INFO       2023-06-23 21:51:11,813 init_socket Запущен сервер:  порт: 7777, Если адрес не указан, принимаются соединения с любых адресов.
-INFO       2023-06-23 21:51:25,924 run Установлено соедение с ПК 
-INFO       2023-06-23 21:51:26,425 run received message from client: {'action': 'presence', 'time': 1687546285.925292, 'user': {'account_name': 'user1'}}
-DEBUG      2023-06-23 21:51:26,426 process_client_message Processed msg with correct info
-INFO       2023-06-23 21:52:31,410 wrap Before function call: arg_parser with parameters () & {}.
-INFO       2023-06-23 21:52:31,586 main After function call: arg_parser. Вызов из модуля __main__. Вызов из функции None,.Вызов из функции main
-DEBUG      2023-06-23 21:52:32,217 init_socket Server has been launched...
-INFO       2023-06-23 21:52:32,217 init_socket Запущен сервер:  порт: 7777, Если адрес не указан, принимаются соединения с любых адресов.
-INFO       2023-06-23 21:52:52,336 wrap Before function call: arg_parser with parameters () & {}.
-INFO       2023-06-23 21:52:52,545 main After function call: arg_parser. Вызов из модуля __main__. Вызов из функции None,.Вызов из функции main
-DEBUG      2023-06-23 21:52:52,736 init_socket Server has been launched...
-INFO       2023-06-23 21:52:52,736 init_socket Запущен сервер:  порт: 7777, Если адрес не указан, принимаются соединения с любых адресов.
-INFO       2023-06-23 21:52:58,558 wrap Before function call: arg_parser with parameters () & {}.
-INFO       2023-06-23 21:52:58,769 main After function call: arg_parser. Вызов из модуля __main__. Вызов из функции None,.Вызов из функции main
-DEBUG      2023-06-23 21:52:58,956 init_socket Server has been launched...
-INFO       2023-06-23 21:52:58,957 init_socket Запущен сервер:  порт: 7777, Если адрес не указан, принимаются соединения с любых адресов.
-INFO       2023-06-23 21:53:12,410 run Установлено соедение с ПК 
-INFO       2023-06-23 21:53:12,913 run received message from client: {'action': 'presence', 'time': 1687546392.4114113, 'user': {'account_name': 'user1'}}
-DEBUG      2023-06-23 21:53:12,913 process_client_message Processed msg with correct info
-INFO       2023-06-23 21:54:34,249 wrap Before function call: arg_parser with parameters () & {}.
-INFO       2023-06-23 21:54:34,473 main After function call: arg_parser. Вызов из модуля __main__. Вызов из функции None,.Вызов из функции main
-DEBUG      2023-06-23 21:54:35,023 init_socket Server has been launched...
-INFO       2023-06-23 21:54:35,024 init_socket Запущен сервер:  порт: 7777, Если адрес не указан, принимаются соединения с любых адресов.
-INFO       2023-06-23 21:54:41,601 wrap Before function call: arg_parser with parameters () & {}.
-INFO       2023-06-23 21:54:41,792 main After function call: arg_parser. Вызов из модуля __main__. Вызов из функции None,.Вызов из функции main
-DEBUG      2023-06-23 21:54:41,955 init_socket Server has been launched...
-INFO       2023-06-23 21:54:41,955 init_socket Запущен сервер:  порт: 7777, Если адрес не указан, принимаются соединения с любых адресов.
-INFO       2023-06-23 21:54:47,509 wrap Before function call: arg_parser with parameters () & {}.
-INFO       2023-06-23 21:54:47,736 main After function call: arg_parser. Вызов из модуля __main__. Вызов из функции None,.Вызов из функции main
-DEBUG      2023-06-23 21:54:47,946 init_socket Server has been launched...
-INFO       2023-06-23 21:54:47,947 init_socket Запущен сервер:  порт: 7777, Если адрес не указан, принимаются соединения с любых адресов.
-INFO       2023-06-23 21:54:58,302 run Установлено соедение с ПК 
-INFO       2023-06-23 21:54:58,805 run received message from client: {'action': 'presence', 'time': 1687546498.3039892, 'user': {'account_name': 'user1'}}
-DEBUG      2023-06-23 21:54:58,806 process_client_message Processed msg with correct info
-INFO       2023-06-23 21:56:56,216 run received message from client: {'action': 'message', 'user': {'account_name': 'user1'}, 'send_to': 'all', 'time': 1687546616.023662, 'message_text': 'hey all me'}
-DEBUG      2023-06-23 21:56:56,217 process_client_message Processed msg with correct info
-INFO       2023-06-23 21:57:10,437 run Установлено соедение с ПК 
-INFO       2023-06-23 21:57:10,939 run received message from client: {'action': 'presence', 'time': 1687546630.4383183, 'user': {'account_name': 'user2'}}
-DEBUG      2023-06-23 21:57:10,939 process_client_message Processed msg with correct info
-INFO       2023-06-23 21:57:35,667 run received message from client: {'action': 'message', 'user': {'account_name': 'user2'}, 'send_to': 'user1', 'time': 1687546655.5753117, 'message_text': 'hey 1'}
-DEBUG      2023-06-23 21:57:35,667 process_client_message Processed msg with correct info
-INFO       2023-06-23 21:58:04,204 run received message from client: {'action': 'message', 'user': {'account_name': 'user1'}, 'send_to': 'user2', 'time': 1687546684.0485458, 'message_text': 'hey 2'}
-DEBUG      2023-06-23 21:58:04,204 process_client_message Processed msg with correct info
-INFO       2023-06-23 21:58:23,730 run received message from client: {'action': 'message', 'user': {'account_name': 'user1'}, 'send_to': 'sdf', 'time': 1687546703.4768665, 'message_text': 'ups'}
-DEBUG      2023-06-23 21:58:23,731 process_client_message Processed msg with correct info
-INFO       2023-06-23 21:58:23,732 send_msg_failed_notification Сообщение: {'action': 'message', 'send_to': 'sdf', 'sender': 'user1', 'time': 1687546703.7317753, 'message_text': 'ups'} 
- для клиента не отправлено.Такого пользователя sdf нет.
-INFO       2023-06-23 21:58:37,750 run received message from client: {'action': 'exit', 'time': 1687546717.6994753, 'user': {'account_name': 'user1'}}
-DEBUG      2023-06-23 21:58:37,751 process_client_message Processed msg with correct info
-INFO       2023-06-23 22:00:15,940 run received message from client: {'action': 'message', 'user': {'account_name': 'user2'}, 'send_to': 'user1', 'time': 1687546815.505006, 'message_text': 'hye 1'}
-DEBUG      2023-06-23 22:00:15,941 process_client_message Processed msg with correct info
-INFO       2023-06-23 22:00:15,942 send_msg_failed_notification Сообщение: {'action': 'message', 'send_to': 'user1', 'sender': 'user2', 'time': 1687546815.9424095, 'message_text': 'hye 1'} 
+INFO       2023-06-25 21:27:47,792 wrap Before function call: arg_parser with parameters () & {}.
+INFO       2023-06-25 21:27:48,281 main After function call: arg_parser. Вызов из модуля __main__. Вызов из функции None,.Вызов из функции main
+DEBUG      2023-06-25 21:27:48,509 init_socket Server has been launched...
+INFO       2023-06-25 21:27:48,509 init_socket Запущен сервер:  порт: 7777, Если адрес не указан, принимаются соединения с любых адресов.
+INFO       2023-06-25 21:27:57,953 run Установлено соедение с ПК 
+INFO       2023-06-25 21:27:58,456 run received message from client: {'action': 'presence', 'time': 1687717677.955046, 'user': {'account_name': 'user1'}}
+INFO       2023-06-25 21:28:12,705 run received message from client: {'action': 'message', 'send_to': 'user1', 'sender': 'user1', 'time': 1687717692.534645, 'message_text': 'hey me'}
+ERROR      2023-06-25 21:28:12,726 run Клиент <socket.socket fd=8, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 41746)> отключился от сервера.
+ERROR      2023-06-25 21:28:12,836 process_message_to_send Пользователь user1 не зарегистрирован на сервере, отправка сообщения невозможна.
+INFO       2023-06-25 21:28:12,837 run Связь с клиентом с именем user1 была потеряна
+INFO       2023-06-25 21:35:30,189 wrap Before function call: arg_parser with parameters () & {}.
+INFO       2023-06-25 21:35:30,446 main After function call: arg_parser. Вызов из модуля __main__. Вызов из функции None,.Вызов из функции main
+DEBUG      2023-06-25 21:35:30,770 init_socket Server has been launched...
+INFO       2023-06-25 21:35:30,771 init_socket Запущен сервер:  порт: 7777, Если адрес не указан, принимаются соединения с любых адресов.
+INFO       2023-06-25 21:35:39,027 wrap Before function call: arg_parser with parameters () & {}.
+INFO       2023-06-25 21:35:39,272 main After function call: arg_parser. Вызов из модуля __main__. Вызов из функции None,.Вызов из функции main
+DEBUG      2023-06-25 21:35:39,484 init_socket Server has been launched...
+INFO       2023-06-25 21:35:39,485 init_socket Запущен сервер:  порт: 7777, Если адрес не указан, принимаются соединения с любых адресов.
+INFO       2023-06-25 21:35:44,424 wrap Before function call: arg_parser with parameters () & {}.
+INFO       2023-06-25 21:35:44,658 main After function call: arg_parser. Вызов из модуля __main__. Вызов из функции None,.Вызов из функции main
+DEBUG      2023-06-25 21:35:44,874 init_socket Server has been launched...
+INFO       2023-06-25 21:35:44,874 init_socket Запущен сервер:  порт: 7777, Если адрес не указан, принимаются соединения с любых адресов.
+INFO       2023-06-25 21:36:03,438 run Установлено соедение с ПК 
+INFO       2023-06-25 21:36:03,940 run received message from client: {'action': 'presence', 'time': 1687718163.4404316, 'user': {'account_name': 'user1'}}
+INFO       2023-06-25 21:39:40,491 run received message from client: {'action': 'message', 'send_to': 'user1', 'sender': 'user1', 'time': 1687718265.4953053, 'message_text': 'hey me'}
+ERROR      2023-06-25 21:42:55,419 run Клиент <socket.socket fd=8, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 38362)> отключился от сервера.
+ERROR      2023-06-25 21:44:46,031 process_message_to_send Пользователь user1 не зарегистрирован на сервере, отправка сообщения невозможна.
+INFO       2023-06-25 21:47:16,935 run Связь с клиентом с именем user1 была потеряна
+INFO       2023-06-25 21:50:15,014 wrap Before function call: arg_parser with parameters () & {}.
+INFO       2023-06-25 21:50:15,480 main After function call: arg_parser. Вызов из модуля __main__. Вызов из функции None,.Вызов из функции main
+DEBUG      2023-06-25 21:50:19,757 init_socket Server has been launched...
+INFO       2023-06-25 21:50:19,758 init_socket Запущен сервер:  порт: 7777, Если адрес не указан, принимаются соединения с любых адресов.
+INFO       2023-06-25 21:50:29,311 wrap Before function call: arg_parser with parameters () & {}.
+INFO       2023-06-25 21:50:29,505 main After function call: arg_parser. Вызов из модуля __main__. Вызов из функции None,.Вызов из функции main
+DEBUG      2023-06-25 21:50:29,753 init_socket Server has been launched...
+INFO       2023-06-25 21:50:29,753 init_socket Запущен сервер:  порт: 7777, Если адрес не указан, принимаются соединения с любых адресов.
+INFO       2023-06-25 21:50:34,332 wrap Before function call: arg_parser with parameters () & {}.
+INFO       2023-06-25 21:50:34,581 main After function call: arg_parser. Вызов из модуля __main__. Вызов из функции None,.Вызов из функции main
+DEBUG      2023-06-25 21:50:34,800 init_socket Server has been launched...
+INFO       2023-06-25 21:50:34,800 init_socket Запущен сервер:  порт: 7777, Если адрес не указан, принимаются соединения с любых адресов.
+INFO       2023-06-25 21:50:40,425 wrap Before function call: arg_parser with parameters () & {}.
+INFO       2023-06-25 21:50:40,891 main After function call: arg_parser. Вызов из модуля __main__. Вызов из функции None,.Вызов из функции main
+DEBUG      2023-06-25 21:50:41,122 init_socket Server has been launched...
+INFO       2023-06-25 21:50:41,122 init_socket Запущен сервер:  порт: 7777, Если адрес не указан, принимаются соединения с любых адресов.
+INFO       2023-06-25 21:50:49,872 run Установлено соедение с ПК 
+INFO       2023-06-25 21:50:50,374 run received message from client: {'action': 'presence', 'time': 1687719049.8760514, 'user': {'account_name': 'user1'}}
+INFO       2023-06-25 21:51:07,127 run received message from client: {'action': 'message', 'send_to': 'user1', 'sender': 'user1', 'time': 1687719066.9557712, 'message_text': 'hey me'}
+INFO       2023-06-25 21:51:07,128 process_message_to_send Отправлено сообщение пользователю user1 от пользователя user1.
+INFO       2023-06-25 21:51:23,632 run Установлено соедение с ПК 
+INFO       2023-06-25 21:51:24,135 run received message from client: {'action': 'presence', 'time': 1687719083.635605, 'user': {'account_name': 'user2'}}
+INFO       2023-06-25 21:51:40,897 run received message from client: {'action': 'message', 'send_to': 'hey u1', 'sender': 'user2', 'time': 1687719100.396875, 'message_text': 'hey'}
+ERROR      2023-06-25 21:51:40,898 process_message_to_send Пользователь hey u1 не зарегистрирован на сервере, отправка сообщения невозможна.
+INFO       2023-06-25 21:51:40,899 send_msg_failed_notification Сообщение: {'action': 'message', 'send_to': 'hey u1', 'sender': 'user2', 'time': 1687719100.396875, 'message_text': 'hey'} 
+ для клиента не отправлено.Такого пользователя hey u1 нет.
+INFO       2023-06-25 21:52:10,937 run received message from client: {'action': 'message', 'send_to': 'user1', 'sender': 'user2', 'time': 1687719130.713538, 'message_text': 'hey 1'}
+INFO       2023-06-25 21:52:10,939 process_message_to_send Отправлено сообщение пользователю user1 от пользователя user2.
+INFO       2023-06-25 21:52:28,462 run received message from client: {'action': 'exit', 'time': 1687719148.2784796, 'user': {'account_name': 'user1'}}
+INFO       2023-06-25 21:52:53,604 run received message from client: {'action': 'message', 'send_to': 'user1', 'sender': 'user2', 'time': 1687719173.3422332, 'message_text': 'are you here'}
+ERROR      2023-06-25 21:52:53,605 process_message_to_send Пользователь user1 не зарегистрирован на сервере, отправка сообщения невозможна.
+INFO       2023-06-25 21:52:53,606 send_msg_failed_notification Сообщение: {'action': 'message', 'send_to': 'user1', 'sender': 'user2', 'time': 1687719173.3422332, 'message_text': 'are you here'} 
  для клиента не отправлено.Такого пользователя user1 нет.
-ERROR      2023-06-23 22:00:36,469 run Клиент <socket.socket fd=7, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 54478)> отключился от сервера.

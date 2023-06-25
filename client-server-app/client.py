@@ -42,9 +42,8 @@ class ClientSender(threading.Thread, metaclass=ClientVerifier):
     
         msg_to_send ={
             'action': 'message',
-            'user':{
-                'account_name': self.user_name},
             'send_to': send_to,
+            'sender': self.user_name,
             'time': time.time(),
             'message_text': text_for_msg
         }
