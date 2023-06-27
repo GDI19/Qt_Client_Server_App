@@ -45,18 +45,19 @@ class ServerStorage:
     def __init__(self) -> None:
         # echo=False - отключаем ведение лога (вывод sql-запросов)
         # pool_recycle = 7200 (переуст-ка соед-я через 2 часа)По умолчанию соединение сбрасывается через 8 часов
-        self.database_engine = create_engine('sqlite:////home/gdi/visual-studio-code/practice/server_database.db', echo=False)
+        self.database_engine = create_engine('sqlite:///server_database.db', echo=False)
 
-        # self.metadata = MetaData()
-        self.mapper_registry = registry()
+        self.metadata = MetaData()
+        # SQLAlchemy >= 2
+        # self.mapper_registry = registry()
 
-        users_table = Table('Users', self.mapper_registry.metadata,
+        users_table = Table('Users', self.metadata,
             Column('id', Integer, primary_key=True),
             Column('name', String(50), unique=True),
             Column('last_login', DateTime)
         )
 
-        active_users_table = Table('Active_users', self.mapper_registry.metadata,
+        active_users_table = Table('Active_users', self.metadata,
             Column('id', Integer, primary_key=True),
             Column('user', ForeignKey('Users.id'), unique = True),
             Column('ip_address', String(50)),
@@ -64,7 +65,7 @@ class ServerStorage:
             Column('login_time', DateTime)
         )
 
-        login_history = Table('Login_History', self.mapper_registry.metadata,
+        login_history = Table('Login_History', self.metadata,
             Column('id', Integer, primary_key=True),
             Column('name', ForeignKey('Users.id')),
             Column('date_time', DateTime),
@@ -72,13 +73,13 @@ class ServerStorage:
             Column('port', String(50))
         )
 
-        contacts = Table('Contacts', self.mapper_registry.metadata,
+        contacts = Table('Contacts', self.metadata,
             Column('id', Integer, primary_key=True),
             Column('user', ForeignKey('Users.id')),
             Column('contact', ForeignKey('Users.id'))
             )
         
-        users_history = Table('History', self.mapper_registry.metadata,
+        users_history = Table('History', self.metadata,
             Column('id', Integer, primary_key=True),
             Column('user', ForeignKey('Users.id')),
             Column('sent', Integer),
@@ -86,20 +87,28 @@ class ServerStorage:
             )
 
         # SQLAlchemy < 2
-        # self.metadata.create_all(self.database_engine)
+        self.metadata.create_all(self.database_engine)
         # mapper(..)
 
-        self.mapper_registry.map_imperatively(self.AllUsers, users_table)
-        self.mapper_registry.map_imperatively(self.ActiveUsers, active_users_table)
-        self.mapper_registry.map_imperatively(self.LoginHistory, login_history)
-        self.mapper_registry.map_imperatively(self.UsersContacts, contacts)
-        self.mapper_registry.map_imperatively(self.UsersHistory, users_history)
+        # SQLAlchemy >= 2
+        # self.mapper_registry.map_imperatively(self.AllUsers, users_table)
+        # self.mapper_registry.map_imperatively(self.ActiveUsers, active_users_table)
+        # self.mapper_registry.map_imperatively(self.LoginHistory, login_history)
+        # self.mapper_registry.map_imperatively(self.UsersContacts, contacts)
+        # self.mapper_registry.map_imperatively(self.UsersHistory, users_history)
 
+        mapper(self.AllUsers, users_table)
+        mapper(self.ActiveUsers, active_users_table)
+        mapper(self.LoginHistory, login_history)
+        mapper(self.UsersContacts, contacts)
+        mapper(self.UsersHistory, users_history)
+        
         Session = sessionmaker(bind=self.database_engine)
         self.session = Session()
 
         self.session.query(self.ActiveUsers).delete()
         self.session.commit()
+
 
     def user_login(self, username, ip, port):
         print('-'*20)
@@ -107,25 +116,13 @@ class ServerStorage:
         print('-'*20)
 
         found_user = self.session.query(self.AllUsers).filter_by(name=username)
-        print('found_user:', found_user)
-        print('count found_user:', found_user.count())
-
         if found_user.count():
             user = found_user.first()
-            print('-'*20)
-            print(user)
-            print('-'*20)
-
             user.last_login = datetime.datetime.now()
         else:
             user = self.AllUsers(username )
-            print('-'*20)
-            print(user)
-            print('-'*20)
-
             self.session.add(user)
             self.session.commit()
-
 
         new_active_user = self.ActiveUsers(user.id, ip, port, datetime.datetime.now())
         self.session.add(new_active_user)
@@ -148,7 +145,6 @@ class ServerStorage:
     # Функция возвращает список кортежей известных пользователей со временем последнего входа.
     def users_list(self):
         query = self.session.query(self.AllUsers.name, self.AllUsers.last_login,)
-        print('query u_list', query)
         return query.all()
     
 
@@ -275,7 +271,7 @@ if __name__ == "__main__":
     test_db.add_contact('client_3', 'client_2')
     test_db.remove_contact('client_1', 'client_4')
 
-
+    test_db.get_contacts('client_1')
     #test_db.process_message('client_1', 'client_4')
 
     print('message_history():', test_db.message_history())

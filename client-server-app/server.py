@@ -218,9 +218,34 @@ class Server(threading.Thread, metaclass=ServerVerifier):
             elif message['action'] == 'message' and 'message_text' in message and 'send_to' in message \
                 and 'sender' in message and self.users[message['sender']] == client:
                 self.messages.append(message)
-                # self.database.process_message(message['sender'], message['send_to'])
+                self.database.process_message(message['sender'], message['send_to'])
                 return
-        
+            
+            elif message['action'] == 'get_contacts' and 'user' in message and \
+                self.users[message['user']] == client:
+                response = {'response': 202, 'data_list':None}
+                response['data_list'] = self.database.get_contacts(message['user'])
+                send_message(client, response)
+                return
+
+            elif message['action'] == 'add' and 'account_name' in message and 'user' in message \
+                and self.users[message['user']] == client:
+                self.database.add_contact(message['user'], message['account_name'])
+                send_message(client, {'response': 200})
+                return
+            
+            elif message['action'] == 'remove' and 'account_name' in message and 'user' in message \
+                and self.users[message['user']] == client:
+                self.database.remove_contact(message['user'], message['account_name'])
+                send_message(client, {'response': 200})
+
+            elif  message['action'] == 'get_users' and 'account_name' in message \
+                and self.names[message['account_name']] == client:
+                response = {'response': 202, 'data_list':None}
+                response['data_list'] = [user[0] for user in self.database.users_list()]
+                send_message(client, response)
+                return
+
         server_log.critical('Processed msg with noncorrect info')
         send_message(client, {'response': 400, 'error': 'Bad Request'})
         return

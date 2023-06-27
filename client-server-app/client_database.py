@@ -36,17 +36,17 @@ class ClientDatabase:
                                              connect_args={'check_same_thread': False})
 
         # Создаём объект MetaData
-        # self.metadata = MetaData()
-        self.mapper_registry = registry()
+        self.metadata = MetaData()
+        # self.mapper_registry = registry()
 
         # Создаём таблицу известных пользователей
-        users = Table('known_users', self.mapper_registry.metadata,
+        users = Table('known_users', self.metadata,
                       Column('id', Integer, primary_key=True),
                       Column('username', String)
                       )
 
         # Создаём таблицу истории сообщений
-        history = Table('message_history', self.mapper_registry.metadata,
+        history = Table('message_history', self.metadata,
                         Column('id', Integer, primary_key=True),
                         Column('from_user', String),
                         Column('to_user', String),
@@ -55,21 +55,23 @@ class ClientDatabase:
                         )
 
         # Создаём таблицу контактов
-        contacts = Table('contacts', self.mapper_registry.metadata,
+        contacts = Table('contacts', self.metadata,
                          Column('id', Integer, primary_key=True),
                          Column('name', String, unique=True)
                          )
 
         # Создаём таблицы
-        # self.metadata.create_all(self.database_engine)
+        self.metadata.create_all(self.database_engine)
 
-        # # Создаём отображения
-        # mapper(self.KnownUsers, users)
-        # mapper(self.MessageHistory, history)
-        # mapper(self.Contacts, contacts)
-        self.mapper_registry.map_imperatively(self.KnownUsers, users)
-        self.mapper_registry.map_imperatively(self.MessageHistory, history)
-        self.mapper_registry.map_imperatively(self.Contacts, contacts)
+        # Создаём отображения
+        mapper(self.KnownUsers, users)
+        mapper(self.MessageHistory, history)
+        mapper(self.Contacts, contacts)
+
+        # SQLAlchemy >= 2
+        # self.mapper_registry.map_imperatively(self.KnownUsers, users)
+        # self.mapper_registry.map_imperatively(self.MessageHistory, history)
+        # self.mapper_registry.map_imperatively(self.Contacts, contacts)
 
         # Создаём сессию
         Session = sessionmaker(bind=self.database_engine)

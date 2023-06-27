@@ -259,7 +259,7 @@ def contacts_list_request(sock, name):
     send_message(sock, req)
     ans = get_message(sock)
     client_log.debug(f'Получен ответ {ans}')
-    if 'response' in ans and ans['response']:
+    if 'response' in ans and ans['response']==202:
         return ans['data_list']
     else:
         raise ServerError
