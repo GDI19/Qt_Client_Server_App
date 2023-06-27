@@ -11,3 +11,4 @@ documentation client-server-app
 server_database.db
 client_test1.db3
 client_test1.db3-journal
+client-server-app/logs/logs/server/server

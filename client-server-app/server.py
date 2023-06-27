@@ -31,10 +31,10 @@ conflag_lock = threading.Lock()
 
 
 @log
-def arg_parser():
+def arg_parser(default_address, default_port):
     parser = argparse.ArgumentParser()
-    parser.add_argument('-a', default='', nargs='?')
-    parser.add_argument('-p', default=DEFAULT_PORT, type=int, nargs='?')
+    parser.add_argument('-a', default=default_address, nargs='?')
+    parser.add_argument('-p', default=default_port, type=int, nargs='?')
     namespace = parser.parse_args(sys.argv[1:])
     listen_address = namespace.a
     listen_port = namespace.p
