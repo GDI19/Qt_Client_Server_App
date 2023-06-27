@@ -42,10 +42,13 @@ class ServerStorage:
             
 
 
-    def __init__(self) -> None:
+    def __init__(self, db_path) -> None:
         # echo=False - отключаем ведение лога (вывод sql-запросов)
         # pool_recycle = 7200 (переуст-ка соед-я через 2 часа)По умолчанию соединение сбрасывается через 8 часов
-        self.database_engine = create_engine('sqlite:///server_database.db', echo=False)
+        # self.database_engine = create_engine('sqlite:///server_database.db', echo=False)
+        
+        self.database_engine = create_engine(f'sqlite:///{db_path}', echo=False, pool_recycle=7200,
+                                             connect_args={'check_same_thread': False})
 
         self.metadata = MetaData()
         # SQLAlchemy >= 2
