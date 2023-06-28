@@ -240,7 +240,7 @@ class Server(threading.Thread, metaclass=ServerVerifier):
                 send_message(client, {'response': 200})
 
             elif  message['action'] == 'get_users' and 'account_name' in message \
-                and self.names[message['account_name']] == client:
+                and self.users[message['account_name']] == client:
                 response = {'response': 202, 'data_list':None}
                 response['data_list'] = [user[0] for user in self.database.users_list()]
                 send_message(client, response)
@@ -260,8 +260,9 @@ class Server(threading.Thread, metaclass=ServerVerifier):
             'message_text': f'Сообщение для клиента {user_to_send} не отправлено'
         }
         try:
-            back_socket = self.users[message['sender']]
-            send_message(back_socket, failed_message)
+            if self.users[message['sender']]:
+                back_socket = self.users[message['sender']]
+                send_message(back_socket, failed_message)
         except:
             self.clients.remove(back_socket)
             del self.users[message['sender']]

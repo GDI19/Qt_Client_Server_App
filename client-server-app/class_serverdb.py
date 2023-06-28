@@ -34,7 +34,7 @@ class ServerStorage:
             self.contact = contact
         
     class UsersHistory:
-        def __init__(self, user, sent):
+        def __init__(self, user):
             self.id = None
             self.user = user
             self.sent = 0
@@ -182,10 +182,18 @@ class ServerStorage:
         recipient_id = self.session.query(self.AllUsers).filter_by(name=recipient).first().id
 
         sender_row = self.session.query(self.UsersHistory).filter_by(user=sender_id).first()
-        sender_row.sent += 1
+        if sender_row:
+            sender_row.sent += 1
+        # elif sender_row == None:
+        #     new_sender_row = self.UsersHistory(user=sender_id, sent=1 )
+        #     self.session.add(new_sender_row)
 
         recipient_row = self.session.query(self.UsersHistory).filter_by(user=recipient_id).first()
-        recipient_row.accepted +=1
+        if recipient_row:
+            recipient_row.accepted +=1
+        # elif recipient_row == None:
+        #     new_recipient_row = self.UsersHistory(user=recipient_id, accepted=1)
+        #     self.session.add(new_recipient_row)
 
         self.session.commit()
 

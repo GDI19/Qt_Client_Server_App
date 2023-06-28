@@ -1,7 +1,7 @@
 import argparse
 from collections.abc import Callable, Iterable, Mapping
 import os
-from socket import *
+import socket
 import sys
 import time
 import json
@@ -64,7 +64,7 @@ class ClientSender(threading.Thread, metaclass=ClientVerifier):
         }
          # Сохраняем сообщения для истории
         with database_lock:
-            self.database.save_message(self.user_name, send_to, msg_to_send)
+            self.database.save_message(self.user_name, send_to, text_for_msg)
 
         # Необходимо дождаться освобождения сокета для отправки сообщения
         with sock_lock:
@@ -202,7 +202,7 @@ class ClientListener(threading.Thread, metaclass=ClientVerifier):
                                 self.database.save_message(sender, self.user_name, msg)
                             except:
                                 client_log.error('Ошибка взаимодействия с базой данных')
-                        client_log.info(f'Получено сообщение от пользователя {sender:\n} {msg}')
+                        client_log.info(f'Получено сообщение от пользователя {sender}:\n {msg}')
                     else:
                         client_log.error(f'Получено некорректное сообщение с сервера: {message}')
                     
@@ -221,13 +221,14 @@ def create_presence( account_name):
 
 
 #@log
-def process_response_answer(transport):
-    message = get_message(transport)
+def process_response_answer(message):
+    client_log.debug(f'Разбор приветственного сообщения от сервера: {message}')
     if 'response' in message:
         if message['response'] == 200:  
             return '200: ok'
-        else:
-            return f"400: {message['error']}"
+        elif message['response'] == 400:
+            raise ServerError(f"400 : {message['error']}")
+    raise ReqFieldMissingError('response')
 
 
 def arg_parser():
