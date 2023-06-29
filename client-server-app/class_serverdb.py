@@ -184,16 +184,18 @@ class ServerStorage:
         sender_row = self.session.query(self.UsersHistory).filter_by(user=sender_id).first()
         if sender_row:
             sender_row.sent += 1
-        # elif sender_row == None:
-        #     new_sender_row = self.UsersHistory(user=sender_id, sent=1 )
-        #     self.session.add(new_sender_row)
+        elif sender_row == None:
+            new_sender_row = self.UsersHistory(sender_id)
+            new_sender_row.sent +=1 
+            self.session.add(new_sender_row)
 
         recipient_row = self.session.query(self.UsersHistory).filter_by(user=recipient_id).first()
         if recipient_row:
             recipient_row.accepted +=1
-        # elif recipient_row == None:
-        #     new_recipient_row = self.UsersHistory(user=recipient_id, accepted=1)
-        #     self.session.add(new_recipient_row)
+        elif recipient_row == None:
+            new_recipient_row = self.UsersHistory(recipient_id)
+            new_recipient_row.accepted +=1
+            self.session.add(new_recipient_row)
 
         self.session.commit()
 

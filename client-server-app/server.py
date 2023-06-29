@@ -106,7 +106,8 @@ class Server(threading.Thread, metaclass=ServerVerifier):
                         msg_from_client = get_message(client_with_message)
                         server_log.info(f'received message from client: {msg_from_client}')
                         self.process_client_message(msg_from_client, client_with_message)
-                    except:
+                    except error as er:
+                        print(err)
                         server_log.error(f'Клиент {client_with_message} отключился от сервера.')
                         self.clients.remove(client_with_message)
                         
@@ -311,7 +312,7 @@ def main():
 
 
     # Инициализируем параметры в окна
-    main_window.statusBar().showMessage('Server Working')
+    main_window.statusBar().showMessage('Server Working...')
     main_window.active_clients_table.setModel(gui_create_model(database))
     main_window.active_clients_table.resizeColumnsToContents()
     main_window.active_clients_table.resizeRowsToContents()

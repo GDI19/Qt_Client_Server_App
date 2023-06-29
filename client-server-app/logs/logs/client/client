@@ -2864,3 +2864,132 @@ INFO       2023-06-28 15:49:00,964 run message from server received: {'action': 
 INFO       2023-06-28 15:49:01,060 run Получено сообщение от пользователя server:
  Сообщение для клиента user1 не отправлено
 CRITICAL   2023-06-28 15:49:24,497 run Потеряно соединение с сервером.
+INFO       2023-06-28 16:02:28,207 main Запущен клиент с парамертами: адрес сервера: localhost ,порт: 7777, имя пользователя: user1
+INFO       2023-06-28 16:02:28,211 wrap Before function call: create_presence with parameters ('user1',) & {}.
+INFO       2023-06-28 16:02:28,211 create_presence created presence with user: `user1`
+INFO       2023-06-28 16:02:28,405 main After function call: create_presence. Вызов из модуля __main__. Вызов из функции None,.Вызов из функции main
+DEBUG      2023-06-28 16:02:29,011 process_response_answer Разбор приветственного сообщения от сервера: {'response': 200}
+INFO       2023-06-28 16:02:29,011 main Установлено соединение с сервером. Ответ сервера: 200: ok
+DEBUG      2023-06-28 16:02:29,207 user_list_request Запрос списка известных пользователей user1
+DEBUG      2023-06-28 16:02:29,607 contacts_list_request Запрос контакт листа для пользователся user1
+DEBUG      2023-06-28 16:02:29,608 contacts_list_request Сформирован запрос {'action': 'get_contacts', 'time': 1687957349.6083465, 'user': 'user1'}
+DEBUG      2023-06-28 16:02:30,050 contacts_list_request Получен ответ {'response': 202, 'data_list': []}
+DEBUG      2023-06-28 16:02:30,056 main Запущены процессы
+CRITICAL   2023-06-28 16:30:42,723 run Потеряно соединение с сервером.
+INFO       2023-06-29 15:01:58,361 main Запущен клиент с парамертами: адрес сервера: localhost ,порт: 7777, имя пользователя: user1
+INFO       2023-06-29 15:01:58,407 wrap Before function call: create_presence with parameters ('user1',) & {}.
+INFO       2023-06-29 15:01:58,408 create_presence created presence with user: `user1`
+INFO       2023-06-29 15:01:58,655 main After function call: create_presence. Вызов из модуля __main__. Вызов из функции None,.Вызов из функции main
+DEBUG      2023-06-29 15:01:59,416 process_response_answer Разбор приветственного сообщения от сервера: {'response': 200}
+INFO       2023-06-29 15:01:59,416 main Установлено соединение с сервером. Ответ сервера: 200: ok
+DEBUG      2023-06-29 15:01:59,771 user_list_request Запрос списка известных пользователей user1
+DEBUG      2023-06-29 15:02:00,073 contacts_list_request Запрос контакт листа для пользователся user1
+DEBUG      2023-06-29 15:02:00,073 contacts_list_request Сформирован запрос {'action': 'get_contacts', 'time': 1688040120.073502, 'user': 'user1'}
+DEBUG      2023-06-29 15:02:00,439 contacts_list_request Получен ответ {'response': 202, 'data_list': []}
+DEBUG      2023-06-29 15:02:00,444 main Запущены процессы
+INFO       2023-06-29 15:03:39,730 create_message Отправлено сообщение для пользователя user1
+INFO       2023-06-29 15:06:10,408 main Запущен клиент с парамертами: адрес сервера: localhost ,порт: 7777, имя пользователя: user1
+INFO       2023-06-29 15:06:10,411 wrap Before function call: create_presence with parameters ('user1',) & {}.
+INFO       2023-06-29 15:06:10,411 create_presence created presence with user: `user1`
+INFO       2023-06-29 15:06:10,614 main After function call: create_presence. Вызов из модуля __main__. Вызов из функции None,.Вызов из функции main
+DEBUG      2023-06-29 15:06:11,101 process_response_answer Разбор приветственного сообщения от сервера: {'response': 200}
+INFO       2023-06-29 15:06:11,101 main Установлено соединение с сервером. Ответ сервера: 200: ok
+DEBUG      2023-06-29 15:06:11,290 user_list_request Запрос списка известных пользователей user1
+DEBUG      2023-06-29 15:06:11,712 contacts_list_request Запрос контакт листа для пользователся user1
+DEBUG      2023-06-29 15:06:11,712 contacts_list_request Сформирован запрос {'action': 'get_contacts', 'time': 1688040371.712495, 'user': 'user1'}
+DEBUG      2023-06-29 15:06:12,134 contacts_list_request Получен ответ {'response': 202, 'data_list': []}
+DEBUG      2023-06-29 15:06:12,140 main Запущены процессы
+INFO       2023-06-29 15:06:40,722 create_message Отправлено сообщение для пользователя user1
+INFO       2023-06-29 15:11:08,457 main Запущен клиент с парамертами: адрес сервера: localhost ,порт: 7777, имя пользователя: user1
+INFO       2023-06-29 15:11:08,459 wrap Before function call: create_presence with parameters ('user1',) & {}.
+INFO       2023-06-29 15:11:08,460 create_presence created presence with user: `user1`
+INFO       2023-06-29 15:11:08,696 main After function call: create_presence. Вызов из модуля __main__. Вызов из функции None,.Вызов из функции main
+DEBUG      2023-06-29 15:11:09,171 process_response_answer Разбор приветственного сообщения от сервера: {'response': 200}
+INFO       2023-06-29 15:11:09,172 main Установлено соединение с сервером. Ответ сервера: 200: ok
+DEBUG      2023-06-29 15:11:09,370 user_list_request Запрос списка известных пользователей user1
+DEBUG      2023-06-29 15:11:09,782 contacts_list_request Запрос контакт листа для пользователся user1
+DEBUG      2023-06-29 15:11:09,783 contacts_list_request Сформирован запрос {'action': 'get_contacts', 'time': 1688040669.7834096, 'user': 'user1'}
+DEBUG      2023-06-29 15:11:10,207 contacts_list_request Получен ответ {'response': 202, 'data_list': []}
+DEBUG      2023-06-29 15:11:10,212 main Запущены процессы
+INFO       2023-06-29 15:11:36,822 create_message Отправлено сообщение для пользователя user1
+INFO       2023-06-29 15:14:39,650 main Запущен клиент с парамертами: адрес сервера: localhost ,порт: 7777, имя пользователя: user1
+INFO       2023-06-29 15:14:39,654 wrap Before function call: create_presence with parameters ('user1',) & {}.
+INFO       2023-06-29 15:14:39,654 create_presence created presence with user: `user1`
+INFO       2023-06-29 15:14:39,862 main After function call: create_presence. Вызов из модуля __main__. Вызов из функции None,.Вызов из функции main
+DEBUG      2023-06-29 15:14:40,334 process_response_answer Разбор приветственного сообщения от сервера: {'response': 200}
+INFO       2023-06-29 15:14:40,335 main Установлено соединение с сервером. Ответ сервера: 200: ok
+DEBUG      2023-06-29 15:14:40,536 user_list_request Запрос списка известных пользователей user1
+DEBUG      2023-06-29 15:14:40,947 contacts_list_request Запрос контакт листа для пользователся user1
+DEBUG      2023-06-29 15:14:40,947 contacts_list_request Сформирован запрос {'action': 'get_contacts', 'time': 1688040880.9478853, 'user': 'user1'}
+DEBUG      2023-06-29 15:14:41,368 contacts_list_request Получен ответ {'response': 202, 'data_list': []}
+DEBUG      2023-06-29 15:14:41,376 main Запущены процессы
+INFO       2023-06-29 15:14:59,490 create_message Отправлено сообщение для пользователя user1
+INFO       2023-06-29 15:39:41,205 main Запущен клиент с парамертами: адрес сервера: localhost ,порт: 7777, имя пользователя: user1
+INFO       2023-06-29 15:39:41,220 wrap Before function call: create_presence with parameters ('user1',) & {}.
+INFO       2023-06-29 15:39:41,221 create_presence created presence with user: `user1`
+INFO       2023-06-29 15:39:41,392 main After function call: create_presence. Вызов из модуля __main__. Вызов из функции None,.Вызов из функции main
+DEBUG      2023-06-29 15:39:41,994 process_response_answer Разбор приветственного сообщения от сервера: {'response': 200}
+INFO       2023-06-29 15:39:41,994 main Установлено соединение с сервером. Ответ сервера: 200: ok
+DEBUG      2023-06-29 15:39:42,450 user_list_request Запрос списка известных пользователей user1
+DEBUG      2023-06-29 15:39:42,795 contacts_list_request Запрос контакт листа для пользователся user1
+DEBUG      2023-06-29 15:39:42,795 contacts_list_request Сформирован запрос {'action': 'get_contacts', 'time': 1688042382.795934, 'user': 'user1'}
+DEBUG      2023-06-29 15:39:43,027 contacts_list_request Получен ответ {'response': 202, 'data_list': []}
+DEBUG      2023-06-29 15:39:43,032 main Запущены процессы
+INFO       2023-06-29 15:40:07,526 create_message Отправлено сообщение для пользователя user1
+INFO       2023-06-29 15:57:46,107 main Запущен клиент с парамертами: адрес сервера: localhost ,порт: 7777, имя пользователя: user1
+INFO       2023-06-29 15:57:46,112 wrap Before function call: create_presence with parameters ('user1',) & {}.
+INFO       2023-06-29 15:57:46,112 create_presence created presence with user: `user1`
+INFO       2023-06-29 15:57:46,322 main After function call: create_presence. Вызов из модуля __main__. Вызов из функции None,.Вызов из функции main
+DEBUG      2023-06-29 15:57:46,879 process_response_answer Разбор приветственного сообщения от сервера: {'response': 200}
+INFO       2023-06-29 15:57:46,880 main Установлено соединение с сервером. Ответ сервера: 200: ok
+DEBUG      2023-06-29 15:57:47,477 user_list_request Запрос списка известных пользователей user1
+DEBUG      2023-06-29 15:57:47,988 contacts_list_request Запрос контакт листа для пользователся user1
+DEBUG      2023-06-29 15:57:47,989 contacts_list_request Сформирован запрос {'action': 'get_contacts', 'time': 1688043467.9889472, 'user': 'user1'}
+DEBUG      2023-06-29 15:57:48,413 contacts_list_request Получен ответ {'response': 202, 'data_list': []}
+DEBUG      2023-06-29 15:57:48,418 main Запущены процессы
+INFO       2023-06-29 15:57:58,765 create_message Отправлено сообщение для пользователя user1
+INFO       2023-06-29 15:57:59,434 run message from server received: {'action': 'message', 'send_to': 'user1', 'sender': 'user1', 'time': 1688043478.6488352, 'message_text': 'hey me'}
+INFO       2023-06-29 15:57:59,519 run Получено сообщение от пользователя user1:
+ hey me
+INFO       2023-06-29 16:04:05,079 main Запущен клиент с парамертами: адрес сервера: localhost ,порт: 7777, имя пользователя: user2
+INFO       2023-06-29 16:04:05,082 wrap Before function call: create_presence with parameters ('user2',) & {}.
+INFO       2023-06-29 16:04:05,082 create_presence created presence with user: `user2`
+INFO       2023-06-29 16:04:05,258 main After function call: create_presence. Вызов из модуля __main__. Вызов из функции None,.Вызов из функции main
+DEBUG      2023-06-29 16:04:05,787 process_response_answer Разбор приветственного сообщения от сервера: {'response': 200}
+INFO       2023-06-29 16:04:05,787 main Установлено соединение с сервером. Ответ сервера: 200: ok
+DEBUG      2023-06-29 16:04:06,344 user_list_request Запрос списка известных пользователей user2
+DEBUG      2023-06-29 16:04:06,911 contacts_list_request Запрос контакт листа для пользователся user2
+DEBUG      2023-06-29 16:04:06,912 contacts_list_request Сформирован запрос {'action': 'get_contacts', 'time': 1688043846.9124136, 'user': 'user2'}
+DEBUG      2023-06-29 16:04:07,308 contacts_list_request Получен ответ {'response': 202, 'data_list': []}
+DEBUG      2023-06-29 16:04:07,313 main Запущены процессы
+INFO       2023-06-29 16:04:21,332 create_message Отправлено сообщение для пользователя user1
+INFO       2023-06-29 16:04:22,880 run message from server received: {'action': 'message', 'send_to': 'user1', 'sender': 'user2', 'time': 1688043860.9207392, 'message_text': 'hey u1'}
+INFO       2023-06-29 16:04:22,985 run Получено сообщение от пользователя user2:
+ hey u1
+CRITICAL   2023-06-29 16:05:06,026 run Потеряно соединение с сервером.
+CRITICAL   2023-06-29 16:05:06,374 run Потеряно соединение с сервером.
+INFO       2023-06-29 16:12:20,129 main Запущен клиент с парамертами: адрес сервера: localhost ,порт: 7777, имя пользователя: user1
+INFO       2023-06-29 16:12:20,133 wrap Before function call: create_presence with parameters ('user1',) & {}.
+INFO       2023-06-29 16:12:20,134 create_presence created presence with user: `user1`
+INFO       2023-06-29 16:12:20,328 main After function call: create_presence. Вызов из модуля __main__. Вызов из функции None,.Вызов из функции main
+DEBUG      2023-06-29 16:12:20,831 process_response_answer Разбор приветственного сообщения от сервера: {'response': 200}
+INFO       2023-06-29 16:12:20,831 main Установлено соединение с сервером. Ответ сервера: 200: ok
+DEBUG      2023-06-29 16:12:21,038 user_list_request Запрос списка известных пользователей user1
+DEBUG      2023-06-29 16:12:21,460 contacts_list_request Запрос контакт листа для пользователся user1
+DEBUG      2023-06-29 16:12:21,461 contacts_list_request Сформирован запрос {'action': 'get_contacts', 'time': 1688044341.4612072, 'user': 'user1'}
+DEBUG      2023-06-29 16:12:21,868 contacts_list_request Получен ответ {'response': 202, 'data_list': []}
+DEBUG      2023-06-29 16:12:21,873 main Запущены процессы
+CRITICAL   2023-06-29 16:12:45,760 run Потеряно соединение с сервером.
+INFO       2023-06-29 16:14:02,858 main Запущен клиент с парамертами: адрес сервера: localhost ,порт: 7777, имя пользователя: user1
+INFO       2023-06-29 16:14:02,862 wrap Before function call: create_presence with parameters ('user1',) & {}.
+INFO       2023-06-29 16:14:02,862 create_presence created presence with user: `user1`
+INFO       2023-06-29 16:14:03,034 main After function call: create_presence. Вызов из модуля __main__. Вызов из функции None,.Вызов из функции main
+DEBUG      2023-06-29 16:14:03,590 process_response_answer Разбор приветственного сообщения от сервера: {'response': 200}
+INFO       2023-06-29 16:14:03,590 main Установлено соединение с сервером. Ответ сервера: 200: ok
+DEBUG      2023-06-29 16:14:04,141 user_list_request Запрос списка известных пользователей user1
+DEBUG      2023-06-29 16:14:04,708 contacts_list_request Запрос контакт листа для пользователся user1
+DEBUG      2023-06-29 16:14:04,709 contacts_list_request Сформирован запрос {'action': 'get_contacts', 'time': 1688044444.7093596, 'user': 'user1'}
+DEBUG      2023-06-29 16:14:05,127 contacts_list_request Получен ответ {'response': 202, 'data_list': []}
+DEBUG      2023-06-29 16:14:05,133 main Запущены процессы
+INFO       2023-06-29 16:14:15,777 create_message Отправлено сообщение для пользователя user1
+CRITICAL   2023-06-29 16:17:33,178 run Потеряно соединение с сервером.
