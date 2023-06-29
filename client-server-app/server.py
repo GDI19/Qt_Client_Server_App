@@ -106,8 +106,7 @@ class Server(threading.Thread, metaclass=ServerVerifier):
                         msg_from_client = get_message(client_with_message)
                         server_log.info(f'received message from client: {msg_from_client}')
                         self.process_client_message(msg_from_client, client_with_message)
-                    except error as er:
-                        print(err)
+                    except:
                         server_log.error(f'Клиент {client_with_message} отключился от сервера.')
                         self.clients.remove(client_with_message)
                         
