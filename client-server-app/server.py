@@ -14,11 +14,11 @@ from PyQt5.QtCore import QTimer
 from server_gui import MainWindow, gui_create_model, HistoryWindow, create_stat_model, ConfigWindow
 from PyQt5.QtGui import QStandardItemModel, QStandardItem
 from sqlalchemy import create_engine
-from metaclasses import ServerVerifier
+from common.metaclasses import ServerVerifier
 import logs.server_log_config
 from logs.server_log_config import log
 from common.utils import get_message, send_message
-from descriptors import Port
+from common.descriptors import Port
 
 server_log = logging.getLogger('server_log')
 
