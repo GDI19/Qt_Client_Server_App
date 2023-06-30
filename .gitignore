@@ -4,11 +4,14 @@ Chinook_Sqlite.sqlite
 client-server-app/logs
 client-server-app/__pycache__
 
-client-server-app/logs/logs/client/client
-client-server-app/logs/logs/server/server
-client-server-app/logs/logs/server/server.2023-06-19_18
-client-server-app/__pycache__/descriptors.cpython-310.pyc
-pract/lsn8/process_queue.py
-pract/lsn8/queue.py
+pract/lsn8
 .vscode/launch.json
 
+documentation client-server-app
+server_database.db
+client_test1.db3
+client_test1.db3-journal
+client-server-app/logs/logs/server/server
+client_user1.db3
+client_user2.db3
+server_base.db3
