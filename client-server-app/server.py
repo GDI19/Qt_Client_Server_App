@@ -78,6 +78,7 @@ class Server(threading.Thread, metaclass=ServerVerifier):
 
 
     def run(self):
+        global new_connection
         self.init_socket()
 
         while True:
@@ -115,6 +116,8 @@ class Server(threading.Thread, metaclass=ServerVerifier):
                                 self.database.user_logout(name)
                                 del self.users[name]
                                 break
+                        with conflag_lock:
+                            new_connection = True
                 
             if self.messages:
                 for message in self.messages:
@@ -126,46 +129,9 @@ class Server(threading.Thread, metaclass=ServerVerifier):
                         self.send_msg_failed_notification(message, recipient)
                         self.clients.remove(self.users[recipient])
                         del self.users[recipient]
+                        with conflag_lock:
+                            new_connection = True
                 self.messages.clear()
-
-
-            """
-            while self.messages and write_lst:
-                user_to_send = self.messages[0][2]
-                message = {
-                        'action': 'message',
-                        'send_to': user_to_send,
-                        'sender': self.messages[0][0],
-                        'time': time.time(),
-                        'message_text': self.messages[0][1]
-                    }
-                del self.messages[0]
-                if user_to_send in ['all', 'All', 'ALL']:
-                    for waiting_client in write_lst:
-                        try:
-                            send_message(waiting_client, message)
-                        except:
-                            server_log.info(f'Клиент {waiting_client.getpeername()} отключился от сервера.')
-                            self.clients.remove(waiting_client)
-                            
-
-                elif user_to_send in self.users:
-                    socket_to_send = self.users[user_to_send]
-                    if socket_to_send in write_lst:    
-                        try:
-                            send_message(socket_to_send, message)
-                        except:
-                            self.send_msg_failed_notification(message, user_to_send)
-                            server_log.info(f'Клиент {socket_to_send.getpeername()} отключился от сервера.')
-                            self.users.pop(user_to_send)
-                    else:
-                        self.send_msg_failed_notification(message, user_to_send)
-                        server_log.info(f'Клиент {waiting_client.getpeername()} отключился от сервера.')
-                        self.users.pop(user_to_send)
-
-                else:           
-                    self.send_msg_failed_notification(message, user_to_send)
-        """
             
     
     def process_message_to_send(self, message, recipient, listen_socks):
@@ -180,7 +146,6 @@ class Server(threading.Thread, metaclass=ServerVerifier):
                 f'Пользователь {recipient} не зарегистрирован на сервере, отправка сообщения невозможна.')
 
         self.send_msg_failed_notification(message, recipient)
-
 
 
     def process_client_message(self, message, client):
