@@ -41,7 +41,7 @@ def arg_parser(default_address, default_port):
     return listen_address, listen_port
 
 
-class Server(threading.Thread, metaclass=ServerVerifier):
+class Server(threading.Thread): #, metaclass=ServerVerifier):
     port = Port()
     def __init__(self, listen_address, listen_port, database):
         self.address = listen_address
@@ -182,8 +182,13 @@ class Server(threading.Thread, metaclass=ServerVerifier):
             
             elif message['action'] == 'message' and 'message_text' in message and 'send_to' in message \
                 and 'sender' in message and self.users[message['sender']] == client:
-                self.messages.append(message)
-                self.database.process_message(message['sender'], message['send_to'])
+                if message['send_to'] in self.users:
+                    self.messages.append(message)
+                    self.database.process_message(message['sender'], message['send_to'])
+                    send_message(client, {'response': 200})
+                else:
+                    response = {'response': 400, 'error': 'Пользователь не в сети.'}
+                    send_message(client, response)
                 return
             
             elif message['action'] == 'get_contacts' and 'user' in message and \

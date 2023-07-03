@@ -1,23 +1,21 @@
-DEBUG      2023-06-30 23:25:11,445 wrap Была вызвана функция arg_parser c параметрами ('', '7777') , {}. Вызов из модуля __main__
-DEBUG      2023-06-30 23:25:12,053 init_socket Server has been launched...
-INFO       2023-06-30 23:25:12,053 init_socket Запущен сервер:  порт: 7777, Если адрес не указан, принимаются соединения с любых адресов.
-INFO       2023-06-30 23:30:50,089 run Установлено соедение с ПК 
-INFO       2023-06-30 23:30:50,090 run received message from client: {'action': 'presence', 'time': 1688157050.0878007, 'user': {'account_name': 'user1'}}
-INFO       2023-06-30 23:30:50,825 run received message from client: {'action': 'get_users', 'time': 1688157050.326387, 'account_name': 'user1'}
-INFO       2023-06-30 23:30:51,335 run received message from client: {'action': 'get_contacts', 'time': 1688157050.9416816, 'user': 'user1'}
-INFO       2023-06-30 23:31:17,896 run received message from client: {'action': 'get_users', 'time': 1688157077.6478274, 'account_name': 'user1'}
-INFO       2023-06-30 23:31:40,878 run Установлено соедение с ПК 
-INFO       2023-06-30 23:31:40,890 run received message from client: {'action': 'presence', 'time': 1688157100.8789191, 'user': {'account_name': 'user2'}}
-INFO       2023-06-30 23:31:41,632 run received message from client: {'action': 'get_users', 'time': 1688157101.133179, 'account_name': 'user2'}
-INFO       2023-06-30 23:31:42,136 run received message from client: {'action': 'get_contacts', 'time': 1688157101.7341068, 'user': 'user2'}
-INFO       2023-06-30 23:31:51,663 run received message from client: {'action': 'get_users', 'time': 1688157111.1284037, 'account_name': 'user2'}
-INFO       2023-06-30 23:31:53,169 run received message from client: {'action': 'add', 'time': 1688157112.714113, 'user': 'user2', 'account_name': 'user1'}
-INFO       2023-06-30 23:32:14,806 run received message from client: {'action': 'message', 'send_to': 'user1', 'sender': 'user2', 'time': 1688157134.5811691, 'message_text': 'hey 1\n'}
-INFO       2023-06-30 23:32:14,923 process_message_to_send Отправлено сообщение пользователю user1 от пользователя user2.
-INFO       2023-06-30 23:32:35,949 run received message from client: {'action': 'add', 'time': 1688157155.4711373, 'user': 'user1', 'account_name': 'user2'}
-INFO       2023-06-30 23:32:49,105 run received message from client: {'action': 'message', 'send_to': 'user2', 'sender': 'user1', 'time': 1688157168.3103135, 'message_text': 'hey 2\n'}
-INFO       2023-06-30 23:32:49,222 process_message_to_send Отправлено сообщение пользователю user2 от пользователя user1.
-INFO       2023-06-30 23:33:23,267 run received message from client: {'action': 'message', 'send_to': 'user1', 'sender': 'user2', 'time': 1688157202.8030102, 'message_text': 'hey2\n'}
-INFO       2023-06-30 23:33:23,407 process_message_to_send Отправлено сообщение пользователю user1 от пользователя user2.
-INFO       2023-06-30 23:33:59,453 run received message from client: {'action': 'exit', 'time': 1688157239.0393963, 'user': {'account_name': 'user1'}}
-INFO       2023-06-30 23:34:12,061 run received message from client: {'action': 'exit', 'time': 1688157251.4734426, 'user': {'account_name': 'user2'}}
+ERROR      2023-07-01 14:18:19,539 run Клиент <socket.socket fd=27, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777)> отключился от сервера.
+INFO       2023-07-01 14:18:21,267 run received message from client: {'action': 'presence', 'time': 1688209466.2836347, 'user': {'account_name': 'user2'}}
+INFO       2023-07-01 14:18:31,095 run Установлено соедение с ПК 
+ERROR      2023-07-01 14:20:36,141 run Клиент <socket.socket fd=28, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777)> отключился от сервера.
+INFO       2023-07-01 14:20:36,245 run received message from client: {'action': 'presence', 'time': 1688209514.9681625, 'user': {'account_name': 'user2'}}
+INFO       2023-07-01 14:23:15,680 run Установлено соедение с ПК 
+ERROR      2023-07-01 14:23:15,680 run Клиент <socket.socket fd=20, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777)> отключился от сервера.
+INFO       2023-07-01 14:23:15,790 run received message from client: {'action': 'presence', 'time': 1688210273.9946566, 'user': {'account_name': 'user2'}}
+ERROR      2023-07-01 14:23:16,445 run Клиент <socket.socket fd=29, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777)> отключился от сервера.
+INFO       2023-07-01 14:23:23,718 run Установлено соедение с ПК 
+INFO       2023-07-01 14:23:24,220 run received message from client: {'action': 'presence', 'time': 1688210603.7190206, 'user': {'account_name': 'user2'}}
+INFO       2023-07-01 14:23:24,850 run received message from client: {'action': 'get_users', 'time': 1688210604.3513904, 'account_name': 'user2'}
+INFO       2023-07-01 14:23:25,362 run received message from client: {'action': 'get_contacts', 'time': 1688210604.973141, 'user': 'user2'}
+INFO       2023-07-01 14:24:21,448 run received message from client: {'action': 'message', 'send_to': 'user2', 'sender': 'user1', 'time': 1688210661.1622653, 'message_text': 'u2 are you here?'}
+INFO       2023-07-01 14:24:21,605 process_message_to_send Отправлено сообщение пользователю user2 от пользователя user1.
+INFO       2023-07-01 14:24:52,645 run received message from client: {'action': 'message', 'send_to': 'user1', 'sender': 'user2', 'time': 1688210691.9888537, 'message_text': 'yes im here '}
+INFO       2023-07-01 14:24:52,792 process_message_to_send Отправлено сообщение пользователю user1 от пользователя user2.
+INFO       2023-07-01 14:28:27,057 run received message from client: {'action': 'message', 'send_to': 'user1', 'sender': 'user2', 'time': 1688210906.970379, 'message_text': 'u1 do you read me?'}
+INFO       2023-07-01 14:28:27,179 process_message_to_send Отправлено сообщение пользователю user1 от пользователя user2.
+INFO       2023-07-01 14:28:52,209 run received message from client: {'action': 'exit', 'time': 1688210932.0515592, 'user': {'account_name': 'user2'}}
+INFO       2023-07-01 14:28:56,853 run received message from client: {'action': 'exit', 'time': 1688210936.4295743, 'user': {'account_name': 'user1'}}

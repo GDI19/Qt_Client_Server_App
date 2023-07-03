@@ -126,6 +126,8 @@ class ServerStorage:
             user = self.AllUsers(username )
             self.session.add(user)
             self.session.commit()
+            user_in_history = self.UsersHistory(user.id)
+            self.session.add(user_in_history)
 
         new_active_user = self.ActiveUsers(user.id, ip, port, datetime.datetime.now())
         self.session.add(new_active_user)
@@ -182,20 +184,10 @@ class ServerStorage:
         recipient_id = self.session.query(self.AllUsers).filter_by(name=recipient).first().id
 
         sender_row = self.session.query(self.UsersHistory).filter_by(user=sender_id).first()
-        if sender_row:
-            sender_row.sent += 1
-        elif sender_row == None:
-            new_sender_row = self.UsersHistory(sender_id)
-            new_sender_row.sent +=1 
-            self.session.add(new_sender_row)
+        sender_row.sent += 1
 
         recipient_row = self.session.query(self.UsersHistory).filter_by(user=recipient_id).first()
-        if recipient_row:
-            recipient_row.accepted +=1
-        elif recipient_row == None:
-            new_recipient_row = self.UsersHistory(recipient_id)
-            new_recipient_row.accepted +=1
-            self.session.add(new_recipient_row)
+        recipient_row.accepted +=1
 
         self.session.commit()
 
