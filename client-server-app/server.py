@@ -1,5 +1,7 @@
 import argparse
+import binascii
 import configparser
+import hmac
 import json
 import os
 import select
@@ -8,6 +10,8 @@ import sys
 import threading
 import time
 import logging
+
+from common.my_decorators import login_required
 from class_serverdb import ServerStorage
 from PyQt5.QtWidgets import QApplication, QMessageBox
 from PyQt5.QtCore import QTimer
@@ -145,9 +149,10 @@ class Server(threading.Thread): #, metaclass=ServerVerifier):
             server_log.error(
                 f'Пользователь {recipient} не зарегистрирован на сервере, отправка сообщения невозможна.')
 
-        self.send_msg_failed_notification(message, recipient)
+        # self.send_msg_failed_notification(message, recipient)
 
 
+    @login_required
     def process_client_message(self, message, client):
         """
         Receive message from client, check it.
@@ -166,19 +171,7 @@ class Server(threading.Thread): #, metaclass=ServerVerifier):
                 return
             
             elif message['action'] == 'presence'  and  'user' in message and 'account_name' in message['user']:
-                new_user_in = message['user']['account_name']
-                if new_user_in not in self.users:
-                    self.users[new_user_in] = client
-                    client_ip, client_port = client.getpeername()
-                    self.database.user_login(new_user_in, client_ip, client_port)
-                    send_message(client, {'response': 200})
-                    with conflag_lock:
-                        new_connection = True
-                else:
-                    send_message(client, {'response': 400, 'error': f'Пользователь с таким именем: {new_user_in} уже подключен.'})
-                    self.clients.remove(client)
-                    client.close()
-                return
+                self.autorize_user(message, client)
             
             elif message['action'] == 'message' and 'message_text' in message and 'send_to' in message \
                 and 'sender' in message and self.users[message['sender']] == client:
@@ -221,6 +214,59 @@ class Server(threading.Thread): #, metaclass=ServerVerifier):
         return
 
 
+    def authorize_user(self, message, sock):
+        '''Метод реализующий авторизцию пользователей.'''
+        # Если имя пользователя уже занято то возвращаем 400
+        server_log.debug(f'Start auth process for {message["user"]}')
+
+        new_user_in = message['user']['account_name']
+        if new_user_in in self.users.keys():
+            try:
+                server_log.debug(f'Username busy, sending response')
+                send_message(sock, {'response': 400, 'error': f'Пользователь с таким именем: {new_user_in} уже подключен.'})
+            except OSError:
+                server_log.debug('OS Error')
+                pass
+            self.clients.remove(sock)
+            sock.close()
+        elif not self.database.check_user(new_user_in):
+            try:
+                server_log.debug(f'Username is not registered, sending response')
+                send_message(sock, {'response': 400, 'error': f'Пользователь с таким именем: {new_user_in} не зарегистрирован'})
+            except OSError:
+                server_log.debug('OS Error')
+                pass
+            self.clients.remove(sock)
+            sock.close()
+        else:
+            server_log.debug('Correct username, starting passwd check.')
+            # Иначе отвечаем 511 и проводим процедуру авторизации
+            # Словарь - заготовка
+            message_auth = {'response': 511, 'bin': None}
+
+            # Набор байтов в hex представлении
+            random_str = binascii.hexlify(os.urandom(64))
+            
+            # В словарь байты нельзя, декодируем (json.dumps -> TypeError)
+            message_auth['bin'] = random_str.decode('ascii')
+            
+            # Создаём хэш пароля и связки с рандомной строкой, сохраняем
+            # серверную версию ключа
+            hash = hmac.new(self.database.get_hash(new_user_in),  random_str, 'MD5')
+            digest = hash.digest()
+        """       
+        if new_user_in not in self.users:
+            self.users[new_user_in] = sock
+            client_ip, client_port = sock.getpeername()
+            self.database.user_login(new_user_in, client_ip, client_port)
+            send_message(sock, {'response': 200})
+            with conflag_lock:
+                new_connection = True
+        """
+
+
+            
+
     def send_msg_failed_notification(self, message, user_to_send):
         failed_message = {
             'action': 'message',
@@ -241,14 +287,6 @@ class Server(threading.Thread): #, metaclass=ServerVerifier):
                             f'Такого пользователя {user_to_send} нет.')
         failed_message ={}
         
-
-def print_help():
-    print('Поддерживаемые комманды:')
-    print('users - список известных пользователей')
-    print('connected - список подключенных пользователей')
-    print('loghistory - история входов пользователя')
-    print('exit - завершение работы сервера.')
-    print('help - вывод справки по поддерживаемым командам')
 
 
 def main():
