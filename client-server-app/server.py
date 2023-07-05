@@ -14,11 +14,11 @@ from PyQt5.QtCore import QTimer
 from server_gui import MainWindow, gui_create_model, HistoryWindow, create_stat_model, ConfigWindow
 from PyQt5.QtGui import QStandardItemModel, QStandardItem
 from sqlalchemy import create_engine
-from metaclasses import ServerVerifier
+from common.metaclasses import ServerVerifier
 import logs.server_log_config
 from logs.server_log_config import log
 from common.utils import get_message, send_message
-from descriptors import Port
+from common.descriptors import Port
 
 server_log = logging.getLogger('server_log')
 
@@ -41,7 +41,7 @@ def arg_parser(default_address, default_port):
     return listen_address, listen_port
 
 
-class Server(threading.Thread, metaclass=ServerVerifier):
+class Server(threading.Thread): #, metaclass=ServerVerifier):
     port = Port()
     def __init__(self, listen_address, listen_port, database):
         self.address = listen_address
@@ -182,8 +182,13 @@ class Server(threading.Thread, metaclass=ServerVerifier):
             
             elif message['action'] == 'message' and 'message_text' in message and 'send_to' in message \
                 and 'sender' in message and self.users[message['sender']] == client:
-                self.messages.append(message)
-                self.database.process_message(message['sender'], message['send_to'])
+                if message['send_to'] in self.users:
+                    self.messages.append(message)
+                    self.database.process_message(message['sender'], message['send_to'])
+                    send_message(client, {'response': 200})
+                else:
+                    response = {'response': 400, 'error': 'Пользователь не в сети.'}
+                    send_message(client, response)
                 return
             
             elif message['action'] == 'get_contacts' and 'user' in message and \

@@ -2993,3 +2993,205 @@ DEBUG      2023-06-29 16:14:05,127 contacts_list_request Получен отве
 DEBUG      2023-06-29 16:14:05,133 main Запущены процессы
 INFO       2023-06-29 16:14:15,777 create_message Отправлено сообщение для пользователя user1
 CRITICAL   2023-06-29 16:17:33,178 run Потеряно соединение с сервером.
+DEBUG      2023-06-30 23:27:55,669 wrap Была вызвана функция arg_parser c параметрами () , {}. Вызов из модуля __main__
+INFO       2023-06-30 23:27:55,902 <module> Запущен клиент с парамертами: адрес сервера: localhost, порт: 7777, имя пользователя: user1
+DEBUG      2023-06-30 23:29:36,388 wrap Была вызвана функция arg_parser c параметрами () , {}. Вызов из модуля __main__
+INFO       2023-06-30 23:29:36,627 <module> Запущен клиент с парамертами: адрес сервера: localhost, порт: 7777, имя пользователя: user1
+DEBUG      2023-06-30 23:30:49,673 wrap Была вызвана функция arg_parser c параметрами () , {}. Вызов из модуля __main__
+INFO       2023-06-30 23:30:49,900 <module> Запущен клиент с парамертами: адрес сервера: localhost, порт: 7777, имя пользователя: user1
+INFO       2023-06-30 23:30:50,075 connection_init Попытка подключения №1
+DEBUG      2023-06-30 23:30:50,087 connection_init Установлено соединение с сервером
+INFO       2023-06-30 23:30:50,087 create_presence created presence with user: `user1`
+DEBUG      2023-06-30 23:30:50,325 process_server_answer Разбор приветственного сообщения от сервера: {'response': 200}
+INFO       2023-06-30 23:30:50,325 connection_init Соединение с сервером успешно установлено.
+DEBUG      2023-06-30 23:30:50,326 user_list_update Запрос списка известных пользователей user1
+DEBUG      2023-06-30 23:30:50,941 contacts_list_update Запрос контакт листа для пользователся user1
+DEBUG      2023-06-30 23:30:50,941 contacts_list_update Сформирован запрос {'action': 'get_contacts', 'time': 1688157050.9416816, 'user': 'user1'}
+DEBUG      2023-06-30 23:30:51,359 contacts_list_update Получен ответ {'response': 202, 'data_list': []}
+DEBUG      2023-06-30 23:30:51,474 run Запущен процесс - приёмник собщений с сервера.
+DEBUG      2023-06-30 23:31:17,647 user_list_update Запрос списка известных пользователей user1
+DEBUG      2023-06-30 23:31:39,768 wrap Была вызвана функция arg_parser c параметрами () , {}. Вызов из модуля __main__
+INFO       2023-06-30 23:31:40,251 <module> Запущен клиент с парамертами: адрес сервера: localhost, порт: 7777, имя пользователя: user2
+INFO       2023-06-30 23:31:40,877 connection_init Попытка подключения №1
+DEBUG      2023-06-30 23:31:40,878 connection_init Установлено соединение с сервером
+INFO       2023-06-30 23:31:40,878 create_presence created presence with user: `user2`
+DEBUG      2023-06-30 23:31:41,132 process_server_answer Разбор приветственного сообщения от сервера: {'response': 200}
+INFO       2023-06-30 23:31:41,132 connection_init Соединение с сервером успешно установлено.
+DEBUG      2023-06-30 23:31:41,132 user_list_update Запрос списка известных пользователей user2
+DEBUG      2023-06-30 23:31:41,733 contacts_list_update Запрос контакт листа для пользователся user2
+DEBUG      2023-06-30 23:31:41,734 contacts_list_update Сформирован запрос {'action': 'get_contacts', 'time': 1688157101.7341068, 'user': 'user2'}
+DEBUG      2023-06-30 23:31:42,150 contacts_list_update Получен ответ {'response': 202, 'data_list': []}
+DEBUG      2023-06-30 23:31:42,254 run Запущен процесс - приёмник собщений с сервера.
+DEBUG      2023-06-30 23:31:51,127 user_list_update Запрос списка известных пользователей user2
+DEBUG      2023-06-30 23:31:52,713 add_contact Создание контакта user1
+DEBUG      2023-06-30 23:31:53,279 process_server_answer Разбор приветственного сообщения от сервера: {'response': 200}
+DEBUG      2023-06-30 23:32:15,059 run Принято сообщение с сервера: {'action': 'message', 'send_to': 'user1', 'sender': 'user2', 'time': 1688157134.5811691, 'message_text': 'hey 1\n'}
+DEBUG      2023-06-30 23:32:15,060 process_server_answer Разбор приветственного сообщения от сервера: {'action': 'message', 'send_to': 'user1', 'sender': 'user2', 'time': 1688157134.5811691, 'message_text': 'hey 1\n'}
+INFO       2023-06-30 23:32:15,157 process_server_answer Получено сообщение от пользователя user2
+DEBUG      2023-06-30 23:32:35,469 add_contact Создание контакта user2
+DEBUG      2023-06-30 23:32:36,088 process_server_answer Разбор приветственного сообщения от сервера: {'response': 200}
+DEBUG      2023-06-30 23:32:49,617 run Принято сообщение с сервера: {'action': 'message', 'send_to': 'user2', 'sender': 'user1', 'time': 1688157168.3103135, 'message_text': 'hey 2\n'}
+DEBUG      2023-06-30 23:32:49,618 process_server_answer Разбор приветственного сообщения от сервера: {'action': 'message', 'send_to': 'user2', 'sender': 'user1', 'time': 1688157168.3103135, 'message_text': 'hey 2\n'}
+INFO       2023-06-30 23:32:49,718 process_server_answer Получено сообщение от пользователя user1
+DEBUG      2023-06-30 23:33:23,641 run Принято сообщение с сервера: {'action': 'message', 'send_to': 'user1', 'sender': 'user2', 'time': 1688157202.8030102, 'message_text': 'hey2\n'}
+DEBUG      2023-06-30 23:33:23,641 process_server_answer Разбор приветственного сообщения от сервера: {'action': 'message', 'send_to': 'user1', 'sender': 'user2', 'time': 1688157202.8030102, 'message_text': 'hey2\n'}
+INFO       2023-06-30 23:33:23,720 process_server_answer Получено сообщение от пользователя user2
+DEBUG      2023-06-30 23:33:59,039 transport_shutdown Транспорт завершает работу.
+DEBUG      2023-06-30 23:33:59,543 run Потеряно соединение с сервером.
+DEBUG      2023-06-30 23:34:11,854 transport_shutdown Транспорт завершает работу.
+DEBUG      2023-07-01 12:31:02,700 wrap Была вызвана функция arg_parser c параметрами () , {}. Вызов из модуля __main__
+INFO       2023-07-01 12:31:02,896 <module> Запущен клиент с парамертами: адрес сервера: localhost, порт: 7777, имя пользователя: user1
+INFO       2023-07-01 12:31:03,099 connection_init Попытка подключения №1
+DEBUG      2023-07-01 12:31:03,100 connection_init Установлено соединение с сервером
+INFO       2023-07-01 12:31:03,101 create_presence created presence with user: `user1`
+DEBUG      2023-07-01 12:31:03,296 process_server_answer Разбор приветственного сообщения от сервера: {'response': 200}
+INFO       2023-07-01 12:31:03,296 connection_init Соединение с сервером успешно установлено.
+DEBUG      2023-07-01 12:31:03,296 user_list_update Запрос списка известных пользователей user1
+DEBUG      2023-07-01 12:31:03,932 contacts_list_update Запрос контакт листа для пользователся user1
+DEBUG      2023-07-01 12:31:03,933 contacts_list_update Сформирован запрос {'action': 'get_contacts', 'time': 1688203863.9332402, 'user': 'user1'}
+DEBUG      2023-07-01 12:31:04,343 contacts_list_update Получен ответ {'response': 202, 'data_list': ['user2']}
+DEBUG      2023-07-01 12:31:04,576 run Запущен процесс - приёмник собщений с сервера.
+DEBUG      2023-07-01 12:31:23,723 wrap Была вызвана функция arg_parser c параметрами () , {}. Вызов из модуля __main__
+INFO       2023-07-01 12:31:23,919 <module> Запущен клиент с парамертами: адрес сервера: localhost, порт: 7777, имя пользователя: user2
+INFO       2023-07-01 12:31:24,144 connection_init Попытка подключения №1
+DEBUG      2023-07-01 12:31:24,145 connection_init Установлено соединение с сервером
+INFO       2023-07-01 12:31:24,145 create_presence created presence with user: `user2`
+DEBUG      2023-07-01 12:31:24,800 process_server_answer Разбор приветственного сообщения от сервера: {'response': 200}
+INFO       2023-07-01 12:31:24,801 connection_init Соединение с сервером успешно установлено.
+DEBUG      2023-07-01 12:31:24,802 user_list_update Запрос списка известных пользователей user2
+DEBUG      2023-07-01 12:31:25,438 contacts_list_update Запрос контакт листа для пользователся user2
+DEBUG      2023-07-01 12:31:25,438 contacts_list_update Сформирован запрос {'action': 'get_contacts', 'time': 1688203885.4385853, 'user': 'user2'}
+DEBUG      2023-07-01 12:31:25,821 contacts_list_update Получен ответ {'response': 202, 'data_list': ['user1']}
+DEBUG      2023-07-01 12:31:26,056 run Запущен процесс - приёмник собщений с сервера.
+DEBUG      2023-07-01 12:31:49,960 remove_contact Удаление контакта user1
+DEBUG      2023-07-01 12:31:50,464 process_server_answer Разбор приветственного сообщения от сервера: {'response': 200}
+DEBUG      2023-07-01 12:31:51,082 run Принято сообщение с сервера: {'response': 400, 'error': 'Bad Request'}
+DEBUG      2023-07-01 12:31:51,083 process_server_answer Разбор приветственного сообщения от сервера: {'response': 400, 'error': 'Bad Request'}
+DEBUG      2023-07-01 12:36:24,339 add_contact Создание контакта user1
+DEBUG      2023-07-01 12:36:53,987 run Потеряно соединение с сервером.
+DEBUG      2023-07-01 12:36:59,230 transport_shutdown Транспорт завершает работу.
+DEBUG      2023-07-01 12:37:21,032 transport_shutdown Транспорт завершает работу.
+DEBUG      2023-07-01 12:49:40,912 wrap Была вызвана функция arg_parser c параметрами () , {}. Вызов из модуля __main__
+INFO       2023-07-01 12:49:41,114 <module> Запущен клиент с парамертами: адрес сервера: localhost, порт: 7777, имя пользователя: user1
+INFO       2023-07-01 12:49:41,376 connection_init Попытка подключения №1
+DEBUG      2023-07-01 12:49:41,377 connection_init Установлено соединение с сервером
+INFO       2023-07-01 12:49:41,377 create_presence created presence with user: `user1`
+DEBUG      2023-07-01 12:49:41,575 process_server_answer Разбор приветственного сообщения от сервера: {'response': 200}
+INFO       2023-07-01 12:49:41,575 connection_init Соединение с сервером успешно установлено.
+DEBUG      2023-07-01 12:49:41,575 user_list_update Запрос списка известных пользователей user1
+DEBUG      2023-07-01 12:49:42,342 contacts_list_update Запрос контакт листа для пользователся user1
+DEBUG      2023-07-01 12:49:42,343 contacts_list_update Сформирован запрос {'action': 'get_contacts', 'time': 1688204982.343016, 'user': 'user1'}
+DEBUG      2023-07-01 12:49:42,613 contacts_list_update Получен ответ {'response': 202, 'data_list': ['user2']}
+DEBUG      2023-07-01 12:49:42,861 run Запущен процесс - приёмник собщений с сервера.
+DEBUG      2023-07-01 12:49:53,856 wrap Была вызвана функция arg_parser c параметрами () , {}. Вызов из модуля __main__
+INFO       2023-07-01 12:49:54,075 <module> Запущен клиент с парамертами: адрес сервера: localhost, порт: 7777, имя пользователя: user2
+INFO       2023-07-01 12:49:54,298 connection_init Попытка подключения №1
+DEBUG      2023-07-01 12:49:54,301 connection_init Установлено соединение с сервером
+INFO       2023-07-01 12:49:54,302 create_presence created presence with user: `user2`
+DEBUG      2023-07-01 12:49:54,965 process_server_answer Разбор приветственного сообщения от сервера: {'response': 200}
+INFO       2023-07-01 12:49:54,965 connection_init Соединение с сервером успешно установлено.
+DEBUG      2023-07-01 12:49:54,966 user_list_update Запрос списка известных пользователей user2
+DEBUG      2023-07-01 12:49:55,603 contacts_list_update Запрос контакт листа для пользователся user2
+DEBUG      2023-07-01 12:49:55,604 contacts_list_update Сформирован запрос {'action': 'get_contacts', 'time': 1688204995.60449, 'user': 'user2'}
+DEBUG      2023-07-01 12:49:55,983 contacts_list_update Получен ответ {'response': 202, 'data_list': []}
+DEBUG      2023-07-01 12:49:56,048 run Запущен процесс - приёмник собщений с сервера.
+DEBUG      2023-07-01 12:50:09,295 add_contact Создание контакта user1
+DEBUG      2023-07-01 12:50:10,130 process_server_answer Разбор приветственного сообщения от сервера: {'response': 200}
+DEBUG      2023-07-01 13:05:34,324 run Принято сообщение с сервера: {'action': 'message', 'send_to': 'user2', 'sender': 'user1', 'time': 1688205057.6260624, 'message_text': 'hello u1'}
+DEBUG      2023-07-01 13:05:34,325 process_server_answer Разбор приветственного сообщения от сервера: {'action': 'message', 'send_to': 'user2', 'sender': 'user1', 'time': 1688205057.6260624, 'message_text': 'hello u1'}
+INFO       2023-07-01 13:05:34,470 process_server_answer Получено сообщение от пользователя user1
+DEBUG      2023-07-01 13:13:07,432 run Принято сообщение с сервера: {'action': 'message', 'send_to': 'user2', 'sender': 'user1', 'time': 1688206204.708114, 'message_text': 'from user1, Good afternoon user2'}
+DEBUG      2023-07-01 13:13:07,432 process_server_answer Разбор приветственного сообщения от сервера: {'action': 'message', 'send_to': 'user2', 'sender': 'user1', 'time': 1688206204.708114, 'message_text': 'from user1, Good afternoon user2'}
+INFO       2023-07-01 13:13:07,541 process_server_answer Получено сообщение от пользователя user1
+DEBUG      2023-07-01 13:18:18,280 run Потеряно соединение с сервером.
+DEBUG      2023-07-01 13:18:19,189 run Потеряно соединение с сервером.
+DEBUG      2023-07-01 13:18:21,506 transport_shutdown Транспорт завершает работу.
+DEBUG      2023-07-01 13:18:22,671 transport_shutdown Транспорт завершает работу.
+DEBUG      2023-07-01 13:46:51,012 wrap Была вызвана функция arg_parser c параметрами () , {}. Вызов из модуля __main__
+INFO       2023-07-01 13:46:51,207 <module> Запущен клиент с парамертами: адрес сервера: localhost, порт: 7777, имя пользователя: user1
+INFO       2023-07-01 13:46:51,456 connection_init Попытка подключения №1
+DEBUG      2023-07-01 13:46:51,457 connection_init Установлено соединение с сервером
+INFO       2023-07-01 13:46:51,458 create_presence created presence with user: `user1`
+DEBUG      2023-07-01 13:46:52,140 process_server_answer Разбор приветственного сообщения от сервера: {'response': 200}
+INFO       2023-07-01 13:46:52,140 connection_init Соединение с сервером успешно установлено.
+DEBUG      2023-07-01 13:46:52,140 user_list_update Запрос списка известных пользователей user1
+DEBUG      2023-07-01 13:46:52,777 contacts_list_update Запрос контакт листа для пользователся user1
+DEBUG      2023-07-01 13:46:52,778 contacts_list_update Сформирован запрос {'action': 'get_contacts', 'time': 1688208412.7783318, 'user': 'user1'}
+DEBUG      2023-07-01 13:46:53,177 contacts_list_update Получен ответ {'response': 202, 'data_list': ['user2']}
+DEBUG      2023-07-01 13:46:53,433 run Запущен процесс - приёмник собщений с сервера.
+DEBUG      2023-07-01 13:47:29,729 process_server_answer Разбор приветственного сообщения от сервера: {'response': 400, 'error': 'Пользователь не зарегистрирован на сервере.'}
+DEBUG      2023-07-01 13:47:50,220 wrap Была вызвана функция arg_parser c параметрами () , {}. Вызов из модуля __main__
+INFO       2023-07-01 13:47:50,423 <module> Запущен клиент с парамертами: адрес сервера: localhost, порт: 7777, имя пользователя: user2
+INFO       2023-07-01 13:47:50,625 connection_init Попытка подключения №1
+DEBUG      2023-07-01 13:47:50,626 connection_init Установлено соединение с сервером
+INFO       2023-07-01 13:47:50,628 create_presence created presence with user: `user2`
+DEBUG      2023-07-01 13:47:51,269 process_server_answer Разбор приветственного сообщения от сервера: {'response': 200}
+INFO       2023-07-01 13:47:51,270 connection_init Соединение с сервером успешно установлено.
+DEBUG      2023-07-01 13:47:51,270 user_list_update Запрос списка известных пользователей user2
+DEBUG      2023-07-01 13:47:51,881 contacts_list_update Запрос контакт листа для пользователся user2
+DEBUG      2023-07-01 13:47:51,881 contacts_list_update Сформирован запрос {'action': 'get_contacts', 'time': 1688208471.8817518, 'user': 'user2'}
+DEBUG      2023-07-01 13:47:52,290 contacts_list_update Получен ответ {'response': 202, 'data_list': ['user1']}
+DEBUG      2023-07-01 13:47:52,535 run Запущен процесс - приёмник собщений с сервера.
+DEBUG      2023-07-01 13:48:19,995 process_server_answer Разбор приветственного сообщения от сервера: {'response': 200}
+INFO       2023-07-01 13:48:19,995 send_message Отправлено сообщение для пользователя user1
+DEBUG      2023-07-01 13:48:20,027 run Принято сообщение с сервера: {'action': 'message', 'send_to': 'user1', 'sender': 'user2', 'time': 1688208499.3107295, 'message_text': 'user1 i am here!'}
+DEBUG      2023-07-01 13:48:20,028 process_server_answer Разбор приветственного сообщения от сервера: {'action': 'message', 'send_to': 'user1', 'sender': 'user2', 'time': 1688208499.3107295, 'message_text': 'user1 i am here!'}
+INFO       2023-07-01 13:48:20,181 process_server_answer Получено сообщение от пользователя user2
+DEBUG      2023-07-01 13:49:28,688 process_server_answer Разбор приветственного сообщения от сервера: {'response': 200}
+INFO       2023-07-01 13:49:28,689 send_message Отправлено сообщение для пользователя user2
+DEBUG      2023-07-01 13:49:29,639 run Принято сообщение с сервера: {'action': 'message', 'send_to': 'user2', 'sender': 'user1', 'time': 1688208568.4775906, 'message_text': 'hello! Nice to see you'}
+DEBUG      2023-07-01 13:49:29,640 process_server_answer Разбор приветственного сообщения от сервера: {'action': 'message', 'send_to': 'user2', 'sender': 'user1', 'time': 1688208568.4775906, 'message_text': 'hello! Nice to see you'}
+INFO       2023-07-01 13:49:29,730 process_server_answer Получено сообщение от пользователя user1
+DEBUG      2023-07-01 13:51:50,286 user_list_update Запрос списка известных пользователей user2
+DEBUG      2023-07-01 13:52:07,393 transport_shutdown Транспорт завершает работу.
+DEBUG      2023-07-01 13:52:48,590 process_server_answer Разбор приветственного сообщения от сервера: {'response': 400, 'error': 'Пользователь не зарегистрирован на сервере.'}
+DEBUG      2023-07-01 13:55:28,757 run Принято сообщение с сервера: {'response': 400, 'error': 'Пользователь не зарегистрирован на сервере.'}
+DEBUG      2023-07-01 13:55:28,758 process_server_answer Разбор приветственного сообщения от сервера: {'response': 400, 'error': 'Пользователь не зарегистрирован на сервере.'}
+DEBUG      2023-07-01 14:01:58,339 wrap Была вызвана функция arg_parser c параметрами () , {}. Вызов из модуля __main__
+INFO       2023-07-01 14:02:34,543 <module> Запущен клиент с парамертами: адрес сервера: localhost, порт: 7777, имя пользователя: user2
+INFO       2023-07-01 14:03:00,990 connection_init Попытка подключения №1
+DEBUG      2023-07-01 14:03:00,991 connection_init Установлено соединение с сервером
+INFO       2023-07-01 14:03:00,991 create_presence created presence with user: `user2`
+CRITICAL   2023-07-01 14:03:05,997 connection_init Потеряно соединение с сервером!
+DEBUG      2023-07-01 14:04:25,782 wrap Была вызвана функция arg_parser c параметрами () , {}. Вызов из модуля __main__
+INFO       2023-07-01 14:04:25,980 <module> Запущен клиент с парамертами: адрес сервера: localhost, порт: 7777, имя пользователя: user2
+INFO       2023-07-01 14:04:26,281 connection_init Попытка подключения №1
+DEBUG      2023-07-01 14:04:26,283 connection_init Установлено соединение с сервером
+INFO       2023-07-01 14:04:26,283 create_presence created presence with user: `user2`
+CRITICAL   2023-07-01 14:04:31,290 connection_init Потеряно соединение с сервером!
+DEBUG      2023-07-01 14:05:14,578 wrap Была вызвана функция arg_parser c параметрами () , {}. Вызов из модуля __main__
+INFO       2023-07-01 14:05:14,774 <module> Запущен клиент с парамертами: адрес сервера: localhost, порт: 7777, имя пользователя: user2
+INFO       2023-07-01 14:05:14,966 connection_init Попытка подключения №1
+DEBUG      2023-07-01 14:05:14,967 connection_init Установлено соединение с сервером
+INFO       2023-07-01 14:05:14,968 create_presence created presence with user: `user2`
+CRITICAL   2023-07-01 14:05:19,973 connection_init Потеряно соединение с сервером!
+DEBUG      2023-07-01 14:16:34,416 wrap Была вызвана функция arg_parser c параметрами () , {}. Вызов из модуля __main__
+INFO       2023-07-01 14:16:55,887 <module> Запущен клиент с парамертами: адрес сервера: localhost, порт: 7777, имя пользователя: user2
+INFO       2023-07-01 14:17:26,856 connection_init Попытка подключения №1
+DEBUG      2023-07-01 14:17:42,781 connection_init Установлено соединение с сервером
+INFO       2023-07-01 14:17:58,366 create_presence created presence with user: `user2`
+CRITICAL   2023-07-01 14:22:31,486 connection_init Потеряно соединение с сервером!
+DEBUG      2023-07-01 14:23:23,332 wrap Была вызвана функция arg_parser c параметрами () , {}. Вызов из модуля __main__
+INFO       2023-07-01 14:23:23,541 <module> Запущен клиент с парамертами: адрес сервера: localhost, порт: 7777, имя пользователя: user2
+INFO       2023-07-01 14:23:23,717 connection_init Попытка подключения №1
+DEBUG      2023-07-01 14:23:23,718 connection_init Установлено соединение с сервером
+INFO       2023-07-01 14:23:23,719 create_presence created presence with user: `user2`
+DEBUG      2023-07-01 14:23:24,350 process_server_answer Разбор приветственного сообщения от сервера: {'response': 200}
+INFO       2023-07-01 14:23:24,350 connection_init Соединение с сервером успешно установлено.
+DEBUG      2023-07-01 14:23:24,351 user_list_update Запрос списка известных пользователей user2
+DEBUG      2023-07-01 14:23:24,972 contacts_list_update Запрос контакт листа для пользователся user2
+DEBUG      2023-07-01 14:23:24,973 contacts_list_update Сформирован запрос {'action': 'get_contacts', 'time': 1688210604.973141, 'user': 'user2'}
+DEBUG      2023-07-01 14:23:25,376 contacts_list_update Получен ответ {'response': 202, 'data_list': ['user1']}
+DEBUG      2023-07-01 14:23:25,587 run Запущен процесс - приёмник собщений с сервера.
+DEBUG      2023-07-01 14:24:21,605 process_server_answer Разбор приветственного сообщения от сервера: {'response': 200}
+INFO       2023-07-01 14:24:21,605 send_message Отправлено сообщение для пользователя user2
+DEBUG      2023-07-01 14:24:22,142 run Принято сообщение с сервера: {'action': 'message', 'send_to': 'user2', 'sender': 'user1', 'time': 1688210661.1622653, 'message_text': 'u2 are you here?'}
+DEBUG      2023-07-01 14:24:22,143 process_server_answer Разбор приветственного сообщения от сервера: {'action': 'message', 'send_to': 'user2', 'sender': 'user1', 'time': 1688210661.1622653, 'message_text': 'u2 are you here?'}
+INFO       2023-07-01 14:24:22,247 process_server_answer Получено сообщение от пользователя user1
+DEBUG      2023-07-01 14:24:52,792 process_server_answer Разбор приветственного сообщения от сервера: {'response': 200}
+INFO       2023-07-01 14:24:52,792 send_message Отправлено сообщение для пользователя user1
+DEBUG      2023-07-01 14:28:27,179 process_server_answer Разбор приветственного сообщения от сервера: {'response': 200}
+INFO       2023-07-01 14:28:27,180 send_message Отправлено сообщение для пользователя user1
+DEBUG      2023-07-01 14:28:52,051 transport_shutdown Транспорт завершает работу.
+DEBUG      2023-07-01 14:28:52,709 run Потеряно соединение с сервером.
+DEBUG      2023-07-01 14:28:56,430 transport_shutdown Транспорт завершает работу.
