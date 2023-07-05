@@ -12,7 +12,7 @@ import time
 import logging
 
 from common.my_decorators import login_required
-from class_serverdb import ServerStorage
+from server.class_serverdb import ServerStorage
 from PyQt5.QtWidgets import QApplication, QMessageBox
 from PyQt5.QtCore import QTimer
 from server_gui import MainWindow, gui_create_model, HistoryWindow, create_stat_model, ConfigWindow
@@ -136,6 +136,21 @@ class Server(threading.Thread): #, metaclass=ServerVerifier):
                         with conflag_lock:
                             new_connection = True
                 self.messages.clear()
+
+
+    def remove_client(self, client):
+        '''
+        Метод обработчик клиента с которым прервана связь.
+        Ищет клиента и удаляет его из списков и базы:
+        '''
+        server_log.info(f'Клиент {client.getpeername()} отключился от сервера.')
+        for name in self.users:
+            if self.users[name] == client:
+                self.database.user_logout(name)
+                del self.users[name]
+                break
+        self.clients.remove(client)
+        client.close()
             
     
     def process_message_to_send(self, message, recipient, listen_socks):
@@ -162,16 +177,12 @@ class Server(threading.Thread): #, metaclass=ServerVerifier):
         global new_connection
         if 'time' in message and 'action' in message:
             if message['action'] == 'exit'  and  'user' in message and 'account_name' in message['user']:
-                self.database.user_logout(message['user']['account_name'])
-                self.clients.remove(client)
-                client.close()
-                del self.users[message['user']['account_name']]
-                with conflag_lock:
-                    new_connection = True
+                self.remove_client(client)
                 return
             
             elif message['action'] == 'presence'  and  'user' in message and 'account_name' in message['user']:
-                self.autorize_user(message, client)
+                self.authorize_user(message, client)
+                return
             
             elif message['action'] == 'message' and 'message_text' in message and 'send_to' in message \
                 and 'sender' in message and self.users[message['sender']] == client:
@@ -188,25 +199,58 @@ class Server(threading.Thread): #, metaclass=ServerVerifier):
                 self.users[message['user']] == client:
                 response = {'response': 202, 'data_list':None}
                 response['data_list'] = self.database.get_contacts(message['user'])
-                send_message(client, response)
+                try:
+                    send_message(client, response)
+                except OSError:
+                    self.remove_client(client)
                 return
 
             elif message['action'] == 'add' and 'account_name' in message and 'user' in message \
                 and self.users[message['user']] == client:
                 self.database.add_contact(message['user'], message['account_name'])
-                send_message(client, {'response': 200})
+                try:
+                    send_message(client, {'response': 200})
+                except OSError:
+                    self.remove_client(client)
                 return
             
             elif message['action'] == 'remove' and 'account_name' in message and 'user' in message \
                 and self.users[message['user']] == client:
                 self.database.remove_contact(message['user'], message['account_name'])
-                send_message(client, {'response': 200})
+                try:
+                    send_message(client, {'response': 200})
+                except OSError:
+                    self.remove_client(client)
+                return
 
             elif  message['action'] == 'get_users' and 'account_name' in message \
                 and self.users[message['account_name']] == client:
                 response = {'response': 202, 'data_list':None}
                 response['data_list'] = [user[0] for user in self.database.users_list()]
-                send_message(client, response)
+                try:
+                    send_message(client, response)
+                except OSError:
+                    self.remove_client(client)
+                return
+            
+                # Если это запрос публичного ключа пользователя
+            elif 'action' in message and message['action'] == 'pubkey' and 'account_name' in message:
+                response = {'response': 511, 'bin': None}
+                response['bin'] = self.database.get_pubkey(message['account_name'])
+                # может быть, что ключа ещё нет (пользователь никогда не логинился,
+                # тогда шлём 400)
+                if response['bin']:
+                    try:
+                        send_message(client, response)
+                    except OSError:
+                        self.remove_client(client)
+                else:
+                    response =  {'response': 400, 'error': ""}
+                    response['error'] = 'Нет публичного ключа для данного пользователя'
+                    try:
+                        send_message(client, response)
+                    except OSError:
+                        self.remove_client(client)
                 return
 
         server_log.critical('Processed msg with noncorrect info')
@@ -254,38 +298,70 @@ class Server(threading.Thread): #, metaclass=ServerVerifier):
             # серверную версию ключа
             hash = hmac.new(self.database.get_hash(new_user_in),  random_str, 'MD5')
             digest = hash.digest()
-        """       
-        if new_user_in not in self.users:
-            self.users[new_user_in] = sock
-            client_ip, client_port = sock.getpeername()
-            self.database.user_login(new_user_in, client_ip, client_port)
-            send_message(sock, {'response': 200})
-            with conflag_lock:
-                new_connection = True
-        """
-
-
+            try:
+                send_message(sock, message_auth)
+                answer = get_message(sock)
+            except OSError as err:
+                server_log.debug('Error in auth, data:', exc_info=err)
+                sock.close()
+                return
             
+            client_digest = binascii.a2b_base64(answer['bin'])
+            if 'response' in answer and answer['response']==511 and hmac.compare_digest(
+                digest, client_digest):
+                try:
+                    send_message(sock, {'response': 200})
+                except OSError:
+                    self.remove_client(new_user_in)
 
-    def send_msg_failed_notification(self, message, user_to_send):
-        failed_message = {
-            'action': 'message',
-            'send_to': message['sender'],
-            'sender': 'server',
-            'time': time.time(),
-            'message_text': f'Сообщение для клиента {user_to_send} не отправлено'
-        }
-        try:
-            if self.users[message['sender']]:
-                back_socket = self.users[message['sender']]
-                send_message(back_socket, failed_message)
-        except:
-            self.clients.remove(back_socket)
-            del self.users[message['sender']]
+                self.users[new_user_in] = sock
+                client_ip, client_port = sock.getpeername()
+                self.database.user_login(
+                    new_user_in,
+                    client_ip,
+                    client_port,
+                    message['user']['pubkey'])
+            else:
+                response =  {'response': 400, 'error': ""}
+                response['error'] = 'Неверный пароль.'
+                try:
+                    send_message(sock, response)
+                except OSError:
+                    pass
+                self.clients.remove(sock)
+                sock.close()
+
+
+    def service_update_lists(self):
+        '''Метод реализующий отправки сервисного сообщения 205 клиентам.'''
+        for client in self.users:
+            RESPONSE_205 = { 'response': 205}
+            try:
+                send_message(self.users[client], RESPONSE_205)
+            except OSError:
+                self.remove_client(self.names[client])
+
+
+
+    # def send_msg_failed_notification(self, message, user_to_send):
+    #     failed_message = {
+    #         'action': 'message',
+    #         'send_to': message['sender'],
+    #         'sender': 'server',
+    #         'time': time.time(),
+    #         'message_text': f'Сообщение для клиента {user_to_send} не отправлено'
+    #     }
+    #     try:
+    #         if self.users[message['sender']]:
+    #             back_socket = self.users[message['sender']]
+    #             send_message(back_socket, failed_message)
+    #     except:
+    #         self.clients.remove(back_socket)
+    #         del self.users[message['sender']]
             
-        server_log.info(f'Сообщение: {message} \n для клиента не отправлено.'
-                            f'Такого пользователя {user_to_send} нет.')
-        failed_message ={}
+    #     server_log.info(f'Сообщение: {message} \n для клиента не отправлено.'
+    #                         f'Такого пользователя {user_to_send} нет.')
+    #     failed_message ={}
         
 
 

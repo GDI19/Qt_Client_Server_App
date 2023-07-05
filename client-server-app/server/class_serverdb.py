@@ -128,7 +128,7 @@ class ServerStorage:
             user.last_login = datetime.datetime.now()
             if user.pubkey != key:
                 user.pubkey = key
-            # Если нету usera, то генерируем исключение
+            # Если нет usera, то генерируем исключение
         else:
             raise ValueError('Пользователь не зарегистрирован.')
 
@@ -286,7 +286,7 @@ class ServerStorage:
 
 
 if __name__ == "__main__":
-    test_db = ServerStorage()
+    test_db = ServerStorage('../server_database.db3')
 
     test_db.user_login('client_1', '192.168.1.4', 8888)
     test_db.user_login('client_2', '192.168.1.5', 7777)

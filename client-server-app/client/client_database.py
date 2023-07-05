@@ -13,6 +13,18 @@ class ClientDatabase:
             self.id = None
             self.username = user
 
+    # class MessageStat:
+    #     '''
+    #     Класс - отображение для таблицы статистики переданных сообщений.
+    #     '''
+    #     def __init__(self, contact, direction, message):
+    #         self.id = None
+    #         self.contact = contact
+    #         self.direction = direction
+    #         self.message = message
+    #         self.date = datetime.datetime.now()
+
+
     # Класс - отображение таблицы истории сообщений
     class MessageHistory:
         def __init__(self, from_user, to_user, message):
@@ -90,6 +102,10 @@ class ClientDatabase:
             contact_row = self.Contacts(contact)
             self.session.add(contact_row)
             self.session.commit()
+
+    def contacts_clear(self):
+        '''Метод очищающий таблицу со списком контактов.'''
+        self.session.query(self.Contacts).delete()
 
     # Функция удаления контакта
     def del_contact(self, contact):
