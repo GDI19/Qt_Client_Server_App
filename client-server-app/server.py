@@ -1,5 +1,7 @@
 import argparse
+import binascii
 import configparser
+import hmac
 import json
 import os
 import select
@@ -8,7 +10,9 @@ import sys
 import threading
 import time
 import logging
-from class_serverdb import ServerStorage
+
+from common.my_decorators import login_required
+from server.class_serverdb import ServerStorage
 from PyQt5.QtWidgets import QApplication, QMessageBox
 from PyQt5.QtCore import QTimer
 from server_gui import MainWindow, gui_create_model, HistoryWindow, create_stat_model, ConfigWindow
@@ -132,6 +136,21 @@ class Server(threading.Thread): #, metaclass=ServerVerifier):
                         with conflag_lock:
                             new_connection = True
                 self.messages.clear()
+
+
+    def remove_client(self, client):
+        '''
+        Метод обработчик клиента с которым прервана связь.
+        Ищет клиента и удаляет его из списков и базы:
+        '''
+        server_log.info(f'Клиент {client.getpeername()} отключился от сервера.')
+        for name in self.users:
+            if self.users[name] == client:
+                self.database.user_logout(name)
+                del self.users[name]
+                break
+        self.clients.remove(client)
+        client.close()
             
     
     def process_message_to_send(self, message, recipient, listen_socks):
@@ -145,9 +164,10 @@ class Server(threading.Thread): #, metaclass=ServerVerifier):
             server_log.error(
                 f'Пользователь {recipient} не зарегистрирован на сервере, отправка сообщения невозможна.')
 
-        self.send_msg_failed_notification(message, recipient)
+        # self.send_msg_failed_notification(message, recipient)
 
 
+    @login_required
     def process_client_message(self, message, client):
         """
         Receive message from client, check it.
@@ -157,27 +177,11 @@ class Server(threading.Thread): #, metaclass=ServerVerifier):
         global new_connection
         if 'time' in message and 'action' in message:
             if message['action'] == 'exit'  and  'user' in message and 'account_name' in message['user']:
-                self.database.user_logout(message['user']['account_name'])
-                self.clients.remove(client)
-                client.close()
-                del self.users[message['user']['account_name']]
-                with conflag_lock:
-                    new_connection = True
+                self.remove_client(client)
                 return
             
             elif message['action'] == 'presence'  and  'user' in message and 'account_name' in message['user']:
-                new_user_in = message['user']['account_name']
-                if new_user_in not in self.users:
-                    self.users[new_user_in] = client
-                    client_ip, client_port = client.getpeername()
-                    self.database.user_login(new_user_in, client_ip, client_port)
-                    send_message(client, {'response': 200})
-                    with conflag_lock:
-                        new_connection = True
-                else:
-                    send_message(client, {'response': 400, 'error': f'Пользователь с таким именем: {new_user_in} уже подключен.'})
-                    self.clients.remove(client)
-                    client.close()
+                self.authorize_user(message, client)
                 return
             
             elif message['action'] == 'message' and 'message_text' in message and 'send_to' in message \
@@ -195,25 +199,58 @@ class Server(threading.Thread): #, metaclass=ServerVerifier):
                 self.users[message['user']] == client:
                 response = {'response': 202, 'data_list':None}
                 response['data_list'] = self.database.get_contacts(message['user'])
-                send_message(client, response)
+                try:
+                    send_message(client, response)
+                except OSError:
+                    self.remove_client(client)
                 return
 
             elif message['action'] == 'add' and 'account_name' in message and 'user' in message \
                 and self.users[message['user']] == client:
                 self.database.add_contact(message['user'], message['account_name'])
-                send_message(client, {'response': 200})
+                try:
+                    send_message(client, {'response': 200})
+                except OSError:
+                    self.remove_client(client)
                 return
             
             elif message['action'] == 'remove' and 'account_name' in message and 'user' in message \
                 and self.users[message['user']] == client:
                 self.database.remove_contact(message['user'], message['account_name'])
-                send_message(client, {'response': 200})
+                try:
+                    send_message(client, {'response': 200})
+                except OSError:
+                    self.remove_client(client)
+                return
 
             elif  message['action'] == 'get_users' and 'account_name' in message \
                 and self.users[message['account_name']] == client:
                 response = {'response': 202, 'data_list':None}
                 response['data_list'] = [user[0] for user in self.database.users_list()]
-                send_message(client, response)
+                try:
+                    send_message(client, response)
+                except OSError:
+                    self.remove_client(client)
+                return
+            
+                # Если это запрос публичного ключа пользователя
+            elif 'action' in message and message['action'] == 'pubkey' and 'account_name' in message:
+                response = {'response': 511, 'bin': None}
+                response['bin'] = self.database.get_pubkey(message['account_name'])
+                # может быть, что ключа ещё нет (пользователь никогда не логинился,
+                # тогда шлём 400)
+                if response['bin']:
+                    try:
+                        send_message(client, response)
+                    except OSError:
+                        self.remove_client(client)
+                else:
+                    response =  {'response': 400, 'error': ""}
+                    response['error'] = 'Нет публичного ключа для данного пользователя'
+                    try:
+                        send_message(client, response)
+                    except OSError:
+                        self.remove_client(client)
                 return
 
         server_log.critical('Processed msg with noncorrect info')
@@ -221,34 +258,111 @@ class Server(threading.Thread): #, metaclass=ServerVerifier):
         return
 
 
-    def send_msg_failed_notification(self, message, user_to_send):
-        failed_message = {
-            'action': 'message',
-            'send_to': message['sender'],
-            'sender': 'server',
-            'time': time.time(),
-            'message_text': f'Сообщение для клиента {user_to_send} не отправлено'
-        }
-        try:
-            if self.users[message['sender']]:
-                back_socket = self.users[message['sender']]
-                send_message(back_socket, failed_message)
-        except:
-            self.clients.remove(back_socket)
-            del self.users[message['sender']]
-            
-        server_log.info(f'Сообщение: {message} \n для клиента не отправлено.'
-                            f'Такого пользователя {user_to_send} нет.')
-        failed_message ={}
-        
+    def authorize_user(self, message, sock):
+        '''Метод реализующий авторизцию пользователей.'''
+        # Если имя пользователя уже занято то возвращаем 400
+        server_log.debug(f'Start auth process for {message["user"]}')
 
-def print_help():
-    print('Поддерживаемые комманды:')
-    print('users - список известных пользователей')
-    print('connected - список подключенных пользователей')
-    print('loghistory - история входов пользователя')
-    print('exit - завершение работы сервера.')
-    print('help - вывод справки по поддерживаемым командам')
+        new_user_in = message['user']['account_name']
+        if new_user_in in self.users.keys():
+            try:
+                server_log.debug(f'Username busy, sending response')
+                send_message(sock, {'response': 400, 'error': f'Пользователь с таким именем: {new_user_in} уже подключен.'})
+            except OSError:
+                server_log.debug('OS Error')
+                pass
+            self.clients.remove(sock)
+            sock.close()
+        elif not self.database.check_user(new_user_in):
+            try:
+                server_log.debug(f'Username is not registered, sending response')
+                send_message(sock, {'response': 400, 'error': f'Пользователь с таким именем: {new_user_in} не зарегистрирован'})
+            except OSError:
+                server_log.debug('OS Error')
+                pass
+            self.clients.remove(sock)
+            sock.close()
+        else:
+            server_log.debug('Correct username, starting passwd check.')
+            # Иначе отвечаем 511 и проводим процедуру авторизации
+            # Словарь - заготовка
+            message_auth = {'response': 511, 'bin': None}
+
+            # Набор байтов в hex представлении
+            random_str = binascii.hexlify(os.urandom(64))
+            
+            # В словарь байты нельзя, декодируем (json.dumps -> TypeError)
+            message_auth['bin'] = random_str.decode('ascii')
+            
+            # Создаём хэш пароля и связки с рандомной строкой, сохраняем
+            # серверную версию ключа
+            hash = hmac.new(self.database.get_hash(new_user_in),  random_str, 'MD5')
+            digest = hash.digest()
+            try:
+                send_message(sock, message_auth)
+                answer = get_message(sock)
+            except OSError as err:
+                server_log.debug('Error in auth, data:', exc_info=err)
+                sock.close()
+                return
+            
+            client_digest = binascii.a2b_base64(answer['bin'])
+            if 'response' in answer and answer['response']==511 and hmac.compare_digest(
+                digest, client_digest):
+                try:
+                    send_message(sock, {'response': 200})
+                except OSError:
+                    self.remove_client(new_user_in)
+
+                self.users[new_user_in] = sock
+                client_ip, client_port = sock.getpeername()
+                self.database.user_login(
+                    new_user_in,
+                    client_ip,
+                    client_port,
+                    message['user']['pubkey'])
+            else:
+                response =  {'response': 400, 'error': ""}
+                response['error'] = 'Неверный пароль.'
+                try:
+                    send_message(sock, response)
+                except OSError:
+                    pass
+                self.clients.remove(sock)
+                sock.close()
+
+
+    def service_update_lists(self):
+        '''Метод реализующий отправки сервисного сообщения 205 клиентам.'''
+        for client in self.users:
+            RESPONSE_205 = { 'response': 205}
+            try:
+                send_message(self.users[client], RESPONSE_205)
+            except OSError:
+                self.remove_client(self.names[client])
+
+
+
+    # def send_msg_failed_notification(self, message, user_to_send):
+    #     failed_message = {
+    #         'action': 'message',
+    #         'send_to': message['sender'],
+    #         'sender': 'server',
+    #         'time': time.time(),
+    #         'message_text': f'Сообщение для клиента {user_to_send} не отправлено'
+    #     }
+    #     try:
+    #         if self.users[message['sender']]:
+    #             back_socket = self.users[message['sender']]
+    #             send_message(back_socket, failed_message)
+    #     except:
+    #         self.clients.remove(back_socket)
+    #         del self.users[message['sender']]
+            
+    #     server_log.info(f'Сообщение: {message} \n для клиента не отправлено.'
+    #                         f'Такого пользователя {user_to_send} нет.')
+    #     failed_message ={}
+        
 
 
 def main():

@@ -35,3 +35,6 @@ client-server-app/logs/__pycache__/client_log_config.cpython-310.pyc
 client-server-app/logs/__pycache__/server_log_config.cpython-310.pyc
 client-server-app/logs/logs/client/client
 client-server-app/logs/logs/server/server
+client-server-app/server/__pycache__/__init__.cpython-310.pyc
+client-server-app/server/__pycache__/class_serverdb.cpython-310.pyc
+client-server-app/common/__pycache__

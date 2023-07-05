@@ -1,15 +1,17 @@
 import datetime
 from sqlalchemy.orm import registry, mapper, sessionmaker
-from sqlalchemy import Column, Integer, MetaData, String, Table, create_engine, ForeignKey, DateTime
+from sqlalchemy import Column, Integer, MetaData, String, Table, create_engine, ForeignKey, DateTime, Text
 
 
 class ServerStorage:
 
     class AllUsers:
-        def __init__(self, username) -> None:
+        def __init__(self, username, passwd_hash) -> None:
             self.id = None
             self.name = username
             self.last_login = datetime.datetime.now()
+            self.passwd_hash = passwd_hash
+            self.pubkey = None
 
     class ActiveUsers:
         def __init__(self, user_id, ip_address, ip_port, login_time):
@@ -57,7 +59,9 @@ class ServerStorage:
         users_table = Table('Users', self.metadata,
             Column('id', Integer, primary_key=True),
             Column('name', String(50), unique=True),
-            Column('last_login', DateTime)
+            Column('last_login', DateTime),
+            Column('passwd_hash', String),
+            Column('pubkey', Text)
         )
 
         active_users_table = Table('Active_users', self.metadata,
@@ -113,7 +117,7 @@ class ServerStorage:
         self.session.commit()
 
 
-    def user_login(self, username, ip, port):
+    def user_login(self, username, ip, port, key):
         print('-'*20)
         print(username, ip, port)
         print('-'*20)
@@ -122,12 +126,11 @@ class ServerStorage:
         if found_user.count():
             user = found_user.first()
             user.last_login = datetime.datetime.now()
+            if user.pubkey != key:
+                user.pubkey = key
+            # Если нет usera, то генерируем исключение
         else:
-            user = self.AllUsers(username )
-            self.session.add(user)
-            self.session.commit()
-            user_in_history = self.UsersHistory(user.id)
-            self.session.add(user_in_history)
+            raise ValueError('Пользователь не зарегистрирован.')
 
         new_active_user = self.ActiveUsers(user.id, ip, port, datetime.datetime.now())
         self.session.add(new_active_user)
@@ -136,6 +139,47 @@ class ServerStorage:
         self.session.add(history)
 
         self.session.commit()
+
+
+    def add_user(self, name, password_hash):
+        '''
+        Метод регистрации пользователя.
+        Принимает имя и хэш пароля, создаёт запись в таблице статистики.
+        '''
+        new_user = self.AllUsers(name, password_hash)
+        self.session.add(new_user)
+        self.session.commit()
+        history_row = self.UsersHistory(new_user.id)
+        self.session.add(history_row)
+        self.session.commit()
+
+
+    def remove_user(self, username):
+        user_to_del = self.session.query(self.AllUsers).filter_by(name=username).first()
+        self.session.query(self.ActiveUsers).filter_by(user=user_to_del.id).delete()
+        self.session.query(self.LoginHistory).filter_by(name=user_to_del.id).delete()
+        self.session.query(self.UsersContacts).filter_by(user=user_to_del.id).delete()
+        self.session.query(self.UsersContacts).filter_by(contact=user_to_del.id).delete()
+        self.session.query(self.UsersHistory).filter_by(user=user_to_del.id).delete()
+        self.session.query(self.AllUsers).filter_by(name=user_to_del).delete()
+        self.session.commit()
+
+
+    def get_hash(self, username):
+        user = self.session.query(self.AllUsers).filter_by(name=username).first()
+        return user.passwd_hash
+    
+
+    def get_pubkey(self, username):
+        user = self.session.query(self.AllUsers).filter_by(name=username).first()
+        return user.pubkey
+
+
+    def check_user(self, username):
+        if self.session.query(self.AllUsers).filter_by(name=username).count():
+            return True
+        else:
+            return False
 
 
     # Функция фиксирующая отключение пользователя
@@ -193,6 +237,7 @@ class ServerStorage:
 
     
     def add_contact(self, user, contact):
+        '''Метод добавления контакта для пользователя.'''
         user = self.session.query(self.AllUsers).filter_by(name=user).first()
         contact = self.session.query(self.AllUsers).filter_by(name=contact).first()
 
@@ -211,10 +256,11 @@ class ServerStorage:
         if not contact:
             return
         
-        print(self.session.query(self.UsersContacts).filter(
-            self.UsersContacts.user == user.id,
-            self.UsersContacts.contact == contact.id).delete()
-            )
+        self.session.query(self.UsersContacts).filter(
+            self.UsersContacts.user == user.id, 
+            self.UsersContacts.contact == contact.id
+            ).delete()
+    
         self.session.commit()
 
     
@@ -240,7 +286,7 @@ class ServerStorage:
 
 
 if __name__ == "__main__":
-    test_db = ServerStorage()
+    test_db = ServerStorage('../server_database.db3')
 
     test_db.user_login('client_1', '192.168.1.4', 8888)
     test_db.user_login('client_2', '192.168.1.5', 7777)
