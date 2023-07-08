@@ -4,8 +4,15 @@ from sqlalchemy import Column, Integer, MetaData, String, Table, create_engine, 
 
 
 class ServerStorage:
+    '''
+    Класс - оболочка для работы с базой данных сервера.
+    Использует SQLite базу данных, реализован с помощью
+    SQLAlchemy ORM и используется классический подход.
+    '''
 
     class AllUsers:
+        '''Класс - отображение таблицы всех пользователей.'''
+
         def __init__(self, username, passwd_hash) -> None:
             self.id = None
             self.name = username
@@ -14,6 +21,8 @@ class ServerStorage:
             self.pubkey = None
 
     class ActiveUsers:
+        '''Класс - отображение таблицы активных пользователей.'''
+
         def __init__(self, user_id, ip_address, ip_port, login_time):
             self.id = None
             self.user = user_id
@@ -22,6 +31,8 @@ class ServerStorage:
             self.login_time = login_time
             
     class LoginHistory:
+        '''Класс - отображение таблицы истории входов.'''
+
         def __init__(self, name, date, ip, port):
             self.id = None
             self.name = name
@@ -30,12 +41,16 @@ class ServerStorage:
             self.port = port
 
     class UsersContacts:
+        '''Класс - отображение таблицы контактов пользователей.'''
+
         def __init__(self, user, contact):
             self.id = None
             self.user = user
             self.contact = contact
         
     class UsersHistory:
+        '''Класс - отображение таблицы истории действий.'''
+
         def __init__(self, user):
             self.id = None
             self.user = user
