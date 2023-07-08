@@ -41,6 +41,8 @@ def arg_parser(default_address, default_port):
 
 
 class Server(threading.Thread):  # , metaclass=ServerVerifier):
+    """Server class docstring"""
+
     port = Port()
 
     def __init__(self, listen_address, listen_port, database):
@@ -79,6 +81,7 @@ class Server(threading.Thread):  # , metaclass=ServerVerifier):
         self.sock.listen()
 
     def run(self):
+        """Method run in Server"""
         self.init_socket()
 
         while True:
@@ -373,6 +376,8 @@ class Server(threading.Thread):  # , metaclass=ServerVerifier):
 
 
 def main():
+    """Main func in Server"""
+    
     # Загрузка файла конфигурации сервера
     config = configparser.ConfigParser()
 

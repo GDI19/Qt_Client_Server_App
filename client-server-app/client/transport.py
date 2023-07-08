@@ -19,7 +19,12 @@ DEFAULT_PORT =7777
 socket_lock = threading.Lock()
 
 
-class ClientTransport(threading.Thread, QObject): # metaclass=ClientVerifier
+class ClientTransport(threading.Thread, QObject):
+    '''
+    Класс реализующий транспортную подсистему клиентского
+    модуля. Отвечает за взаимодействие с сервером.
+    '''
+
     new_message = pyqtSignal(str)
     message_205 = pyqtSignal()
     connection_lost = pyqtSignal()
@@ -50,6 +55,7 @@ class ClientTransport(threading.Thread, QObject): # metaclass=ClientVerifier
         self.running = True
 
     def connection_init(self, ip, port):
+        '''Метод отвечающий за устанновку соединения с сервером.'''
         self.transport = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
         # Таймаут для освобождения сокета.
@@ -129,6 +135,7 @@ class ClientTransport(threading.Thread, QObject): # metaclass=ClientVerifier
     
 
     def process_server_answer(self, message):
+        '''Метод обработчик поступающих сообщений с сервера.'''
         client_log.debug(f'Разбор приветственного сообщения от сервера: {message}')
         if 'response' in message:
             if message['response'] == 200:  
@@ -153,6 +160,7 @@ class ClientTransport(threading.Thread, QObject): # metaclass=ClientVerifier
 
 
     def contacts_list_update(self):
+        '''Метод обновляющий с сервера список контактов.'''
         client_log.debug(f'Запрос контакт листа для пользователся {self.username}')
         self.database.contacts_clear()
         req = {
@@ -174,6 +182,7 @@ class ClientTransport(threading.Thread, QObject): # metaclass=ClientVerifier
     
     # Функция списка известных пользователей
     def user_list_update(self):
+        '''Метод обновляющий с сервера список пользователей.'''
         client_log.debug(f'Запрос списка известных пользователей {self.username}')
         req = {
             'action': 'get_users',
