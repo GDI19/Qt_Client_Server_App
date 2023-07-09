@@ -9,15 +9,19 @@ import sys
 import threading
 from socket import AF_INET, SOCK_STREAM, socket
 
+from PyQt5.QtCore import Qt
+from PyQt5.QtCore import QTimer
+from PyQt5.QtWidgets import QApplication, QMessageBox
+
+from server_dir.class_serverdb import ServerStorage
+from server_gui import (ConfigWindow, HistoryWindow, MainWindow,
+                        create_stat_model, gui_create_model)
 from common.descriptors import Port
 from common.my_decorators import login_required
 from common.utils import get_message, send_message
 from logs.server_log_config import log
-from PyQt5.QtCore import QTimer
-from PyQt5.QtWidgets import QApplication, QMessageBox
-from server.class_serverdb import ServerStorage
-from server_gui import (ConfigWindow, HistoryWindow, MainWindow,
-                        create_stat_model, gui_create_model)
+from server_dir.main_window import MainWindow
+
 
 server_log = logging.getLogger('server_log')
 
@@ -27,17 +31,6 @@ DEFAULT_PORT = 7777
 # постоянными запросами на обновление
 new_connection = False
 conflag_lock = threading.Lock()
-
-
-@log
-def arg_parser(default_address, default_port):
-    parser = argparse.ArgumentParser()
-    parser.add_argument('-a', default=default_address, nargs='?')
-    parser.add_argument('-p', default=default_port, type=int, nargs='?')
-    namespace = parser.parse_args(sys.argv[1:])
-    listen_address = namespace.a
-    listen_port = namespace.p
-    return listen_address, listen_port
 
 
 class Server(threading.Thread):  # , metaclass=ServerVerifier):
@@ -375,6 +368,19 @@ class Server(threading.Thread):  # , metaclass=ServerVerifier):
     #     failed_message ={}
 
 
+@log
+def arg_parser(default_address, default_port):
+    parser = argparse.ArgumentParser()
+    parser.add_argument('-a', default=default_address, nargs='?')
+    parser.add_argument('-p', default=default_port, type=int, nargs='?')
+    parser.add_argument('--no_gui', action='store_true')
+    namespace = parser.parse_args(sys.argv[1:])
+    listen_address = namespace.a
+    listen_port = namespace.p
+    gui_flag = namespace.no_gui
+    return listen_address, listen_port, gui_flag
+
+
 def main():
     """Main func in Server"""
     
@@ -386,7 +392,7 @@ def main():
 
     # Загрузка параметров командной строки, если нет параметров, то задаём
     # значения по умоланию.
-    listen_address, listen_port = arg_parser(config['SETTINGS']['Listen_Address'],
+    listen_address, listen_port, gui_flag = arg_parser(config['SETTINGS']['Listen_Address'],
                                              config['SETTINGS']['Default_port'])
     database = ServerStorage(os.path.join(
         config['SETTINGS']['Database_path'],
@@ -402,7 +408,8 @@ def main():
 
     # Создаём графическое окуружение для сервера:
     server_app = QApplication(sys.argv)
-    main_window = MainWindow()
+    server_app.setAttribute(Qt.AA_DisableWindowContextHelpButton) #Qt.ApplicationAttribute
+    main_window = MainWindow(database, server, config)
 
     # Инициализируем параметры в окна
     main_window.statusBar().showMessage('Server Working...')

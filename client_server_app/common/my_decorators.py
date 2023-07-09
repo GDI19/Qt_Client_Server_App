@@ -14,7 +14,7 @@ def login_required(func):
     def checker(*args, **kwargs):
         # проверяем, что первый аргумент - экземпляр Server(MessageProcessor)
         # Импортить необходимо тут, иначе ошибка рекурсивного импорта.
-        from server import Server
+        from client_server_app.server import Server
 
         if isinstance(args[0], Server):
             found = False

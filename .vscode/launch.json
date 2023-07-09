@@ -8,7 +8,7 @@
             "name": "class_serverdb",
             "type": "python",
             "request": "launch",
-            "program": "/home/gdi/visual-studio-code/practice/client-server-app/class_serverdb.py",
+            "program": "/home/gdi/visual-studio-code/practice/client_server_app/class_serverdb.py",
             "console": "integratedTerminal",
             "justMyCode": true
         },
@@ -32,7 +32,7 @@
             "name": "client_1",
             "type": "python",
             "request": "launch",
-            "program": "/home/gdi/visual-studio-code/practice/client-server-app/client.py",
+            "program": "/home/gdi/visual-studio-code/practice/client_server_app/client.py",
             "console": "integratedTerminal",
             "justMyCode": true,
             "args": [
@@ -44,7 +44,7 @@
             "name": "client_2",
             "type": "python",
             "request": "launch",
-            "program": "/home/gdi/visual-studio-code/practice/client-server-app/client.py",
+            "program": "/home/gdi/visual-studio-code/practice/client_server_app/client.py",
             "console": "integratedTerminal",
             "justMyCode": true,
             "args": [
@@ -56,7 +56,7 @@
             "name": "server.py",
             "type": "python",
             "request": "launch",
-            "program": "/home/gdi/visual-studio-code/practice/client-server-app/server.py",
+            "program": "/home/gdi/visual-studio-code/practice/client_server_app/server.py",
             "console": "integratedTerminal",
             "justMyCode": true
         }
