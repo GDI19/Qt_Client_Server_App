@@ -2,12 +2,12 @@
 #
 # For the full list of built-in configuration values, see the documentation:
 # https://www.sphinx-doc.org/en/master/usage/configuration.html
-import os
+# import os
 import sys
 
-# path = os.path.dirname(os.path.abspath('../../client-server-app/server.py'))
+# path = os.path.dirname(os.path.abspath('../../client_server_app/server.py'))
 # sys.path.insert(0, path)
-sys.path.insert(0, "/home/gdi/visual-studio-code/practice/client-server-app")
+sys.path.insert(0, "/home/gdi/visual-studio-code/practice/client_server_app")
 
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information

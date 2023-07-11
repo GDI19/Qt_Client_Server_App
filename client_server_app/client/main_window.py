@@ -281,8 +281,7 @@ class ClientMainWindow(QMainWindow):
                 self.close()
             self.messages.critical(self, 'Ошибка', 'Таймаут соединения!')
         except (ConnectionResetError, ConnectionAbortedError):
-            self.messages.critical(
-                self, 'Ошибка', 'Потеряно соединение с сервером!')
+            self.messages.critical(self, 'Ошибка', 'Потеряно соединение с сервером!')
             self.close()
         else:
             self.database.save_message(self.current_chat, 'out', message_text)
