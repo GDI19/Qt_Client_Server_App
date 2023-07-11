@@ -38,3 +38,6 @@ client_server_app/logs/logs/server/server
 client_server_app/server/__pycache__/__init__.cpython-310.pyc
 client_server_app/server/__pycache__/class_serverdb.cpython-310.pyc
 client_server_app/common/__pycache__
+client_server_app/server_dir/__pycache__/core.cpython-310.pyc
+client_server_app/user2.key
+server_base.db3-journal

@@ -12,7 +12,7 @@ from socket import AF_INET, SOCK_STREAM, socket
 from PyQt5.QtCore import Qt
 from PyQt5.QtCore import QTimer
 from PyQt5.QtWidgets import QApplication, QMessageBox
-from common.core import MessageProcessor
+from server_dir.core import MessageProcessor
 
 from server_dir.class_serverdb import ServerStorage
 from server_gui import (ConfigWindow, HistoryWindow, MainWindow,

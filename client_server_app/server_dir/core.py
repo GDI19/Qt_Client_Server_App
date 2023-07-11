@@ -1,14 +1,14 @@
 import threading
 import logging
 import select
-import socket
+from socket import socket, AF_INET, SOCK_STREAM
 import json
 import hmac
 import binascii
 import os
-from descriptors import Port
-from utils import send_message, get_message
-from my_decorators import login_required
+from common.descriptors import Port
+from common.utils import send_message, get_message
+from common.my_decorators import login_required
 
 server_log = logging.getLogger('server_log')
 
@@ -21,7 +21,11 @@ conflag_lock = threading.Lock()
 
 
 class MessageProcessor(threading.Thread):  # , metaclass=ServerVerifier):
-    """Server class docstring"""
+    '''
+    Основной класс сервера. Принимает содинения, словари - пакеты
+    от клиентов, обрабатывает поступающие сообщения.
+    Работает в качестве отдельного потока.
+    '''
 
     port = Port()
 
@@ -37,6 +41,13 @@ class MessageProcessor(threading.Thread):  # , metaclass=ServerVerifier):
 
         # [socket, ...] Список подключённых клиентов
         self.clients = []
+
+        # Сокеты
+        self.listen_sockets = None
+        self.error_sockets = None
+
+        # Флаг продолжения работы
+        self.running = True
 
         # [(username_from, message, username_to), ...] Список сообщений на отправку
         self.messages = []
@@ -224,7 +235,7 @@ class MessageProcessor(threading.Thread):  # , metaclass=ServerVerifier):
                 return
 
                 # Если это запрос публичного ключа пользователя
-            elif 'action' in message and message['action'] == 'pubkey' and 'account_name' in message:
+            elif 'action' in message and message['action'] == 'pubkey_need' and 'account_name' in message:
                 response = {'response': 511, 'bin': None}
                 response['bin'] = self.database.get_pubkey(
                     message['account_name'])

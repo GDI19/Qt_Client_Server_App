@@ -25,7 +25,7 @@ class ClientTransport(threading.Thread, QObject):
     модуля. Отвечает за взаимодействие с сервером.
     '''
 
-    new_message = pyqtSignal(str)
+    new_message = pyqtSignal(dict)
     message_205 = pyqtSignal()
     connection_lost = pyqtSignal()
     
